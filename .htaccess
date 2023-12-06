@@ -1,0 +1,10 @@
+RewriteEngine On
+
+
+#####
+RewriteRule ^$                views/index.php [NC,L]
+RewriteRule ^signup$          views/signup.php [NC,L]
+RewriteRule ^login$           views/login.php [NC,L]
+RewriteRule ^users$           views/users.php [NC,L]
+RewriteRule ^user$            views/user.php [NC,L]
+

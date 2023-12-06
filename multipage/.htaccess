@@ -1,0 +1,13 @@
+RewriteEngine On
+# RewriteCond %{REQUEST_URI}  !(\.png|\.jpg|\.webp|\.gif|\.jpeg|\.zip|\.css|\.svg|\.js|\.pdf)$
+# RewriteRule (.*) routes.php [QSA,L]
+
+RewriteRule ^$                  views/index.php [NC,L]
+RewriteRule ^dk$                views/index.php?lan=dk [NC,L]
+RewriteRule ^sp$                views/index.php?lan=sp [NC,L]
+
+
+RewriteRule ^api/api-signup$    api/api-signup.php [NC,L]
+
+
+
