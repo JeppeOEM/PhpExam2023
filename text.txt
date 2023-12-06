@@ -1,0 +1,42 @@
+Hand-in: No hand-in
+
+
+An user can:
+
+View profile
+Signup
+Login
+Update profile
+Delete profile
+See all orders
+Search for own orders
+
+
+A partner can:
+
+View profile
+Signup
+Login
+Update profile
+Delete profile
+See pending and delivered orders
+Search for orders
+
+
+An admin can:
+
+View all users
+Block/unblock an user
+See all orders
+See all data in the system
+Search for anything
+
+
+The system must have:
+
+Front-end validation
+Back-end validation
+Text message for new users
+Sync the rules for validation between front and back-end
+Make it look "nice"
+Make it friendly

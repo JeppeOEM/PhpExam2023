@@ -15,12 +15,12 @@ function show_page(page_id) {
   q("#" + page_id).classList.remove("hidden");
 }
 
-// q("#logout").addEventListener("submit", function (event) {
-//   // Prevent the default form submission
-//   event.preventDefault();
-
-//   // Perform any additional actions you need before logout, if any
-
-//   // Redirect to the logout API endpoint using JavaScript
-//   window.location.href = "/";
-// });
+function edit_profile() {
+  var userNameInput = document.getElementById("user_name");
+  var userEmailInput = document.getElementById("user_email");
+  var userLastNameInput = document.getElementById("user_last_name");
+  userNameInput.readOnly = !userNameInput.readOnly;
+  userEmailInput.readOnly = !userEmailInput.readOnly;
+  userLastNameInput.readOnly = !userLastNameInput.readOnly;
+  q("#update_profile").remove("hidden");
+}

@@ -15,6 +15,8 @@ function is_logged_in()
 function logout()
 {
   session_destroy();
+  header("Location: /");
+  exit();
 }
 
 // ##############################

@@ -7,6 +7,8 @@
 
     <?php require_once __DIR__ . '/login.php' ?>
     <?php require_once __DIR__ . '/signup.php' ?>
+    <?php require_once __DIR__ . '/profile.php' ?>
+    <?php require_once __DIR__ . '/orders.php' ?>
 
 </div>
 

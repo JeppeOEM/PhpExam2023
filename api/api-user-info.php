@@ -2,9 +2,6 @@
 require_once __DIR__ . '/../_.php';
 try {
 
-    _validate_user_email();
-    _validate_user_password();
-
     $db = _db();
     // $q = $db->prepare('SELECT * FROM users WHERE user_email = :user_email');
     // $q = $db->prepare('SELECT * FROM users WHERE user_email = $_POST['user_email]');
@@ -26,7 +23,6 @@ try {
     $_SESSION['user'] = [
         'user_id' => $user['user_id'],
         'user_name' => $user['user_name'],
-        'user_last_name' => $user['user_last_name'],
         'user_email' => $user['user_email']
     ];
     echo json_encode($_SESSION['user']);
