@@ -1,5 +1,6 @@
 // ##############################
-function validate(callback) {
+function validate(event, callback) {
+  console.log(event, "validateor");
   const form = event.target;
   // event.preventDefault();
   console.log(form);
@@ -64,7 +65,7 @@ function validate(callback) {
     }
   });
   if (!form.querySelector(".validate_error")) {
-    callback();
+    callback(event);
     return;
   }
 
