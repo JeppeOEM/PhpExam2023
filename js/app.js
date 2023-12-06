@@ -1,10 +1,23 @@
-async function signup(event) {
-  console.log(event);
+async function user_signup(event) {
+  // Prevent the default form submission
+  event.preventDefault();
+
+  // Access the form element
   const frm = event.target;
-  console.log(frm);
+
+  // Create a FormData object from the form
+  const formData = new FormData(frm);
+
+  // Log all form values
+  formData.forEach((value, key) => {
+    console.log(`key${key}: value${value}`);
+  });
+
+  // The rest of your signup logic...
+
   const conn = await fetch("/api/api-signup.php", {
     method: "POST",
-    body: new FormData(frm),
+    body: formData,
   });
 
   const data = await conn.text();
@@ -19,13 +32,13 @@ async function signup(event) {
     });
     return;
   } else {
-    location.href = "/";
+    console.log("form");
+    // location.href = "/";
   }
 
   // TODO: redirect to the login page
   // location.href = "/index";
 }
-
 async function login(event) {
   // console.log(event.form, "formmmmmm");
   const frm = event.target;
@@ -132,9 +145,9 @@ function edit_profile() {
   var userNameInput = document.getElementById("user_name");
   var userEmailInput = document.getElementById("user_email");
   var userLastNameInput = document.getElementById("user_last_name");
-  userNameInput.readOnly = !userNameInput.readOnly;
-  userEmailInput.readOnly = !userEmailInput.readOnly;
-  userLastNameInput.readOnly = !userLastNameInput.readOnly;
+  userNameInput.readOnly = false;
+  userEmailInput.readOnly = false;
+  userLastNameInput.readOnly = false;
   q("#update_profile").classList.remove("hidden");
   q("#edit_profile").classList.add("hidden");
 }

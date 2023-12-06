@@ -1,7 +1,11 @@
-<main id="profile" class="page">
-    <div class="bg-white p-8 rounded shadow-md">
+<?php require_once __DIR__ . '/_header.php'  ?>
+
+
+<main id="profile" class="page absolute top-0 left-52 w-[calc(100vw-13rem)] h-screen overflow-hidden">
+    <div class=" bg-white p-8 rounded shadow-md">
         <h2 class="text-2xl font-semibold mb-4">Profile</h2>
         <!-- name of callback cannot be the same as an ID of anything in the form -->
+
         <form onsubmit="return validate(event, update)" method="post">
             <div class="mb-4">
                 <label for="user_name" class="block text-sm font-medium text-gray-600">First Name:</label>
@@ -22,7 +26,7 @@
             </div>
             <div class="mb-4">
                 <label for="user_zip" class="block text-sm font-medium text-gray-600">Zip code:</label>
-                <input name="user_zip" type="text" placeholder="zip" value=<?= $_SESSION['user']['user_zip'] ?> data-validate="int" data-min="4" data-max="4" readonly class="mt-1 p-2 border rounded w-full">
+                <input name="user_zip" type="text" placeholder="zip" value=<?= $_SESSION['user']['user_zip'] ?> data-validate="str" data-min="4" data-max="4" readonly class="mt-1 p-2 border rounded w-full">
             </div>
             <div class="mb-4">
                 <label for="user_city" class="block text-sm font-medium text-gray-600">City:</label>
@@ -35,11 +39,8 @@
     </div>
 
 
-
-    <form>
-        <fieldset>
-            <input type="text">
-        </fieldset>
-    </form>
 </main>
-<script src="/js/app.js"></script>
+
+
+
+<?php require_once __DIR__ . '/_footer.php'  ?>

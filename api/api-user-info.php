@@ -3,8 +3,7 @@ require_once __DIR__ . '/../_.php';
 try {
 
     $db = _db();
-    // $q = $db->prepare('SELECT * FROM users WHERE user_email = :user_email');
-    // $q = $db->prepare('SELECT * FROM users WHERE user_email = $_POST['user_email]');
+    $q = $db->prepare('SELECT * FROM users WHERE user_email = :user_email');
     $q = $db->prepare('CALL login(:user_email)');
     $q->bindValue(':user_email', $_POST['user_email']);
     $q->execute();
@@ -14,18 +13,7 @@ try {
         throw new Exception('invalid credentials', 400);
     }
 
-    // Check if the found user has a valid password
-    if (!password_verify($_POST['user_password'], $user['user_password'])) {
-        throw new Exception('invalid credentials', 400);
-    }
-
-    session_start();
-    $_SESSION['user'] = [
-        'user_id' => $user['user_id'],
-        'user_name' => $user['user_name'],
-        'user_email' => $user['user_email']
-    ];
-    echo json_encode($_SESSION['user']);
+    echo json_encode(['user' => $user]);
 } catch (Exception $e) {
     try {
         if (!$e->getCode() || !$e->getMessage()) {

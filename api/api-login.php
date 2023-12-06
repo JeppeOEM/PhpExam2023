@@ -32,6 +32,7 @@ try {
         'user_city' => $user['user_city'],
         'user_zip' => $user['user_zip'],
     ];
+    var_dump($_SESSION['user']);
     echo json_encode($_SESSION['user']);
 } catch (Exception $e) {
     try {
