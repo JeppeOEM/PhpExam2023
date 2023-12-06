@@ -27,7 +27,14 @@ try {
     $q->bindValue(':user_name', $_POST['user_name']);
     $q->execute();
 
-    echo json_encode(['info' => 'user updated']);
+    session_start();
+    $_SESSION['user'] = [
+        'user_id' => $user_id,
+        'user_name' => $_POST['user_name'],
+        'user_last_name' => $_POST['user_last_name'],
+        'user_email' => $_POST['user_email']
+    ];
+    echo json_encode($_SESSION['user']);
 } catch (Exception $e) {
     $status_code = !ctype_digit($e->getCode()) ? 500 : $e->getCode();
     $message = strlen($e->getMessage()) == 0 ? 'error - ' . $e->getLine() : $e->getMessage();

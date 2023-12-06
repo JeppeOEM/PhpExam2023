@@ -100,8 +100,8 @@ async function update(event) {
     });
     return;
   } else {
-    q("#update_profile").classList.remove("hidden");
-    q("#edit_profile").classList.add("hidden");
+    q("#update_profile").classList.add("hidden");
+    q("#edit_profile").classList.remove("hidden");
     return data;
   }
 }
@@ -132,8 +132,9 @@ function edit_profile() {
   var userNameInput = document.getElementById("user_name");
   var userEmailInput = document.getElementById("user_email");
   var userLastNameInput = document.getElementById("user_last_name");
-  userNameInput.readOnly = false;
-  userEmailInput.readOnly = false;
-  userLastNameInput.readOnly = false;
+  userNameInput.readOnly = !userNameInput.readOnly;
+  userEmailInput.readOnly = !userEmailInput.readOnly;
+  userLastNameInput.readOnly = !userLastNameInput.readOnly;
   q("#update_profile").classList.remove("hidden");
+  q("#edit_profile").classList.add("hidden");
 }

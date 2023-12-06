@@ -19,17 +19,31 @@ try {
       :user_name, 
       :user_last_name, 
       :user_email, 
-      :user_password
+      :user_password,
+      :user_role,
+      :user_address,
+      :user_city,
+      :user_zip,
+      :user_blocked
       )'
     );
     $q->bindValue(':user_id', null);
     $q->bindValue(':user_name', $_POST['user_name']);
     $q->bindValue(':user_last_name', $_POST['user_last_name']);
     $q->bindValue(':user_email', $_POST['user_email']);
+    $q->bindValue(':user_role', $_POST['user_role']);
+    $q->bindValue(':user_address', $_POST['user_address']);
+    $q->bindValue(':user_city', $_POST['user_city']);
+    $q->bindValue(':user_zip', $_POST['user_zip']);
+    $q->bindValue(':user_blocked', 0);
     $q->bindValue(':user_password', password_hash($_POST['user_password'], PASSWORD_DEFAULT));
     var_dump($_POST['user_name']);
     var_dump($_POST['user_last_name']);
     var_dump($_POST['user_email']);
+    var_dump($_POST['user_password']);
+    var_dump($_POST['user_zip']);
+    var_dump($_POST['user_city']);
+    var_dump($_POST['user_address']);
     var_dump($_POST['user_password']);
     // $q->bindValue(':user_role', 'user');
     // $q->bindValue(':user_created_at', time());

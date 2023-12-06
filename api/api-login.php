@@ -27,7 +27,10 @@ try {
         'user_id' => $user['user_id'],
         'user_name' => $user['user_name'],
         'user_last_name' => $user['user_last_name'],
-        'user_email' => $user['user_email']
+        'user_email' => $user['user_email'],
+        'user_address' => $user['user_address'],
+        'user_city' => $user['user_city'],
+        'user_zip' => $user['user_zip'],
     ];
     echo json_encode($_SESSION['user']);
 } catch (Exception $e) {
