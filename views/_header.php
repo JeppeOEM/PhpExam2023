@@ -52,6 +52,10 @@ p-4 w-52 h-screen bg-slate-700">
             Profile
         </button>
 
+        <button onclick="show_page('restaurants');">
+            Order food
+        </button>
+
         <button onclick="show_page('orders_partner');" <?php if ($_SESSION['user']['user_role'] != "partner") echo 'class="hidden"'; ?>>
             Orders
         </button>

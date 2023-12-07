@@ -12,7 +12,8 @@
     <?php require_once __DIR__ . '/orders_user.php' ?>
     <?php require_once __DIR__ . '/admin.php' ?>
     <?php require_once __DIR__ . '/restaurants.php' ?>
-    
+    <?php require_once __DIR__ . '/restaurant.php' ?>
+
 
 </div>
 

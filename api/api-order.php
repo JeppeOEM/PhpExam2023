@@ -4,31 +4,47 @@ require_once __DIR__ . '/../_.php';
 
 try {
     $db = _db();
+    $products = [1, 2, 3, 4];
     // Log the values before executing the query
-    $user_fk = $_POST['user_id'];
-    $restaurant_fk = $_POST['restaurant_id'];
+    // $user_fk = $_POST['user_id'];
+    $user_fk = 1;
+    // $restaurant_fk = $_POST['restaurant_id'];
+    $restaurant_fk = 1;
+    $restaurantQuery = $db->prepare('SELECT fk_user_id FROM restaurants WHERE restaurant_id = :restaurant_id');
+    $restaurantQuery->bindValue(':restaurant_id', $restaurant_fk);
+    $restaurantQuery->execute();
+    $restaurantInfo = $restaurantQuery->fetch();
+    if (!$restaurantInfo) {
+        throw new Exception('Restaurant not found', 404);
+    }
+    $user_fk_restaurant = $restaurantInfo['fk_user_id'];
+    $userQuery = $db->prepare('SELECT * FROM users2 WHERE user_id = :user_id');
+    $userQuery->bindValue(':user_id', $user_fk_restaurant);
+    $userQuery->execute();
+    $userInfo = $userQuery->fetch();
+    if (!$userInfo) {
+        throw new Exception('User not found', 404);
+    }
+
+    $zip = $userInfo['user_zip'];
+
+    $address = $userInfo['user_address'];
+    $city = $userInfo['user_city'];
     $created_at = time();
     $scheduled_at = $created_at + 3600;
-    $comments = $_POST['comments'];
-    $amount = $_POST['amount'];
-    $city = $_POST['city'];
-    $address = $_POST['address'];
-    $zip = $_POST['zip'];
 
     $orderData = [
         'user_fk' => $user_fk,
         'restaurant_fk' => $restaurant_fk,
         'created_at' => $created_at,
         'scheduled_at' => $scheduled_at,
-        'comments' => $comments,
-        'amount' => $amount,
         'city' => $city,
         'address' => $address,
         'zip' => $zip
     ];
 
-    var_dump($orderData);
-
+    p($orderData);
+    $db->beginTransaction();
     $q = $db->prepare(
         '
     INSERT INTO orders
@@ -37,8 +53,6 @@ try {
       user_fk, 
       created_at, 
       scheduled_at,
-      comments,
-      amount,
       restaurant_fk, 
       address,
       city,
@@ -49,8 +63,6 @@ try {
       :user_fk, 
       :created_at, 
       :scheduled_at,
-      :comments,
-      :amount,
       :restaurant_fk, 
       :address,
       :city,
@@ -62,18 +74,24 @@ try {
     $q->bindValue(':user_fk', $user_fk);
     $q->bindValue(':created_at', $created_at);
     $q->bindValue(':scheduled_at', $scheduled_at);
-    $q->bindValue(':comments', $comments);
-    $q->bindValue(':amount', $amount);
     $q->bindValue(':restaurant_fk', $restaurant_fk);
     $q->bindValue(':address', $address);
     $q->bindValue(':city', $city);
     $q->bindValue(':zip', $zip);
-
     $q->execute();
+    $order_id = $db->lastInsertId();
+    p($order_id);
+    foreach ($products as $product_id) {
+        $q = $db->prepare('INSERT INTO order_products (fk_order_id, fk_product_id) VALUES (:fk_order_id, :fk_product_id)');
+        $q->bindValue(':fk_order_id', $order_id);
+        $q->bindValue(':fk_product_id', $product_id);
+        $q->execute();
+    }
+    $db->commit();
 
-    // Log the success message after executing the query
     echo json_encode(['order_id' => $db->lastInsertId()]);
 } catch (Exception $e) {
+    $db->rollBack();
     try {
         if (!ctype_digit($e->getCode())) {
             throw new Exception();

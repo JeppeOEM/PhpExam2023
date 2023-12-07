@@ -15,15 +15,15 @@ async function user_signup(event) {
 
   // The rest of your signup logic...
 
-  const conn = await fetch("/api/api-signup.php", {
+  const response = await fetch("/api/api-signup.php", {
     method: "POST",
     body: formData,
   });
 
-  const data = await conn.text();
+  const data = await response.text();
   console.log(data);
 
-  if (!conn.ok) {
+  if (!response.ok) {
     Swal.fire({
       icon: "error",
       title: "Oops...",
@@ -44,15 +44,15 @@ async function login(event) {
   const frm = event.target;
   console.log(frm);
   event.preventDefault();
-  const conn = await fetch("/api/api-login.php", {
+  const response = await fetch("/api/api-login.php", {
     method: "POST",
     body: new FormData(frm),
   });
 
-  const data = await conn.text();
+  const data = await response.text();
   console.log(data);
 
-  if (!conn.ok) {
+  if (!response.ok) {
     Swal.fire({
       icon: "error",
       title: "Invalid credentials",
@@ -63,48 +63,97 @@ async function login(event) {
   } else {
     show_page("restaurants");
   }
-
-  // TODO: redirect to the login page
-  // location.href = "/index";
 }
 
-// async function logout(event) {
-//   // console.log(event.form, "formmmmmm");
-//   const frm = event.target;
-//   console.log(frm);
-//   event.preventDefault();
-//   const conn = await fetch("/api/api-logout.php", {
-//     method: "GET",
-//   });
+async function get_restaurants() {
+  try {
+    const response = await fetch("api/api-get-restaurants.php");
+    const data = await response.json();
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.error("Error:", error.message);
+  }
+}
 
-//   const data = await conn.text();
-//   console.log(data);
+async function order_products(order) {
+  const response = await fetch("/api/api-order.php", {
+    method: "POST",
+    body: JSON.stringify(order),
+  });
+  const data = await response.text();
+  if (!response.ok) {
+    Swal.fire({
+      icon: "error",
+      title: "Error",
+      text: "Something went wrong, could not place order",
+      // footer: '<a href="">Why do I have this issue?</a>',
+    });
+  } else {
+    Swal.fire({
+      icon: "success",
+      title: "Success",
+      text: "Your order has been placed",
+      // footer: '<a href="">Why do I have this issue?</a>',
+    });
+    return data;
+  }
+}
 
-//   if (!conn.ok) {
-//     Swal.fire({
-//       icon: "error",
-//       title: "Invalid credentials",
-//       text: "logout unsuccesfull",
-//       // footer: '<a href="">Why do I have this issue?</a>',
-//     });
-//     return;
-//   }
-// }
+async function get_products(event) {
+  const restaurant_id = event.currentTarget.id;
+  try {
+    const response = await fetch("/api/api-get-products.php", {
+      method: "POST",
+      body: JSON.stringify({ restaurant_id: restaurant_id }),
+    });
+    const data = await response.text();
+    console.log(JSON.parse(data), "data");
+    build_products(JSON.parse(data));
+    show_page("restaurant");
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+async function build_products(products) {
+  console.log(products);
+  const product = q("#product_grid");
+
+  sorted = sort_az(products.products, "product_name");
+
+  sorted.forEach((product) => {
+    const template = q("#product_article");
+    const clone = template.content.cloneNode(true);
+    q(".product_name", clone).innerText = product.product_name;
+    q(".price", clone).innerText = product.price;
+    let buy_btn = q(".buy", clone);
+    buy_btn.id = product.product_id;
+    buy_btn.addEventListener("click", (event) => {
+      event.preventDefault();
+      console.log("wow");
+      console.log("ddd", buy_btn.id);
+      add_to_cart("cart", buy_btn.id);
+      console.log(localStorage.getItem("cart"));
+    });
+    product_grid.appendChild(clone);
+  });
+}
 
 async function update(event) {
   // console.log(event.form, "formmmmmm");
   const frm = event.target;
   console.log(frm);
   event.preventDefault();
-  const conn = await fetch("/api/api-update-user.php", {
+  const response = await fetch("/api/api-update-user.php", {
     method: "POST",
     body: new FormData(frm),
   });
 
-  const data = await conn.text();
+  const data = await response.text();
   console.log(data);
 
-  if (!conn.ok) {
+  if (!response.ok) {
     Swal.fire({
       icon: "error",
       title: "Error",
@@ -119,36 +168,13 @@ async function update(event) {
   }
 }
 
-function q(q, from = document) {
-  return from.querySelector(q);
-}
-function qAll(q, from = document) {
-  return from.querySelectorAll(q);
-}
-
-function show_page(page_id) {
-  console.log(page_id);
-  // Hide all the pages
-  qAll(".page").forEach((page) => {
-    page.classList.add("hidden");
-  });
-  // Show the one with the id
-  q("#" + page_id).classList.remove("hidden");
-}
-
-function edit_profile() {
-  var userNameInput = document.getElementById("user_name");
-  var userEmailInput = document.getElementById("user_email");
-  var userLastNameInput = document.getElementById("user_last_name");
-  userNameInput.readOnly = false;
-  userEmailInput.readOnly = false;
-  userLastNameInput.readOnly = false;
-  q("#update_profile").classList.remove("hidden");
-  q("#edit_profile").classList.add("hidden");
-}
-
-// EVENT LISTENERS AND BUTTONS
 document.addEventListener("DOMContentLoaded", function () {
+  q("#order_products").addEventListener("click", () => {
+    const order = localStorage.getItem("cart");
+    console.log(order);
+    order_products(order);
+  });
+
   q("#edit_profile").addEventListener("click", () => {
     console.log("lol");
     edit_profile();
@@ -169,6 +195,19 @@ document.addEventListener("DOMContentLoaded", function () {
       textUser.classList.toggle("hidden");
     });
   });
+
+  function edit_profile() {
+    const user_name = document.getElementById("user_name");
+    const user_email = document.getElementById("user_email");
+    const user_last_name = document.getElementById("user_last_name");
+    user_name.readOnly = false;
+    user_email.readOnly = false;
+    user_last_name.readOnly = false;
+    q("#update_profile").classList.remove("hidden");
+    q("#edit_profile").classList.add("hidden");
+  }
+
+  // EVENT LISTENERS AND BUTTONS
 
   // qAll(".change_signup").forEach((btn) => {
   //   btn.addEventListener("click", () => {
