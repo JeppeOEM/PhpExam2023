@@ -61,7 +61,7 @@ async function login(event) {
     });
     return;
   } else {
-    show_page("profile");
+    show_page("restaurants");
   }
 
   // TODO: redirect to the login page
@@ -136,11 +136,6 @@ function show_page(page_id) {
   q("#" + page_id).classList.remove("hidden");
 }
 
-q("#edit_profile").addEventListener("click", () => {
-  console.log("lol");
-  edit_profile();
-});
-
 function edit_profile() {
   var userNameInput = document.getElementById("user_name");
   var userEmailInput = document.getElementById("user_email");
@@ -151,3 +146,42 @@ function edit_profile() {
   q("#update_profile").classList.remove("hidden");
   q("#edit_profile").classList.add("hidden");
 }
+
+// EVENT LISTENERS AND BUTTONS
+document.addEventListener("DOMContentLoaded", function () {
+  q("#edit_profile").addEventListener("click", () => {
+    console.log("lol");
+    edit_profile();
+  });
+
+  qAll(".change_signup").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const textPartner = q("#text_partner");
+      const textUser = q("#text_user");
+      const role = q("#user_role_input");
+      let role_value = role.value;
+      console.log(role);
+      role_value === "user" ? (role_value = "partner") : (role_value = "user");
+      role.value = role_value;
+      q("#signup_legend_var").innerText = role_value;
+      // Toggle the "hidden" class for both spans
+      textPartner.classList.toggle("hidden");
+      textUser.classList.toggle("hidden");
+    });
+  });
+
+  // qAll(".change_signup").forEach((btn) => {
+  //   btn.addEventListener("click", () => {
+  //     const role = q("#user_role_input");
+  //     let role_value = role.value;
+  //     console.log(role);
+  //     role_value === "user" ? (role_value = "partner") : (role_value = "user");
+  //     console.log(role_value);
+  //     role.value = role_value;
+  //     // q("#text_partner").classList.toggle("hidded");
+  //     console.log(q("#text_user").classList);
+  //     let text = q("#text_user");
+  //     text.classList.remove("hidded");
+  //   });
+  // });
+});

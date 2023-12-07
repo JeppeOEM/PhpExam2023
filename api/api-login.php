@@ -23,6 +23,8 @@ try {
     }
 
     session_start();
+    p($user);
+
     $_SESSION['user'] = [
         'user_id' => $user['user_id'],
         'user_name' => $user['user_name'],
@@ -31,6 +33,7 @@ try {
         'user_address' => $user['user_address'],
         'user_city' => $user['user_city'],
         'user_zip' => $user['user_zip'],
+        'user_role' => $user['user_role'],
     ];
     var_dump($_SESSION['user']);
     echo json_encode($_SESSION['user']);

@@ -8,7 +8,11 @@
     <?php require_once __DIR__ . '/login.php' ?>
     <?php require_once __DIR__ . '/signup.php' ?>
     <?php require_once __DIR__ . '/profile.php' ?>
-    <?php require_once __DIR__ . '/orders.php' ?>
+    <?php require_once __DIR__ . '/orders_partner.php' ?>
+    <?php require_once __DIR__ . '/orders_user.php' ?>
+    <?php require_once __DIR__ . '/admin.php' ?>
+    <?php require_once __DIR__ . '/restaurants.php' ?>
+    
 
 </div>
 

@@ -1,8 +1,8 @@
 <main id="signup" class="page">
     <form onsubmit="return validate(event,user_signup)" method='post'>
         <fieldset>
-            <legend>Register an account</legend>
-            <input name="user_name" value="ddddd" type="text" placeholder="name" data-validate="str" data-min="2" data-max="30">
+            <legend>Register as a <span id="signup_legend_var">user</span></legend>
+            <input name=" user_name" value="ddddd" type="text" placeholder="name" data-validate="str" data-min="2" data-max="30">
 
             <input name="user_last_name" value="dddd" type="text" placeholder="last name" data-validate="str" data-min="2" data-max="50">
 
@@ -15,10 +15,15 @@
             <input value="password" name="user_password" type="text" placeholder="password" data-validate="str" data-min="2" data-max="100">
 
             <input value="password" name="user_confirm_password" type="text" placeholder="confirm password" data-validate="match" data-match-name="user_password">
-            <input type="hidden" name="user_role" value="user">
+            <input id="user_role_input" type="hidden" name="user_role" value="user">
             <button>Signup</button>
         </fieldset>
         <!-- <button type="submit">Signup</button> -->
     </form>
-    <p>Want to sign up as a partner?</p><button>Partner sign up</button>
+    <span id="text_partner">
+        <p>Want to sign up as a partner?</p><button class="change_signup">Partner sign up</button>
+    </span>
+    <span id="text_user" class="hidden">
+        <p>Want to sign up as a user?</p><button class="change_signup">User sign up</button>
+    </span>
 </main>

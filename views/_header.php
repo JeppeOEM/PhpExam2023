@@ -51,10 +51,18 @@ p-4 w-52 h-screen bg-slate-700">
         <button onclick="show_page('profile');" <?php if (!isset($_SESSION['user'])) echo 'class="hidden"'; ?>>
             Profile
         </button>
-        <button onclick="show_page('orders');" <?php if (!isset($_SESSION['user'])) echo 'class="hidden"'; ?>>
+
+        <button onclick="show_page('orders_partner');" <?php if ($_SESSION['user']['user_role'] != "partner") echo 'class="hidden"'; ?>>
             Orders
         </button>
 
+        <button onclick="show_page('orders_user');" <?php if ($_SESSION['user']['user_role'] != "user") echo 'class="hidden"'; ?>>
+            Orders
+        </button>
+
+        <button onclick="show_page('admin');" <?php if ($_SESSION['user']['user_role'] != "admin") echo 'class="hidden"'; ?>>
+            Admin
+        </button>
 
 
 
