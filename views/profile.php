@@ -1,12 +1,14 @@
 <?php require_once __DIR__ . '/_header.php'  ?>
+<!-- absolute top-0 left-52 w-[calc(100vw-13rem)] h-screen overflow-hidden -->
 
-
-<main id="profile" class="page absolute top-0 left-52 w-[calc(100vw-13rem)] h-screen overflow-hidden">
+<main id="profile" class="page ">
     <div class=" bg-white p-8 rounded shadow-md">
         <h2 class="text-2xl font-semibold mb-4">Profile</h2>
         <!-- name of callback cannot be the same as an ID of anything in the form -->
 
         <form onsubmit="return validate(event, update)" method="post">
+
+            <input type="hidden" name="user_id" value=<?= $_SESSION['user']['user_id'] ?>>
             <div class="mb-4">
                 <label for="user_name" class="block text-sm font-medium text-gray-600">First Name:</label>
                 <input type="text" id="user_name" name="user_name" value=<?= $_SESSION['user']['user_name'] ?> readonly class="mt-1 p-2 border rounded w-full">
@@ -38,7 +40,11 @@
         </form>
     </div>
 
+    <?php
+    session_start();
+    p($_SESSION['user']);
 
+    ?>
 </main>
 
 

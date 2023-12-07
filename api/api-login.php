@@ -12,7 +12,7 @@ try {
     $q->bindValue(':user_email', $_POST['user_email']);
     $q->execute();
     $user = $q->fetch();
-    var_dump($user);
+    p($user);
     if (!$user) {
         throw new Exception('invalid credentials', 400);
     }

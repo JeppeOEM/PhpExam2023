@@ -1,6 +1,6 @@
 <?php
 
-session_start();
+// session_start();
 
 function is_logged_in()
 {
@@ -18,6 +18,17 @@ function logout()
   header("Location: /");
   exit();
 }
+
+//php console.log
+function p($data)
+{
+  $output = $data;
+  if (is_array($output))
+    $output = implode(',', $output);
+
+  echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
+}
+
 
 // ##############################
 function _db()
