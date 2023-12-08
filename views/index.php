@@ -13,6 +13,7 @@
     <?php require_once __DIR__ . '/admin.php' ?>
     <?php require_once __DIR__ . '/restaurants.php' ?>
     <?php require_once __DIR__ . '/restaurant.php' ?>
+    <?php require_once __DIR__ . '/404.php' ?>
 
 
 </div>

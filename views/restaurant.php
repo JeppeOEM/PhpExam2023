@@ -1,11 +1,11 @@
 <main id="restaurant" class="page">
     <section>
-        <h1>
+        <h1 id="" class="restaurant_title">
             Restaurant
         </h1>
         <div id="product_grid" class="grid grid-cols-3 gap-4">
             <template id="product_article">
-                <article onclick="get_products(event)" class="cursor-pointer" id="">
+                <article class="cursor-pointer" id="">
                     <span>
                         <h2 class="product_name"></h2>
                         <p><span class="price"></span>DKK</p>

@@ -5,7 +5,7 @@
         </h1>
         <div id="restaurant_grid" class="grid grid-cols-3 gap-4">
             <template id="restaurant_article">
-                <article onclick="get_products(event)" class="cursor-pointer" id="">
+                <article class="cursor-pointer" id="">
                     <h2 class="restaurant_name"></h2>
                 </article>
             </template>

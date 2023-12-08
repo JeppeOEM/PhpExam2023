@@ -17,9 +17,20 @@ async function build_restaurants() {
     q(".restaurant_name", clone).innerText = restaurant.restaurant_name;
     let article = q("article", clone);
     article.id = restaurant.restaurant_id;
-    article.addEventListener("click", () => {
+    article.addEventListener("click", (event) => {
       console.log(article.id);
+      get_products(event, restaurant.restaurant_name, restaurant.restaurant_id);
     });
     restaurant_grid.appendChild(clone);
   });
+
+
+
+  
+
+
+
+
+
+
 }

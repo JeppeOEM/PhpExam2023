@@ -64,6 +64,8 @@ p-4 w-52 h-screen bg-slate-700">
             Orders
         </button>
 
+
+    
         <button onclick="show_page('admin');" <?php if ($_SESSION['user']['user_role'] != "admin") echo 'class="hidden"'; ?>>
             Admin
         </button>

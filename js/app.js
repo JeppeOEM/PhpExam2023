@@ -1,19 +1,10 @@
 async function user_signup(event) {
-  // Prevent the default form submission
   event.preventDefault();
-
-  // Access the form element
   const frm = event.target;
-
-  // Create a FormData object from the form
   const formData = new FormData(frm);
-
-  // Log all form values
   formData.forEach((value, key) => {
     console.log(`key${key}: value${value}`);
   });
-
-  // The rest of your signup logic...
 
   const response = await fetch("/api/api-signup.php", {
     method: "POST",
@@ -65,81 +56,6 @@ async function login(event) {
   }
 }
 
-async function get_restaurants() {
-  try {
-    const response = await fetch("api/api-get-restaurants.php");
-    const data = await response.json();
-    console.log(data);
-    return data;
-  } catch (error) {
-    console.error("Error:", error.message);
-  }
-}
-
-async function order_products(order) {
-  const response = await fetch("/api/api-order.php", {
-    method: "POST",
-    body: JSON.stringify(order),
-  });
-  const data = await response.text();
-  if (!response.ok) {
-    Swal.fire({
-      icon: "error",
-      title: "Error",
-      text: "Something went wrong, could not place order",
-      // footer: '<a href="">Why do I have this issue?</a>',
-    });
-  } else {
-    Swal.fire({
-      icon: "success",
-      title: "Success",
-      text: "Your order has been placed",
-      // footer: '<a href="">Why do I have this issue?</a>',
-    });
-    return data;
-  }
-}
-
-async function get_products(event) {
-  const restaurant_id = event.currentTarget.id;
-  try {
-    const response = await fetch("/api/api-get-products.php", {
-      method: "POST",
-      body: JSON.stringify({ restaurant_id: restaurant_id }),
-    });
-    const data = await response.text();
-    console.log(JSON.parse(data), "data");
-    build_products(JSON.parse(data));
-    show_page("restaurant");
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-async function build_products(products) {
-  console.log(products);
-  const product = q("#product_grid");
-
-  sorted = sort_az(products.products, "product_name");
-
-  sorted.forEach((product) => {
-    const template = q("#product_article");
-    const clone = template.content.cloneNode(true);
-    q(".product_name", clone).innerText = product.product_name;
-    q(".price", clone).innerText = product.price;
-    let buy_btn = q(".buy", clone);
-    buy_btn.id = product.product_id;
-    buy_btn.addEventListener("click", (event) => {
-      event.preventDefault();
-      console.log("wow");
-      console.log("ddd", buy_btn.id);
-      add_to_cart("cart", buy_btn.id);
-      console.log(localStorage.getItem("cart"));
-    });
-    product_grid.appendChild(clone);
-  });
-}
-
 async function update(event) {
   // console.log(event.form, "formmmmmm");
   const frm = event.target;
@@ -168,11 +84,105 @@ async function update(event) {
   }
 }
 
+async function get_restaurants() {
+  try {
+    const response = await fetch("api/api-get-restaurants.php");
+    const data = await response.json();
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.error("Error:", error.message);
+  }
+}
+
+async function get_products(event, restaurant_name, restaurant_id) {
+  console.log("GOT THE restaurant_name", restaurant_name);
+  // const restaurant_id = event.currentTarget.id;
+  try {
+    const response = await fetch("/api/api-get-products.php", {
+      method: "POST",
+      body: JSON.stringify({ restaurant_id: restaurant_id }),
+    });
+    const data = await response.text();
+    console.log(JSON.parse(data), "data");
+    build_products(JSON.parse(data), restaurant_name, restaurant_id);
+    show_page("restaurant");
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+async function build_products(products, restaurant_name, restaurant_id) {
+  console.log(products);
+  const product = q("#product_grid");
+
+  sorted = sort_az(products.products, "product_name");
+  q(".restaurant_title").innerText = restaurant_name;
+  q(".restaurant_title").id = restaurant_id;
+  sorted.forEach((product) => {
+    const template = q("#product_article");
+    const clone = template.content.cloneNode(true);
+    q(".product_name", clone).innerText = product.product_name;
+    q(".price", clone).innerText = product.price;
+    let buy_btn = q(".buy", clone);
+    buy_btn.id = product.product_id;
+    buy_btn.setAttribute("data-restaurant", restaurant_id);
+    buy_btn.addEventListener("click", (event) => {
+      event.preventDefault();
+      console.log("wow");
+      console.log("ddd", buy_btn.id);
+      add_to_cart("cart", buy_btn.id);
+      console.log(localStorage.getItem("cart"));
+    });
+    product_grid.appendChild(clone);
+  });
+}
+
+async function order_products(restaurant_id, total_products) {
+  console.log(total_products, "order", restaurant_id, "id");
+  const response = await fetch("/api/api-order.php", {
+    method: "POST",
+    body: JSON.stringify({ total_products, restaurant_id }),
+  });
+  console.log(JSON.stringify({ total_products, restaurant_id }), "JSONSSSSSSS");
+  const data = await response.text();
+  if (!response.ok) {
+    Swal.fire({
+      icon: "error",
+      title: "Error",
+      text: "Something went wrong, could not place order",
+      // footer: '<a href="">Why do I have this issue?</a>',
+    });
+  } else {
+    Swal.fire({
+      icon: "success",
+      title: "Success",
+      text: "Your order has been placed",
+      // footer: '<a href="">Why do I have this issue?</a>',
+    });
+    return data;
+  }
+}
+
+async function get_orders(restaurant_id = null) {
+  try {
+    console.log(total_products, "order", restaurant_id, "id");
+    const response = await fetch("/api/api-get-orders.php", {
+      method: "POST",
+      body: JSON.stringify({ restaurant_id }),
+    });
+  } catch (error) {
+    show_page("404");
+  }
+}
+
 document.addEventListener("DOMContentLoaded", function () {
-  q("#order_products").addEventListener("click", () => {
-    const order = localStorage.getItem("cart");
-    console.log(order);
-    order_products(order);
+  q("#order_products").addEventListener("click", (event) => {
+    const total_items = localStorage.getItem("cart");
+    const restaurant_id = q(".restaurant_title").id;
+
+    console.log(restaurant_id, "dsdas");
+    order_products(restaurant_id, total_items);
   });
 
   q("#edit_profile").addEventListener("click", () => {
