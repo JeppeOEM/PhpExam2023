@@ -5,13 +5,15 @@ require_once __DIR__ . '/../_.php';
 session_start();
 try {
     //raw POST data, $_POST works for "Content-Type": "application/x-www-form-urlencoded"
+    $json = file_get_contents('php://input');
+    $data = json_decode($json);
 
     $db = _db();
 
     // $role = $_SESSION['user']['user_role'];
 
     // p($_SESSION['user'], "useeeeeeeeeer");
-    $role = "partner";
+    $role = $data->user;
     if ($role == "user") {
         $q = $db->prepare('SELECT orders.*, restaurants.restaurant_name 
             FROM orders

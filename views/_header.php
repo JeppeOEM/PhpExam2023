@@ -40,11 +40,9 @@ p-4 w-52 h-screen bg-slate-700">
         if (array_key_exists('logout', $_POST)) {
             logout();
         }
-
-
         ?>
 
-        <form method="post">
+        <form method="post" <?php if (!isset($_SESSION['user'])) echo 'class="hidden"'; ?>>
             <input type="submit" name="logout" class="button" value="Logout" />
         </form>
 
@@ -64,8 +62,15 @@ p-4 w-52 h-screen bg-slate-700">
             Orders
         </button>
 
+        <button onclick="show_page('orders_admin');" <?php if ($_SESSION['user']['user_role'] != "admin") echo 'class="hidden"'; ?>>
+            View all orders
+        </button>
 
-    
+        <button onclick="show_page('users_admin');" <?php if ($_SESSION['user']['user_role'] != "admin") echo 'class="hidden"'; ?>>
+            View users
+        </button>
+
+
         <button onclick="show_page('admin');" <?php if ($_SESSION['user']['user_role'] != "admin") echo 'class="hidden"'; ?>>
             Admin
         </button>

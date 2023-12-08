@@ -14,6 +14,7 @@
 //   // Show the one with the id
 //   q("#" + page_id).classList.remove("hidden");
 // }
+
 if (!localStorage.getItem("cart")) {
   console.log("init cart hit");
   localStorage.setItem("cart", JSON.stringify([]));
@@ -28,6 +29,10 @@ function add_to_cart(key, item) {
 function get_cart(key) {
   const items = localStorage.getItem(key);
   return JSON.parse(items);
+}
+
+function empty_cart() {
+  localStorage.setItem("cart", JSON.stringify([]));
 }
 
 function q(q, from = document) {
@@ -62,4 +67,56 @@ function sort_az(arr, key) {
     return 0;
   });
   return sorted;
+}
+
+async function toggle_blocked(event, user_id, user_is_blocked) {
+  console.log("user_id", user_id);
+  console.log("user_is_blocked", user_is_blocked);
+
+  if (user_is_blocked == 0) {
+    event.target.innerHTML = "blocked";
+  } else {
+    event.target.innerHTML = "unblocked";
+  }
+  try {
+    const response = await fetch(
+      `api/api-toggle-user-blocked.php?user_id=${user_id}&user_is_blocked=${user_is_blocked}`
+    );
+    const data = await response.text();
+    console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+async function delete_user(user_id) {
+  try {
+    const response = await fetch(`api/api-delete-user.php?user_id=${user_id}`, {
+      method: "DELETE",
+    });
+
+    if (response.ok) {
+      const response = await response.text();
+      console.log(response);
+      window.location.href = "/";
+    }
+  } catch (error) {
+    console.error("Fetch error:", error.message);
+  }
+}
+
+async function delete_this_user(user_id) {
+  try {
+    const response = await fetch(`api/api-delete-user.php?user_id=${user_id}`, {
+      method: "DELETE",
+    });
+
+    if (response.ok) {
+      const response = await response.text();
+      console.log(response);
+      window.location.href = "/";
+    }
+  } catch (error) {
+    console.error("Fetch error:", error.message);
+  }
 }

@@ -38,13 +38,9 @@
 
             <input id="update_profile" type="submit" value="Submit" class="mt-4 bg-green-500 text-white p-2 rounded hidden">
         </form>
+        <button onclick="delete_user(<?= $_SESSION['user']['user_id'] ?>)">Delete user</button>
     </div>
 
-    <?php
-    session_start();
-    p($_SESSION['user']);
-
-    ?>
 </main>
 
 

@@ -24,7 +24,7 @@ async function user_signup(event) {
     return;
   } else {
     console.log("form");
-    // location.href = "/";
+    show_page("login");
   }
 
   // TODO: redirect to the login page
@@ -52,7 +52,7 @@ async function login(event) {
     });
     return;
   } else {
-    show_page("restaurants");
+    location.href = "/";
   }
 }
 
@@ -112,6 +112,9 @@ async function get_products(event, restaurant_name, restaurant_id) {
   }
 }
 
+
+
+
 async function build_products(products, restaurant_name, restaurant_id) {
   console.log(products);
   const product = q("#product_grid");
@@ -164,15 +167,19 @@ async function order_products(restaurant_id, total_products) {
   }
 }
 
-async function get_orders(restaurant_id = null) {
+async function get_orders(user, restaurant_id = null) {
   try {
-    console.log(total_products, "order", restaurant_id, "id");
     const response = await fetch("/api/api-get-orders.php", {
       method: "POST",
-      body: JSON.stringify({ restaurant_id }),
+      body: JSON.stringify({ user, restaurant_id }),
     });
+
+    const data = await response.json();
+
+    return data;
   } catch (error) {
-    show_page("404");
+    console.log(error);
+    show_page("page404");
   }
 }
 
@@ -183,6 +190,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     console.log(restaurant_id, "dsdas");
     order_products(restaurant_id, total_items);
+    empty_cart();
   });
 
   q("#edit_profile").addEventListener("click", () => {

@@ -1,8 +1,4 @@
 <!-- get orders -->
-<?php require_once '../api/api-get-orders.php';
-$orders = get_orders($_SESSION['user']['user_id']);
-p($orders, "dsdsad")
-?>
 
 <main id="admin" class="page w-full px-4 md:px-12 lg:px-44">
 
@@ -14,27 +10,5 @@ p($orders, "dsdsad")
         </form>
     </div>
 
-    <?php foreach ($orders as $order) : ?>
-        <div class="flex w-full pt-4">
-            <div class="w-1/12"><?= $order['order_id'] ?></div>
-            <div class="w-1/12"><?= $order['user_fk'] ?></div>
-            <div class="w-1/5"><?= $order['created_at'] ?></div>
-            <div class="w-1/5"><?= $order['restaurant_fk'] ?></div>
-            <div class="w-1/5"><?= $order['address'] ?></div>
-            <div class="w-1/5"><?= $order['zip'] ?></div>
-            <div class="w-1/5"><?= $order['city'] ?></div>
 
-
-
-            <button class="w-1/5">
-
-                unblucked blo
-            </button>
-
-
-
-
-
-        </div>
-    <?php endforeach ?>
 </main>

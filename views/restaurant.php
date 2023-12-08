@@ -3,6 +3,7 @@
         <h1 id="" class="restaurant_title">
             Restaurant
         </h1>
+        <button id="empty_cart"> empty cart</button>
         <div id="product_grid" class="grid grid-cols-3 gap-4">
             <template id="product_article">
                 <article class="cursor-pointer" id="">
