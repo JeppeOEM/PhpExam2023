@@ -11,21 +11,31 @@ try {
     // $role = $_SESSION['user']['user_role'];
 
     // p($_SESSION['user'], "useeeeeeeeeer");
-    $role = "user";
+    $role = "partner";
     if ($role == "user") {
-        $q = $db->prepare('SELECT * FROM orders WHERE user_fk = :fk_user_id');
+        $q = $db->prepare('SELECT orders.*, restaurants.restaurant_name 
+            FROM orders
+            JOIN restaurants ON orders.restaurant_fk = restaurants.restaurant_id
+            WHERE orders.user_fk = :fk_user_id
+        ');
         // $q->bindValue(':fk_user_id', $_SESSION['user']['user_id']);
         $q->bindValue(':fk_user_id', 68);
     } elseif ($role == "partner") {
-        $json = file_get_contents('php://input');
-        $data = json_decode($json);
-        $restaurant_id = $data->restaurant_id;
-        $q = $db->prepare('SELECT * FROM orders WHERE fk_restaurant_id = :restaurant_id');
-        $q->bindValue(':restaurant_id', $_POST['restaurant_id']);
+        // $json = file_get_contents('php://input');
+        // $data = json_decode($json);
+        // $restaurant_id = $data->restaurant_id;
+        // $q = $db->prepare('SELECT * FROM orders WHERE restaurant_fk = :restaurant_id');
+        $q = $db->prepare(
+            'SELECT orders.*, restaurants.restaurant_name 
+            FROM orders
+            JOIN restaurants ON orders.restaurant_fk = restaurants.restaurant_id
+            WHERE restaurant_fk = :restaurant_id'
+        );
+        $q->bindValue(':restaurant_id', 1);
+        // $q->bindValue(':restaurant_id', $_POST['restaurant_id']);
     } elseif ($role == "admin") {
         $q = $db->prepare(
-            '
-            SELECT orders.*, restaurants.restaurant_name 
+            'SELECT orders.*, restaurants.restaurant_name 
             FROM orders
             JOIN restaurants ON orders.restaurant_fk = restaurants.restaurant_id'
         );
