@@ -3,10 +3,10 @@
     <h2 class="text-2xl font-bold mb-4">ORDER HISTORY</h2>
 
 
-    <div class="overflow-x-auto px-12">
-        <div class="table-container max-h-96 overflow-y-auto">
-            <table class="min-w-full border rounded-lg">
-                <thead>
+    <div class="overflow-x-auto px-12 border-1">
+        <div class="table-container max-h-96 overflow-y-auto  ">
+            <table class="min-w-full rounded-lg">
+                <thead class="sticky top-0">
                     <tr>
                         <th class="border bg-gray-200 px-4 py-1">Order ID</th>
                         <th class="border bg-gray-200 px-4 py-1">Restaurant ID</th>
