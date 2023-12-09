@@ -26,53 +26,57 @@ session_start();
     </div> -->
 
     <nav class="fixed top-0 left-0 flex gap-4 p-4 w-full bg-slate-800 text-white z-20">
+        <div class="flex [&>*]:px-4">
 
-        <button onclick="show_page('login');" <?php if (isset($_SESSION['user'])) echo 'class="hidden"'; ?>>
-            Login
-        </button>
+            <button onclick=" show_page('login');" <?php if (isset($_SESSION['user'])) echo 'class="hidden"'; ?>>
+                Login
+            </button>
 
-        <button onclick="show_page('signup');" <?php if (isset($_SESSION['user'])) echo 'class="hidden"'; ?>>
-            Register
-        </button>
+            <button onclick="show_page('signup');" <?php if (isset($_SESSION['user'])) echo 'class="hidden"'; ?>>
+                Register
+            </button>
 
-        <?php
-        if (array_key_exists('logout', $_POST)) {
-            logout();
-        }
-        ?>
+            <?php
+            if (array_key_exists('logout', $_POST)) {
+                logout();
+            }
+            ?>
 
-        <form method="post" <?php if (!isset($_SESSION['user'])) echo 'class="hidden"'; ?>>
-            <input type="submit" name="logout" class="button" value="Logout" />
-        </form>
+            <form method="post" <?php if (!isset($_SESSION['user'])) echo 'class="hidden"'; ?>>
+                <input type="submit" name="logout" class="button" value="Logout" />
+            </form>
 
-        <button onclick="show_page('profile');" <?php if (!isset($_SESSION['user'])) echo 'class="hidden"'; ?>>
-            Profile
-        </button>
+            <button onclick="show_page('profile');" <?php if (!isset($_SESSION['user'])) echo 'class="hidden"'; ?>>
+                Profile
+            </button>
 
-        <button onclick="show_page('restaurants', build_restaurants);">
-            Restaurants
-        </button>
+            <button onclick="show_page('restaurants', build_restaurants);">
+                Restaurants
+            </button>
 
-        <button onclick="show_page('orders_partner', build_orders, 'partner');" <?php if ($_SESSION['user']['user_role'] != "partner") echo 'class="hidden"'; ?>>
-            Orders
-        </button>
+            <button onclick="show_page('orders_partner', build_orders, 'partner');" <?php if ($_SESSION['user']['user_role'] != "partner") echo 'class="hidden"'; ?>>
+                Orders
+            </button>
 
-        <button onclick="show_page('orders_user', build_orders, 'user' );" <?php if ($_SESSION['user']['user_role'] != "user") echo 'class="hidden"'; ?>>
-            Orders
-        </button>
+            <button onclick="show_page('orders_user', build_orders, 'user' );" <?php if ($_SESSION['user']['user_role'] != "user") echo 'class="hidden"'; ?>>
+                Orders
+            </button>
 
-        <button onclick="show_page('orders_admin', build_orders, 'admin'); " <?php if ($_SESSION['user']['user_role'] != "admin") echo 'class="hidden"'; ?>>
-            View all orders
-        </button>
+            <button onclick="show_page('orders_admin', build_orders, 'admin'); " <?php if ($_SESSION['user']['user_role'] != "admin") echo 'class="hidden"'; ?>>
+                View all orders
+            </button>
 
-        <button onclick="show_page('users_admin');" <?php if ($_SESSION['user']['user_role'] != "admin") echo 'class="hidden"'; ?>>
-            View users
-        </button>
+            <button onclick="show_page('users_admin');" <?php if ($_SESSION['user']['user_role'] != "admin") echo 'class="hidden"'; ?>>
+                View users
+            </button>
 
-        <button onclick="show_page('admin');" <?php if ($_SESSION['user']['user_role'] != "admin") echo 'class="hidden"'; ?>>
-            Admin
-        </button>
+            <button onclick="show_page('admin');" <?php if ($_SESSION['user']['user_role'] != "admin") echo 'class="hidden"'; ?>>
+                Admin
+            </button>
+        </div>
 
-
+        <div id="order_here">
+            <span id="count"></span>
+        </div>
 
     </nav>

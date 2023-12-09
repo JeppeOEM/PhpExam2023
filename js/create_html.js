@@ -22,13 +22,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
 async function build_restaurants() {
   const json = await get_restaurants();
-
   const sorted = sort_az(json.restaurants, "restaurant_name");
-
   const restaurant_grid = q("#restaurant_grid");
+  const template = q(".restaurant_article");
 
   sorted.forEach((restaurant) => {
-    const template = q(".restaurant_article");
     const clone = template.content.cloneNode(true);
     q(".restaurant_name", clone).innerText = restaurant.restaurant_name;
     let article = q("article", clone);
@@ -44,7 +42,7 @@ async function build_orders(user) {
   console.log("BUILD ORDER HERE");
   const json = await get_orders(user);
   console.log(json, "THEORDERS");
-  let template, container, under_delivery, under_delivery_order;
+  let template, container, under_delivery;
   if (user === "admin") {
     container = q("#admin_orders");
     template = q("#admin_order");
@@ -76,22 +74,23 @@ async function build_orders(user) {
     } else {
       under_delivery.appendChild(clone);
     }
-    console.log(order);
   });
 }
 
 async function build_products(products, restaurant_name, restaurant_id) {
   console.log(products);
-  const product = q("#product_grid");
-
+  const product_grid = q("#product_grid");
+  const drinks_grid = q("#drinks_grid");
+  const menu_grid = q("#menu_grid");
   sorted = sort_az(products.products, "product_name");
   q(".restaurant_title").innerText = restaurant_name;
   q(".restaurant_title").id = restaurant_id;
+  const template = q("#product_article");
   sorted.forEach((product) => {
-    const template = q("#product_article");
     const clone = template.content.cloneNode(true);
     q(".product_name", clone).innerText = product.product_name;
     q(".price", clone).innerText = product.price;
+    console.log(product.type);
     let buy_btn = q(".buy", clone);
     buy_btn.id = product.product_id;
     buy_btn.setAttribute("data-restaurant", restaurant_id);
@@ -102,7 +101,13 @@ async function build_products(products, restaurant_name, restaurant_id) {
       add_to_cart("cart", buy_btn.id);
       console.log(localStorage.getItem("cart"));
     });
-    product_grid.appendChild(clone);
+    if (product.type === "food") {
+      product_grid.appendChild(clone);
+    } else if (product.type === "drink") {
+      drinks_grid.appendChild(clone);
+    } else {
+      menu_grid.appendChild(clone);
+    }
   });
 }
 
@@ -124,7 +129,6 @@ function to_date(unix_stamp) {
   const hours = dateObj.getHours();
   const minutes = dateObj.getMinutes();
   const seconds = dateObj.getSeconds();
-
 
   return `${month}/${day}/${year} ${hours}:${minutes}:${seconds}`;
 }

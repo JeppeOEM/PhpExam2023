@@ -11,9 +11,9 @@ $users = $q->fetchAll();
 ?>
 
 <main id="users_admin" class="page">
-    <h2 class="text-2xl font-bold mb-4 pl-12">USERS</h2>
-    <div class="overflow-x-auto px-12 ">
-        <div class="table-container max-h-96 overflow-y-auto ">
+    <h2 class="text-2xl font-bold mb-4">USERS</h2>
+    <div class="overflow-x-auto px-12">
+        <div class="table-container max-h-96 overflow-y-auto">
             <table class="min-w-full border rounded-lg">
                 <thead>
                     <tr>
@@ -21,8 +21,9 @@ $users = $q->fetchAll();
                         <th class="border bg-gray-200 px-4 py-1">Name</th>
                         <th class="border bg-gray-200 px-4 py-1">Last Name</th>
                         <th class="border bg-gray-200 px-4 py-1">Email</th>
+                        <th class="border bg-gray-200 px-4 py-1">Role</th>
                         <th class="border bg-gray-200 px-4 py-1">Blocked</th>
-                        <th class="border bg-gray-200 px-4 py-1">Delete</th>
+                        <th class="border bg-gray-200 px-4 py-1">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -32,6 +33,7 @@ $users = $q->fetchAll();
                             <td class="border px-4 py-1"><?= $user['user_name'] ?></td>
                             <td class="border px-4 py-1"><?= $user['user_last_name'] ?></td>
                             <td class="border px-4 py-1"><?= $user['user_email'] ?></td>
+                            <td class="border px-4 py-1"><?= $user['user_role'] ?></td>
                             <td class="border px-4 py-1">
                                 <button class="<?= $user['user_blocked'] == 0 ? 'bg-green-500' : 'bg-red-500' ?> text-white px-4 py-1 rounded" onclick="toggle_blocked(event, <?= $user['user_id'] ?>, <?= $user['user_blocked'] ?>)">
                                     <?= $user['user_blocked'] == 0 ? "Unblocked" : "Blocked" ?>
@@ -49,8 +51,8 @@ $users = $q->fetchAll();
         </div>
     </div>
 
-    <h2 class="text-2xl font-bold my-4 pl-12">PARTNERS</h2>
-    <div class="overflow-x-auto px-12 ">
+    <h2 class="text-2xl font-bold my-4">PARTNERS</h2>
+    <div class="overflow-x-auto px-12">
         <div class="table-container max-h-96 overflow-y-auto">
             <table class="min-w-full border rounded-lg">
                 <thead>
@@ -59,8 +61,9 @@ $users = $q->fetchAll();
                         <th class="border bg-gray-200 px-4 py-1">Name</th>
                         <th class="border bg-gray-200 px-4 py-1">Last Name</th>
                         <th class="border bg-gray-200 px-4 py-1">Email</th>
+                        <th class="border bg-gray-200 px-4 py-1">Role</th>
                         <th class="border bg-gray-200 px-4 py-1">Blocked</th>
-                        <th class="border bg-gray-200 px-4 py-1">Delete</th>
+                        <th class="border bg-gray-200 px-4 py-1">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -70,6 +73,7 @@ $users = $q->fetchAll();
                             <td class="border px-4 py-1"><?= $partner['user_name'] ?></td>
                             <td class="border px-4 py-1"><?= $partner['user_last_name'] ?></td>
                             <td class="border px-4 py-1"><?= $partner['user_email'] ?></td>
+                            <td class="border px-4 py-1"><?= $partner['user_role'] ?></td>
                             <td class="border px-4 py-1">
                                 <button class="<?= $partner['user_blocked'] == 0 ? 'bg-green-500' : 'bg-red-500' ?> text-white px-4 py-1 rounded" onclick="toggle_blocked(event, <?= $partner['user_id'] ?>, <?= $partner['user_blocked'] ?>)">
                                     <?= $partner['user_blocked'] == 0 ? "Unblocked" : "Blocked" ?>

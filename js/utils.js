@@ -24,6 +24,14 @@ function add_to_cart(key, item) {
   const item_list = get_cart(key);
   item_list.push(item);
   localStorage.setItem(key, JSON.stringify(item_list));
+  q("#count").innerText = item_count(key);
+
+  function item_count(key) {
+    const arr = JSON.parse(localStorage.getItem(key));
+    console.log(arr);
+    console.log(arr.length);
+    return arr.length;
+  }
 }
 
 function get_cart(key) {

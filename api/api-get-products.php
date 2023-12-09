@@ -6,7 +6,12 @@ try {
     // $data = json_decode($json);
     $restaurant_id = $_GET['restaurant_id'];
     $db = _db();
-    $q = $db->prepare('SELECT * FROM products WHERE fk_restaurant_id = :restaurant_id');
+    // $q = $db->prepare('SELECT products.* product_types.type FROM products JOIN product_types ON products.fk_type_id = product_types.product_type_id WHERE fk_restaurant_id = :restaurant_id');
+
+    $q = $db->prepare('SELECT products.*, product_types.type 
+    FROM products JOIN product_types 
+    ON products.fk_type_id = product_types.product_type_id 
+    WHERE fk_restaurant_id = :restaurant_id');
     $q->bindValue(':restaurant_id', $restaurant_id);
 
     $q->execute();
