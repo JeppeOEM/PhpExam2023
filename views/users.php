@@ -29,18 +29,18 @@ $users = $q->fetchAll();
                 <tbody>
                     <?php foreach ($users as $user) : ?>
                         <tr>
-                            <td class="border px-4 py-1"><?= $user['user_id'] ?></td>
-                            <td class="border px-4 py-1"><?= $user['user_name'] ?></td>
-                            <td class="border px-4 py-1"><?= $user['user_last_name'] ?></td>
-                            <td class="border px-4 py-1"><?= $user['user_email'] ?></td>
-                            <td class="border px-4 py-1"><?= $user['user_role'] ?></td>
-                            <td class="border px-4 py-1">
-                                <button class="<?= $user['user_blocked'] == 0 ? 'bg-green-500' : 'bg-red-500' ?> text-white px-4 py-1 rounded" onclick="toggle_blocked(event, <?= $user['user_id'] ?>, <?= $user['user_blocked'] ?>)">
+                            <td class="border px-4 py-1 text-center"><?= $user['user_id'] ?></td>
+                            <td class="border px-4 py-1 text-center"><?= $user['user_name'] ?></td>
+                            <td class="border px-4 py-1 text-center"><?= $user['user_last_name'] ?></td>
+                            <td class="border px-4 py-1 text-center"><?= $user['user_email'] ?></td>
+                            <td class="border px-4 py-1 text-center"><?= $user['user_role'] ?></td>
+                            <td class="border px-4 py-1 text-center">
+                                <button class="<?= $user['user_blocked'] == 0 ? 'bg-green-500' : 'bg-red-500' ?> text-white px-4 py-1 rounded text-center" onclick="toggle_blocked(event, <?= $user['user_id'] ?>, <?= $user['user_blocked'] ?>)">
                                     <?= $user['user_blocked'] == 0 ? "Unblocked" : "Blocked" ?>
                                 </button>
                             </td>
-                            <td class="border px-4 py-1">
-                                <button class="bg-red-500 text-white px-4 py-1 rounded" onclick="delete_user(<?= $user['user_id'] ?>)">
+                            <td class="border px-4 py-1 text-center">
+                                <button class="bg-red-500 text-white px-4 py-1 rounded " onclick="delete_user(<?= $user['user_id'] ?>)">
                                     Delete User
                                 </button>
                             </td>

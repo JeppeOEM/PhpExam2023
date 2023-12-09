@@ -25,7 +25,7 @@ async function build_restaurants() {
   const sorted = sort_az(json.restaurants, "restaurant_name");
   const restaurant_grid = q("#restaurant_grid");
   const template = q(".restaurant_article");
-
+  remove_elements("restau");
   sorted.forEach((restaurant) => {
     const clone = template.content.cloneNode(true);
     q(".restaurant_name", clone).innerText = restaurant.restaurant_name;
@@ -121,14 +121,17 @@ function is_delivered(scheduled_at) {
   }
   return true;
 }
+function add_zero(number) {
+  return number < 10 ? `0${number}` : `${number}`;
+}
+
 function to_date(unix_stamp) {
   const dateObj = new Date(unix_stamp);
-  const year = dateObj.getFullYear();
-  const month = dateObj.getMonth() + 1;
-  const day = dateObj.getDate();
-  const hours = dateObj.getHours();
-  const minutes = dateObj.getMinutes();
-  const seconds = dateObj.getSeconds();
+  const year = dateObj.getFullYear().toString().slice(2);
+  const month = add_zero(dateObj.getMonth() + 1);
+  const day = add_zero(dateObj.getDate());
+  const hours = add_zero(dateObj.getHours());
+  const minutes = add_zero(dateObj.getMinutes());
 
-  return `${month}/${day}/${year} ${hours}:${minutes}:${seconds}`;
+  return `${month}/${day}/${year} ${hours}:${minutes}`;
 }
