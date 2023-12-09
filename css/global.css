@@ -1,6 +1,13 @@
-#pages {
+/* #pages {
   margin-top: 100px;
 }
 
 main {
+} */
+::-webkit-scrollbar-thumb {
+  z-index: 100;
+}
+
+::-webkit-scrollbar-track {
+  z-index: 100;
 }

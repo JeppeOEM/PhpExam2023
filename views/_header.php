@@ -14,7 +14,7 @@ session_start();
     <script src="/js/app.js" defer></script>
     <script src="/js/create_html.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link rel="stylesheet" href="global.css">
+    <link rel="stylesheet" href="css/global.css">
 </head>
 
 <body class="w-full h-screen bg-slate-300">
@@ -25,10 +25,8 @@ session_start();
         </div>
     </div> -->
 
-    <nav class="fixed top-0 left-0 flex gap-4 
-p-4 w-full bg-slate-700">
+    <nav class="fixed top-0 left-0 flex gap-4 p-4 w-full bg-slate-700 z-20">
 
-        <a href="">ddddd</a>
         <button onclick="show_page('login');" <?php if (isset($_SESSION['user'])) echo 'class="hidden"'; ?>>
             Login
         </button>
@@ -52,7 +50,7 @@ p-4 w-full bg-slate-700">
         </button>
 
         <button onclick="show_page('restaurants', build_restaurants);">
-            Order food
+            Restaurants
         </button>
 
         <button onclick="show_page('orders_partner', build_orders, 'partner');" <?php if ($_SESSION['user']['user_role'] != "partner") echo 'class="hidden"'; ?>>
