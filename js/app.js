@@ -1,3 +1,32 @@
+async function search_user(event) {
+  event.preventDefault();
+  const frm = event.target;
+  const formData = new FormData(frm);
+  formData.forEach((value, key) => {
+    console.log(`key${key}: value${value}`);
+  });
+
+  const response = await fetch("/api/api-search.php", {
+    method: "POST",
+    body: formData,
+  });
+
+  const data = await response.text();
+  console.log(data);
+
+  if (!response.ok) {
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Something went wrong!",
+      footer: '<a href="">Why do I have this issue?</a>',
+    });
+    return;
+  } else {
+    console.log("form");
+  }
+}
+
 async function user_signup(event) {
   event.preventDefault();
   const frm = event.target;
@@ -99,10 +128,7 @@ async function get_products(event, restaurant_name, restaurant_id) {
   console.log("GOT THE restaurant_name", restaurant_name);
   // const restaurant_id = event.currentTarget.id;
   try {
-    const response = await fetch("/api/api-get-products.php", {
-      method: "POST",
-      body: JSON.stringify({ restaurant_id: restaurant_id }),
-    });
+    const response = await fetch(`/api/api-get-products.php?restaurant_id=${restaurant_id}?`);
     const data = await response.text();
     console.log(JSON.parse(data), "data");
     build_products(JSON.parse(data), restaurant_name, restaurant_id);
@@ -111,9 +137,6 @@ async function get_products(event, restaurant_name, restaurant_id) {
     console.log(error);
   }
 }
-
-
-
 
 async function build_products(products, restaurant_name, restaurant_id) {
   console.log(products);
@@ -198,21 +221,41 @@ document.addEventListener("DOMContentLoaded", function () {
     edit_profile();
   });
 
-  qAll(".change_signup").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const textPartner = q("#text_partner");
-      const textUser = q("#text_user");
-      const role = q("#user_role_input");
-      let role_value = role.value;
-      console.log(role);
-      role_value === "user" ? (role_value = "partner") : (role_value = "user");
-      role.value = role_value;
-      q("#signup_legend_var").innerText = role_value;
-      // Toggle the "hidden" class for both spans
-      textPartner.classList.toggle("hidden");
-      textUser.classList.toggle("hidden");
-    });
+  q(".change_signup_user").addEventListener("click", () => {
+    const textPartner = q("#text_partner");
+    const textUser = q("#text_user");
+    textPartner.classList.remove("hidden");
+    textUser.classList.add("hidden");
+    const role = (q("#user_role_input").value = "user");
+    q("#signup_legend").innerText = "user";
+    q("#signup_restaurant_name").classList.add("hidden");
   });
+
+  q(".change_signup_partner").addEventListener("click", () => {
+    const textPartner = q("#text_partner");
+    const textUser = q("#text_user");
+    textUser.classList.remove("hidden");
+    textPartner.classList.add("hidden");
+    const role = (q("#user_role_input").value = "partner");
+    q("#signup_legend").innerText = "partner";
+    q("#signup_restaurant_name").classList.remove("hidden");
+  });
+
+  // qAll(".change_signup").forEach((btn) => {
+  //   btn.addEventListener("click", () => {
+  //     const textPartner = q("#text_partner");
+  //     const textUser = q("#text_user");
+  //     const role = q("#user_role_input");
+  //     let role_value = role.value;
+  //     role.value = role.value === "user" ? "partner" : "user";
+  //     console.log(role.value);
+  //     q("#signup_legend_var").innerText = role_value;
+  //     // Toggle the "hidden" class for both spans
+  //     textPartner.classList.toggle("hidden");
+  //     textUser.classList.toggle("hidden");
+  //     q(".restaurant_name").classList.toggle("hidden");
+  //   });
+  // });
 
   function edit_profile() {
     const user_name = document.getElementById("user_name");

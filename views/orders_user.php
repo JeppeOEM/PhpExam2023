@@ -1,5 +1,11 @@
 <main id="orders_user" class="page">
 
+    <form id="search_user" onsubmit="search_user(event)">
+        <label for="search">Search for orders by restaurant name or date</label>
+        <input name="search" type="text">
+        <button>Search orders</button>
+    </form>
+
     <h2>under DELIVER</h2>
     <div id="under_delivery" class="scheduled_orders  pt-4">
         <template id="under_delivery_order">

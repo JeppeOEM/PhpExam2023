@@ -21,7 +21,7 @@ try {
             WHERE orders.user_fk = :fk_user_id
         ');
         // $q->bindValue(':fk_user_id', $_SESSION['user']['user_id']);
-        $q->bindValue(':fk_user_id', 68);
+        $q->bindValue(':fk_user_id', $_SESSION['user']['user_id']);
     } elseif ($role == "partner") {
         // $json = file_get_contents('php://input');
         // $data = json_decode($json);

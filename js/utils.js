@@ -42,7 +42,7 @@ function qAll(q, from = document) {
   return from.querySelectorAll(q);
 }
 
-function show_page(page_id) {
+function show_page(page_id, callback = null, params = null) {
   console.log(page_id);
   // Hide all the pages
   qAll(".page").forEach((page) => {
@@ -50,6 +50,12 @@ function show_page(page_id) {
   });
   // Show the one with the id
   q("#" + page_id).classList.remove("hidden");
+
+  if (callback && params) {
+    callback(params);
+  } else if (callback) {
+    callback();
+  }
 }
 
 function sort_az(arr, key) {

@@ -15,6 +15,10 @@ try {
     $city = $_POST['user_city'];
     $zip = $_POST['user_zip'];
 
+    $db->beginTransaction();
+
+
+
 
     $q = $db->prepare(
         '
@@ -55,8 +59,22 @@ try {
     $q->bindValue(':user_zip', $zip);
     $q->bindValue(':user_blocked', 0);
     $q->bindValue(':user_password', password_hash($_POST['user_password'], PASSWORD_DEFAULT));
-
     $q->execute();
+    p(isset($_POST['restaurant_name']));
+    p($_POST['restaurant_name']);
+    if (isset($_POST['restaurant_name'])) {
+        $q_restaurant = $db->prepare(
+            'INSERT INTO restaurants (restaurant_name, fk_user_id) VALUES (:restaurant_name, :fk_user_id)'
+        );
+
+        $fk_user_id = $db->lastInsertId();
+        $q_restaurant->bindValue(':fk_user_id', $fk_user_id);
+        $q_restaurant->bindValue(':restaurant_name', $_POST['restaurant_name']);
+        $q_restaurant->execute();
+    }
+
+
+    $db->commit();
 
     // Log the success message after executing the query
     echo json_encode([
@@ -64,6 +82,7 @@ try {
         'user_email' => $email, 'user_role' => $role, 'user_address' => $address, 'user_city' => $city, 'user_zip' => $zip
     ]);
 } catch (Exception $e) {
+    $db->rollBack();
     try {
         if (!ctype_digit($e->getCode())) {
             throw new Exception();
