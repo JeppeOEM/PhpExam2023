@@ -28,7 +28,7 @@ async function build_restaurants() {
   const restaurant_grid = q("#restaurant_grid");
 
   sorted.forEach((restaurant) => {
-    const template = q("#restaurant_article");
+    const template = q(".restaurant_article");
     const clone = template.content.cloneNode(true);
     q(".restaurant_name", clone).innerText = restaurant.restaurant_name;
     let article = q("article", clone);
@@ -39,6 +39,7 @@ async function build_restaurants() {
     restaurant_grid.appendChild(clone);
   });
 }
+
 async function build_orders(user) {
   console.log("BUILD ORDER HERE");
   const json = await get_orders(user);
@@ -79,6 +80,32 @@ async function build_orders(user) {
   });
 }
 
+async function build_products(products, restaurant_name, restaurant_id) {
+  console.log(products);
+  const product = q("#product_grid");
+
+  sorted = sort_az(products.products, "product_name");
+  q(".restaurant_title").innerText = restaurant_name;
+  q(".restaurant_title").id = restaurant_id;
+  sorted.forEach((product) => {
+    const template = q("#product_article");
+    const clone = template.content.cloneNode(true);
+    q(".product_name", clone).innerText = product.product_name;
+    q(".price", clone).innerText = product.price;
+    let buy_btn = q(".buy", clone);
+    buy_btn.id = product.product_id;
+    buy_btn.setAttribute("data-restaurant", restaurant_id);
+    buy_btn.addEventListener("click", (event) => {
+      event.preventDefault();
+      console.log("wow");
+      console.log("ddd", buy_btn.id);
+      add_to_cart("cart", buy_btn.id);
+      console.log(localStorage.getItem("cart"));
+    });
+    product_grid.appendChild(clone);
+  });
+}
+
 function is_delivered(scheduled_at) {
   const current_time = new Date().getTime();
 
@@ -98,6 +125,6 @@ function to_date(unix_stamp) {
   const minutes = dateObj.getMinutes();
   const seconds = dateObj.getSeconds();
 
-  // return in a formatted string
+
   return `${month}/${day}/${year} ${hours}:${minutes}:${seconds}`;
 }

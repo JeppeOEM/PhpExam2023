@@ -42,6 +42,18 @@ function qAll(q, from = document) {
   return from.querySelectorAll(q);
 }
 
+function remove_elements(class_name) {
+  let elements = document.querySelectorAll(`.${String(class_name)}`);
+
+  try {
+    elements.forEach(function (ele) {
+      ele.parentNode.removeChild(ele);
+    });
+  } catch {
+    console.log("nothing to remove");
+  }
+}
+
 function show_page(page_id, callback = null, params = null) {
   console.log(page_id);
   // Hide all the pages

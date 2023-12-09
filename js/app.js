@@ -138,31 +138,7 @@ async function get_products(event, restaurant_name, restaurant_id) {
   }
 }
 
-async function build_products(products, restaurant_name, restaurant_id) {
-  console.log(products);
-  const product = q("#product_grid");
 
-  sorted = sort_az(products.products, "product_name");
-  q(".restaurant_title").innerText = restaurant_name;
-  q(".restaurant_title").id = restaurant_id;
-  sorted.forEach((product) => {
-    const template = q("#product_article");
-    const clone = template.content.cloneNode(true);
-    q(".product_name", clone).innerText = product.product_name;
-    q(".price", clone).innerText = product.price;
-    let buy_btn = q(".buy", clone);
-    buy_btn.id = product.product_id;
-    buy_btn.setAttribute("data-restaurant", restaurant_id);
-    buy_btn.addEventListener("click", (event) => {
-      event.preventDefault();
-      console.log("wow");
-      console.log("ddd", buy_btn.id);
-      add_to_cart("cart", buy_btn.id);
-      console.log(localStorage.getItem("cart"));
-    });
-    product_grid.appendChild(clone);
-  });
-}
 
 async function order_products(restaurant_id, total_products) {
   console.log(total_products, "order", restaurant_id, "id");

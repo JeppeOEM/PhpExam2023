@@ -17,7 +17,7 @@ session_start();
     <link rel="stylesheet" href="css/global.css">
 </head>
 
-<body class="w-full h-screen bg-slate-300">
+<body class="w-full h-screen">
 
     <!-- <div class="fixed flex top-0 left-0 w-full">
         <div id="toast" class="hidden mt-4 px-8 py-2 mx-auto text-white rounded-full transition-all">
@@ -25,7 +25,7 @@ session_start();
         </div>
     </div> -->
 
-    <nav class="fixed top-0 left-0 flex gap-4 p-4 w-full bg-slate-700 z-20">
+    <nav class="fixed top-0 left-0 flex gap-4 p-4 w-full bg-slate-800 text-white z-20">
 
         <button onclick="show_page('login');" <?php if (isset($_SESSION['user'])) echo 'class="hidden"'; ?>>
             Login
