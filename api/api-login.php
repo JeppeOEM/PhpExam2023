@@ -35,7 +35,6 @@ try {
         'user_zip' => $user['user_zip'],
         'user_role' => $user['user_role'],
     ];
-    var_dump($_SESSION['user']);
     echo json_encode($_SESSION['user']);
 } catch (Exception $e) {
     try {

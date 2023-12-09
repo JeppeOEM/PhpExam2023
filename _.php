@@ -1,6 +1,7 @@
 <?php
 
 // session_start();
+error_reporting(0);
 
 function is_logged_in()
 {

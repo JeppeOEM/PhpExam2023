@@ -107,11 +107,9 @@ session_start();
                 throw new Exception();
             }
             http_response_code($e->getCode());
-            var_dump($e, "first");
             echo json_encode(['info' => $e->getMessage(), 'first' => "first"]);
         } catch (Exception $ex) {
             http_response_code(500);
-            var_dump($ex, "second");
             echo json_encode(['info' => json_encode($ex), 'second' => "second"]);
         }
     }

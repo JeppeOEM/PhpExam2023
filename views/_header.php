@@ -14,6 +14,7 @@ session_start();
     <script src="/js/app.js" defer></script>
     <script src="/js/create_html.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="global.css">
 </head>
 
 <body class="w-full h-screen bg-slate-300">
@@ -24,15 +25,10 @@ session_start();
         </div>
     </div> -->
 
-    <nav class="fixed top-0 left-0 flex flex-col gap-4 
-p-4 w-52 h-screen bg-slate-700">
-        <h2>
-            test
-        </h2>
+    <nav class="fixed top-0 left-0 flex gap-4 
+p-4 w-full bg-slate-700">
 
-        <p>
-            <?= $_SESSION['user']['user_name'] ?>
-        </p>
+        <a href="">ddddd</a>
         <button onclick="show_page('login');" <?php if (isset($_SESSION['user'])) echo 'class="hidden"'; ?>>
             Login
         </button>

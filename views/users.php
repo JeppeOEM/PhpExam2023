@@ -8,7 +8,6 @@ $partners = $q->fetchAll();
 $q = $db->prepare('SELECT * FROM users2 WHERE user_role = "user"');
 $q->execute();
 $users = $q->fetchAll();
-var_dump($users)
 ?>
 
 

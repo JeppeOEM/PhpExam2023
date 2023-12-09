@@ -4,7 +4,6 @@ try {
     session_start();
     $user_id = $_GET['user_id'];
 
-    var_dump($user_id);
     // $user_id = $_SESSION['user']['user_id'];
     $db = _db();
     $q = $db->prepare('DELETE FROM users2 WHERE user_id = :user_id');
@@ -13,7 +12,6 @@ try {
         $q->execute();
     } elseif ($_SESSION['user']['user_id'] == $user_id) {
         $q->execute();
-        var_dump($q);
         session_destroy();
     }
 
