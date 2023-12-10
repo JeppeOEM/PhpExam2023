@@ -10,7 +10,6 @@ session_start();
         $data = json_decode($json);
         #decocde  array
         $products = json_decode($data->total_products);
-        p($products, "olololooolol");
         // var_dump($data->restaurant_id, $data->total_products);
 
         $restaurant_fk = $data->restaurant_id;

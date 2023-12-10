@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // build_restaurants();
   const index_page = q("#pages");
   const user = index_page.getAttribute("data-session");
-
+  q("#count").innerText = item_count("cart");
   if (user === "user") {
     // Your JavaScript function or code for logged-in users
     show_page("restaurants", build_restaurants);

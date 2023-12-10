@@ -19,3 +19,8 @@ h1 {
 .buy {
   font-size: 2rem;
 }
+
+.product_category {
+  padding-left: 10px;
+  font-size: 1.6rem;
+}

@@ -25,8 +25,8 @@ session_start();
         </div>
     </div> -->
 
-    <nav class="fixed top-0 left-0 flex gap-4 p-4 w-full bg-slate-800 text-white z-20">
-        <div class="flex [&>*]:px-4">
+    <nav class="fixed top-0 left-0 flex gap-4 p-4 w-full bg-slate-800 text-white z-20 justify-between">
+        <div class="flex  [&>*]:px-4">
 
             <button onclick=" show_page('login');" <?php if (isset($_SESSION['user'])) echo 'class="hidden"'; ?>>
                 Login
@@ -75,8 +75,9 @@ session_start();
             </button>
         </div>
 
-        <div id="order_here">
-            <span id="count"></span>
+        <div id="order_here" class="bg-blue-500 p-4 rounded-xl">
+            <span class="bg-slate-500 px-3 py-2  rounded-full" id="count"></span>
+            <button class="px-4" id="order_products"></button>
+            <button class="px-4" id="order_products"></button>
         </div>
-
     </nav>

@@ -4,9 +4,9 @@
         Restaurant
     </h1>
     <!-- products inserted with build_products() -->
-    <button id="order_products">order products</button>
+
     <button id="empty_cart">empty cart</button>
-    <h2 class="text-xl">
+    <h2 class="product_category">
         Products
     </h2>
     <div id="product_grid" class="flex flex-wrap ">
@@ -24,11 +24,11 @@
             </article>
         </template>
     </div>
-    <h2 class="text-xl">Menus</h2>
+    <h2 class="product_category">Menus</h2>
     <div id="menu_grid" class="flex flex-wrap">
         <!-- Content for Menus -->
     </div>
-    <h2 class="text-xl">Drinks</h2>
+    <h2 class="product_category">Drinks</h2>
     <div id="drinks_grid" class="flex flex-wrap">
         <!-- Content for Drinks -->
     </div>

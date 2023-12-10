@@ -25,15 +25,19 @@ function add_to_cart(key, item) {
   item_list.push(item);
   localStorage.setItem(key, JSON.stringify(item_list));
   q("#count").innerText = item_count(key);
-
-  function item_count(key) {
-    const arr = JSON.parse(localStorage.getItem(key));
-    console.log(arr);
-    console.log(arr.length);
-    return arr.length;
-  }
 }
-
+function item_count(key) {
+  const arr = JSON.parse(localStorage.getItem(key));
+  console.log(arr);
+  console.log(arr.length);
+  const buy_btn = q("#order_products");
+  if (arr.length === 0) {
+    buy_btn.innerText = "Empty cart";
+  } else {
+    buy_btn.innerText = "Order food";
+  }
+  return arr.length;
+}
 function get_cart(key) {
   const items = localStorage.getItem(key);
   return JSON.parse(items);

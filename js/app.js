@@ -138,8 +138,6 @@ async function get_products(event, restaurant_name, restaurant_id) {
   }
 }
 
-
-
 async function order_products(restaurant_id, total_products) {
   console.log(total_products, "order", restaurant_id, "id");
   const response = await fetch("/api/api-order.php", {
@@ -162,6 +160,7 @@ async function order_products(restaurant_id, total_products) {
       text: "Your order has been placed",
       // footer: '<a href="">Why do I have this issue?</a>',
     });
+    q("#count").innerText = item_count("cart");
     return data;
   }
 }
