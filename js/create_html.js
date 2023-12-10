@@ -5,14 +5,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (user === "user") {
     // Your JavaScript function or code for logged-in users
-    // show_page("restaurants", build_restaurants);
-    build_orders("user");
+    show_page("restaurants", build_restaurants);
+    // build_orders("user");
   } else if (user === "partner") {
     show_page("orders_partner");
     build_orders("partner");
   } else if (user === "admin") {
     show_page("admin");
     build_orders("admin");
+  } else {
+    show_page("restaurants", build_restaurants);
   }
 
   q("#empty_cart").addEventListener("click", () => {
@@ -86,6 +88,7 @@ async function build_products(products, restaurant_name, restaurant_id) {
   q(".restaurant_title").innerText = restaurant_name;
   q(".restaurant_title").id = restaurant_id;
   const template = q("#product_article");
+  remove_elements("product");
   sorted.forEach((product) => {
     const clone = template.content.cloneNode(true);
     q(".product_name", clone).innerText = product.product_name;

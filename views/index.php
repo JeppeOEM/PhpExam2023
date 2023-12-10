@@ -17,14 +17,14 @@ if ($_SESSION['user']['user_role'] == "user") {
 
     <?php require_once __DIR__ . '/login.php' ?>
     <?php require_once __DIR__ . '/signup.php' ?>
+    <?php require_once __DIR__ . '/404.php' ?>
+    <?php require_once __DIR__ . '/restaurants.php' ?>
+    <?php require_once __DIR__ . '/restaurant.php' ?>
     <?php require_once __DIR__ . '/profile.php' ?>
     <?php require_once __DIR__ . '/orders_partner.php' ?>
     <?php require_once __DIR__ . '/orders_user.php' ?>
     <?php require_once __DIR__ . '/orders_admin.php' ?>
     <?php require_once __DIR__ . '/admin.php' ?>
-    <?php require_once __DIR__ . '/restaurants.php' ?>
-    <?php require_once __DIR__ . '/restaurant.php' ?>
-    <?php require_once __DIR__ . '/404.php' ?>
     <?php require_once __DIR__ . '/users.php' ?>
 
 
