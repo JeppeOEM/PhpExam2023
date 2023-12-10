@@ -13,11 +13,11 @@ session_start();
     <script src="/js/validator.js" defer></script>
     <script src="/js/app.js" defer></script>
     <script src="/js/create_html.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
     <link rel="stylesheet" href="css/global.css">
 </head>
 
-<body class="w-full h-screen">
+<body class="w-full h-screen ">
 
     <!-- <div class="fixed flex top-0 left-0 w-full">
         <div id="toast" class="hidden mt-4 px-8 py-2 mx-auto text-white rounded-full transition-all">
@@ -25,7 +25,7 @@ session_start();
         </div>
     </div> -->
 
-    <nav class="fixed top-0 left-0 flex gap-4 p-4 w-full bg-slate-800 text-white z-20 justify-between">
+    <nav class="fixed top-0 left-0 flex gap-4 p-4 px-10 w-full bg-slate-800 text-white z-20 justify-between text-xl">
         <div class="flex  [&>*]:px-4">
 
             <button onclick=" show_page('login');" <?php if (isset($_SESSION['user'])) echo 'class="hidden"'; ?>>
@@ -42,8 +42,8 @@ session_start();
             }
             ?>
 
-            <form method="post" <?php if (!isset($_SESSION['user'])) echo 'class="hidden"'; ?>>
-                <input type="submit" name="logout" class="button" value="Logout" />
+            <form class="flex items-center " method="post" <?php if (!isset($_SESSION['user'])) echo 'class="hidden"'; ?>>
+                <input id="logout" type="submit" name="logout" class="button cursor-pointer" value="Logout" <?php if (!isset($_SESSION['user'])) echo 'class="hidden"'; ?> />
             </form>
 
             <button onclick="show_page('profile');" <?php if (!isset($_SESSION['user'])) echo 'class="hidden"'; ?>>
@@ -75,9 +75,13 @@ session_start();
             </button>
         </div>
 
-        <div id="order_here" class="bg-blue-500 p-4 rounded-xl">
-            <span class="bg-slate-500 px-3 py-2  rounded-full" id="count"></span>
-            <button class="px-4" id="order_products"></button>
-            <button class="px-4" id="order_products"></button>
+        <div id="order_here" class="bg-blue-500 p-4 rounded-xl flex flex-row items-center ">
+
+            <div class="  px-3 py-3  rounded-full w-10 h-10" id="count"></div>
+
+            <button class="px-4 py-2 border rounded-lg hover:bg-blue-700" id="order_products">0</button>
+            <p class="pl-2 text-center" id="total_cost">0</p>
+            <p class="px-2">DKK</p>
+            <button id="empty_cart">🗑️</button>
         </div>
     </nav>

@@ -1,18 +1,18 @@
-<main id="restaurant" class="page px-12">
+<main id="restaurant" class="page px-12 mt-12 " 2>
 
-    <h1 class="restaurant_title">
+    <h1 class=" restaurant_title">
         Restaurant
     </h1>
     <!-- products inserted with build_products() -->
 
-    <button id="empty_cart">empty cart</button>
+
     <h2 class="product_category">
         Products
     </h2>
     <div id="product_grid" class="flex flex-wrap ">
         <template id="product_article">
-            <article class=" product cursor-pointer w-1/2 sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 p-2 ">
-                <div class="bg-gray-100 p-4 border rounded-lg shadow-md  hover:border-blue-500 hover:text-blue-500">
+            <article class=" product w-1/2 sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 p-2 ">
+                <div class="bg-gray-100 p-4 border rounded-lg shadow-md  ">
                     <span class="pb-1">
                         <h2 class="product_name pb-1 text-xl"></h2>
                         <p class="pb-1"><span class=" price "></span>DKK</p>
@@ -29,7 +29,7 @@
         <!-- Content for Menus -->
     </div>
     <h2 class="product_category">Drinks</h2>
-    <div id="drinks_grid" class="flex flex-wrap">
+    <div id="drinks_grid" class="flex flex-wrap mb-24">
         <!-- Content for Drinks -->
     </div>
 

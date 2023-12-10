@@ -34,11 +34,14 @@
                 <label for="user_city" class="block text-sm font-medium text-gray-600">City:</label>
                 <input name="user_city" type="text" placeholder="city" value=<?= $_SESSION['user']['user_city'] ?> data-validate="str" data-min="2" data-max="40" readonly class="mt-1 p-2 border rounded w-full">
             </div>
-            <button id="edit_profile" type="button" class="bg-blue-500 text-white p-2 rounded">Edit</button>
-
-            <input id="update_profile" type="submit" value="Submit" class="mt-4 bg-green-500 text-white p-2 rounded hidden">
+            <div class="flex justify-between">
+                <div>
+                    <button id="edit_profile" type="button" class="bg-blue-500 text-white p-2 px-4 rounded">Edit</button>
+                    <input id="update_profile" type="submit" value="Submit" class=" bg-green-500 text-white p-2 px-4 rounded hidden">
+                </div>
+                <button class="bg-red-500 text-white p-2 rounded w-30 px-4" onclick="delete_user(<?= $_SESSION['user']['user_id'] ?>)">Delete user</button>
+            </div>
         </form>
-        <button onclick="delete_user(<?= $_SESSION['user']['user_id'] ?>)">Delete user</button>
     </div>
 
 </main>

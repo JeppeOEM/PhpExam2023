@@ -1,7 +1,13 @@
-<main id="signup" class="page">
+<main id="signup" class="page mt-12">
     <div class="max-w-2xl mx-auto">
+        <span id="text_partner text-xl" class="text-center mt-4">
+            <p>Want to sign up as a partner?</p><button class="change_signup_partner">Partner sign up</button>
+        </span>
+        <span id="text_user text-xl" class="hidden text-center mt-4">
+            <p>Want to sign up as a user?</p><button class="change_signup_user">User sign up</button>
+        </span>
         <div class="flex flex-col justify-center items-center container-sm mx-auto">
-            <form onsubmit="return validate(event, user_signup)" method="post" class="bg-gray-100 p-8 rounded-lg shadow-md">
+            <form onsubmit="return validate(event, user_signup)" method="post" class="bg-gray-100 p-8 rounded-lg shadow-md ">
                 <fieldset>
                     <legend class="text-lg font-bold mb-4">Register as a <span id="signup_legend">user</span></legend>
                     <div class="flex">
@@ -48,12 +54,7 @@
                 </fieldset>
             </form>
 
-            <span id="text_partner" class="text-center mt-4">
-                <p>Want to sign up as a partner?</p><button class="change_signup_partner">Partner sign up</button>
-            </span>
-            <span id="text_user" class="hidden text-center mt-4">
-                <p>Want to sign up as a user?</p><button class="change_signup_user">User sign up</button>
-            </span>
+
         </div>
     </div>
 </main>

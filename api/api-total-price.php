@@ -5,24 +5,26 @@ session_start();
 
 try {
     $db = _db();
-    $products = [1, 2, 3];
+    $json = file_get_contents('php://input');
+    $data = json_decode($json);
 
-    //array_fill(start index, how many inserts, what to insert)
-    $placeholders = array_fill(0, count($products), '?');
-    $placeholders = implode(',', $placeholders);
+    $products = $data->products;
+    // $products = [1, 1, 2];
 
-    $q = $db->prepare("SELECT SUM(price) AS total_price FROM products WHERE product_id IN ($placeholders)");
+    $db->beginTransaction();
+    $total_price = 0; // Initialize total price outside the loop
 
-    // will bind id to ? one by one
-    foreach ($products as $key => $product_id) {
-        //rows are not 0 indexed so add 1
-        $q->bindValue(($key + 1), $product_id);
+    foreach ($products as $key) {
+        $q = $db->prepare("SELECT price FROM products WHERE product_id = :product");
+        $q->bindValue(':product', $key);
+        $q->execute();
+        $selected_products = $q->fetch();
+        $total_price += $selected_products['price'];
     }
 
-    $q->execute();
-    $selected_products = $q->fetch();
+    $db->commit();
 
-    echo json_encode(['sum' => $selected_products['total_price']]);
+    echo json_encode(['sum' => $total_price]);
 } catch (Exception $e) {
     $db->rollBack();
     try {

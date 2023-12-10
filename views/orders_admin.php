@@ -1,4 +1,4 @@
-<main id="orders_admin" class="page">
+<main id="orders_admin" class="page mt-24">
 
     <h2 class="text-2xl font-bold mb-4">ORDER HISTORY</h2>
 

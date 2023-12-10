@@ -14,7 +14,7 @@ if ($_SESSION['user']['user_role'] == "user") {
 ?>
 
 <div id="pages" class="absolute top-0 left-0 w-full h-screen " data-session="<?= $session ?>">
-
+    
     <?php require_once __DIR__ . '/login.php' ?>
     <?php require_once __DIR__ . '/signup.php' ?>
     <?php require_once __DIR__ . '/404.php' ?>

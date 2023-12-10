@@ -59,6 +59,21 @@ async function user_signup(event) {
   // TODO: redirect to the login page
   // location.href = "/index";
 }
+
+async function total_price(products) {
+  // const restaurant_id = event.currentTarget.id;
+  try {
+    const response = await fetch(`/api/api-total-price.php`, {
+      method: "POST",
+      body: JSON.stringify({ products }),
+    });
+    const data = await response.text();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 async function login(event) {
   // console.log(event.form, "formmmmmm");
   const frm = event.target;
@@ -160,7 +175,7 @@ async function order_products(restaurant_id, total_products) {
       text: "Your order has been placed",
       // footer: '<a href="">Why do I have this issue?</a>',
     });
-    q("#count").innerText = item_count("cart");
+    item_count("cart");
     return data;
   }
 }
@@ -183,11 +198,13 @@ async function get_orders(user, restaurant_id = null) {
 
 document.addEventListener("DOMContentLoaded", function () {
   q("#order_products").addEventListener("click", (event) => {
-    const total_items = localStorage.getItem("cart");
+    const total_items = JSON.parse(localStorage.getItem("cart"));
     const restaurant_id = q(".restaurant_title").id;
 
-    console.log(restaurant_id, "dsdas");
-    order_products(restaurant_id, total_items);
+    console.log(total_items, "rest");
+    if (total_items.length !== 0) {
+      order_products(restaurant_id, total_items);
+    }
     empty_cart();
   });
 

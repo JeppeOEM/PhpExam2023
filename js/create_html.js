@@ -1,8 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
   // build_restaurants();
+  q("#logout").addEventListener("click", () => {
+    empty_cart();
+    item_count("cart");
+  });
   const index_page = q("#pages");
   const user = index_page.getAttribute("data-session");
-  q("#count").innerText = item_count("cart");
+  item_count("cart");
   if (user === "user") {
     // Your JavaScript function or code for logged-in users
     show_page("restaurants", build_restaurants);
@@ -19,6 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   q("#empty_cart").addEventListener("click", () => {
     empty_cart();
+    item_count("cart");
   });
 });
 

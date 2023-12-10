@@ -24,19 +24,20 @@ function add_to_cart(key, item) {
   const item_list = get_cart(key);
   item_list.push(item);
   localStorage.setItem(key, JSON.stringify(item_list));
-  q("#count").innerText = item_count(key);
+  item_count(key);
 }
-function item_count(key) {
-  const arr = JSON.parse(localStorage.getItem(key));
-  console.log(arr);
-  console.log(arr.length);
+async function item_count(key) {
+  const product_ids = JSON.parse(localStorage.getItem(key));
+
   const buy_btn = q("#order_products");
-  if (arr.length === 0) {
+  if (product_ids.length === 0) {
     buy_btn.innerText = "Empty cart";
   } else {
     buy_btn.innerText = "Order food";
   }
-  return arr.length;
+  const sum = JSON.parse(await total_price(product_ids));
+  q("#total_cost").innerText = sum["sum"];
+  q("#count").innerText = product_ids.length;
 }
 function get_cart(key) {
   const items = localStorage.getItem(key);
@@ -125,11 +126,10 @@ async function delete_user(user_id) {
       method: "DELETE",
     });
 
-    if (response.ok) {
-      const response = await response.text();
-      console.log(response);
-      window.location.href = "/";
-    }
+    const data = await response.text();
+    console.log(data);
+    empty_cart();
+    window.location.href = "/";
   } catch (error) {
     console.error("Fetch error:", error.message);
   }
