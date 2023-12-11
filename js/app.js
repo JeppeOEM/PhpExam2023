@@ -154,13 +154,13 @@ async function get_products(event, restaurant_name, restaurant_id) {
 }
 
 async function order_products(restaurant_id, total_products) {
-  console.log(total_products, "order", restaurant_id, "id");
   const response = await fetch("/api/api-order.php", {
     method: "POST",
     body: JSON.stringify({ total_products, restaurant_id }),
   });
   console.log(JSON.stringify({ total_products, restaurant_id }), "JSONSSSSSSS");
   const data = await response.text();
+  console.log(data, "response fucking data");
   if (!response.ok) {
     Swal.fire({
       icon: "error",
@@ -168,7 +168,7 @@ async function order_products(restaurant_id, total_products) {
       text: "Something went wrong, could not place order",
       // footer: '<a href="">Why do I have this issue?</a>',
     });
-  } else {
+  } else if (response.ok) {
     Swal.fire({
       icon: "success",
       title: "Success",

@@ -17,9 +17,6 @@ try {
 
     $db->beginTransaction();
 
-
-
-
     $q = $db->prepare(
         '
     INSERT INTO users2
@@ -34,6 +31,7 @@ try {
       user_password,
       user_role,
       user_blocked
+      created_at
     )
     VALUES (
       :user_id, 
@@ -46,6 +44,7 @@ try {
       :user_password,
       :user_role,
       :user_blocked
+      created_at
     )'
     );
 
@@ -59,6 +58,7 @@ try {
     $q->bindValue(':user_zip', $zip);
     $q->bindValue(':user_blocked', 0);
     $q->bindValue(':user_password', password_hash($_POST['user_password'], PASSWORD_DEFAULT));
+    $q->bindValue(':created_at', time());
     $q->execute();
     p(isset($_POST['restaurant_name']));
     p($_POST['restaurant_name']);

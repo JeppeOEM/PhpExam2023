@@ -46,9 +46,8 @@ async function build_restaurants() {
 }
 
 async function build_orders(user) {
-  console.log("BUILD ORDER HERE");
   const json = await get_orders(user);
-  console.log(json, "THEORDERS");
+
   let template, container, under_delivery;
   if (user === "admin") {
     container = q("#admin_orders");
@@ -85,7 +84,6 @@ async function build_orders(user) {
 }
 
 async function build_products(products, restaurant_name, restaurant_id) {
-  console.log(products);
   const product_grid = q("#product_grid");
   const drinks_grid = q("#drinks_grid");
   const menu_grid = q("#menu_grid");
@@ -98,14 +96,11 @@ async function build_products(products, restaurant_name, restaurant_id) {
     const clone = template.content.cloneNode(true);
     q(".product_name", clone).innerText = product.product_name;
     q(".price", clone).innerText = product.price;
-    console.log(product.type);
     let buy_btn = q(".buy", clone);
     buy_btn.id = product.product_id;
     buy_btn.setAttribute("data-restaurant", restaurant_id);
     buy_btn.addEventListener("click", (event) => {
       event.preventDefault();
-      console.log("wow");
-      console.log("ddd", buy_btn.id);
       add_to_cart("cart", buy_btn.id);
       console.log(localStorage.getItem("cart"));
     });
