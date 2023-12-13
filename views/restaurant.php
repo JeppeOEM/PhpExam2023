@@ -1,6 +1,6 @@
 <main id="restaurant" class="page px-12 mt-12 " 2>
 
-    <h1 class=" restaurant_title">
+    <h1 class="pl-4 pb-8 restaurant_title">
         Restaurant
     </h1>
     <!-- products inserted with build_products() -->

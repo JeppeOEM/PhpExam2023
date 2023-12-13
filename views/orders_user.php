@@ -18,7 +18,7 @@
             <p class="address_order"></p>
             <p class="city_order"></p>
             <p class="zip_order"></p>
-            <a class="view_order">view products</a>
+            <a class="view_order" target="_blank">view products</a>
         </template>
     </div>
     <h1>DELIVERED</h1>

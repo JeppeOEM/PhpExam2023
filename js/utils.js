@@ -75,7 +75,7 @@ function show_page(page_id, callback = null, params = null) {
   });
   // Show the one with the id
   q("#" + page_id).classList.remove("hidden");
-
+  sessionStorage.setItem("page", page_id);
   if (callback && params) {
     callback(params);
   } else if (callback) {

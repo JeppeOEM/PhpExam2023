@@ -1,3 +1,8 @@
+async function last_page_tracking() {
+  const page = sessionStorage.getItem("page");
+  show_page(page);
+}
+
 async function search_user(event) {
   event.preventDefault();
   const frm = event.target;

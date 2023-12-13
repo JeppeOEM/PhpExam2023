@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
     build_orders("partner");
   } else if (user === "admin") {
     show_page("admin");
+    console.log("BUILD ORDERS ADMIN");
     build_orders("admin");
   } else {
     show_page("restaurants", build_restaurants);
@@ -47,11 +48,11 @@ async function build_restaurants() {
 
 async function build_orders(user) {
   const json = await get_orders(user);
-
   let template, container, under_delivery;
   if (user === "admin") {
     container = q("#admin_orders");
     template = q("#admin_order");
+    console.log(json, template, container);
   } else if (user === "partner") {
     container = q("#partner_orders");
     template = q("#partner_order");
@@ -59,14 +60,16 @@ async function build_orders(user) {
     container = q("#user_orders");
     template = q("#user_order");
   }
-  under_delivery = q("#under_delivery");
-  under_delivery_order = q("#under_delivery_order");
+  under_delivery = q("#under-delivery");
+  console.log(under_delivery);
+  // under_delivery_order = q("#under_delivery_order");
+  console.log(json);
   json.orders.forEach((order) => {
     const created_time = parseInt(order.created_at);
     const scheduled_time = parseInt(order.scheduled_at);
     const clone = template.content.cloneNode(true);
     const order_id = (q(".order_id", clone).innerText = order.order_id);
-    const restaurant_id = (q(".restaurant_id_order", clone).innerText = order.restaurant_fk);
+    // const restaurant_id = (q(".restaurant_id_order", clone).innerText = order.restaurant_fk);
     const user_id = (q(".user_id_order", clone).innerText = order.user_fk);
     const restaurant_name = (q(".restaurant_name_order", clone).innerText = order.restaurant_name);
     const address = (q(".address_order", clone).innerText = order.address);
@@ -74,10 +77,15 @@ async function build_orders(user) {
     const city = (q(".city_order", clone).innerText = order.city);
     const created_at = (q(".created_at_order", clone).innerText = to_date(created_time * 1000));
     const scheduled = (q(".scheduled_at_order", clone).innerText = to_date(scheduled_time * 1000));
-    q(".view_order", clone).href = `/order?order_id=${order_id}`;
+    const link = (q(".view_order", clone).href = `/order?order_id=${order_id}`);
+    link.target = "_blank";
     if (is_delivered(order.scheduled_at)) {
       container.appendChild(clone);
+      console.log("DELIVERED");
     } else {
+      console.log("Is Delivered:", is_delivered(order.scheduled_at));
+      console.log("NOT DELIVERED", zip);
+      console.log(user_id);
       under_delivery.appendChild(clone);
     }
   });
