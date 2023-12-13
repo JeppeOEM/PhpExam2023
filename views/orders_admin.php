@@ -55,7 +55,7 @@
                             <td class="border px-8 py-1 city_order"></td>
                             <td class="border px-8 py-1 zip_order"></td>
                             <td class="border px-8 py-1">
-                                <a class="text-blue-500 underline view_order">View Order</a>
+                                <button class="modal_order">View order!</button>
                             </td>
                         </tr>
                     </template>
@@ -67,6 +67,13 @@
 
 
 
+
+    <dialog id="modal">
+        <h2>
+            modal
+        </h2>
+        <button id="close_modal">close modal</button>
+    </dialog>
 
 
 </main>

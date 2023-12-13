@@ -104,10 +104,14 @@ async function toggle_blocked(event, user_id, user_is_blocked) {
   console.log("user_id", user_id);
   console.log("user_is_blocked", user_is_blocked);
 
-  if (user_is_blocked == 0) {
-    event.target.innerHTML = "blocked";
+  if (event.target.innerText == "Unblocked") {
+    event.target.innerHTML = "Blocked";
+    event.target.classList.remove("bg-green-500");
+    event.target.classList.add("bg-red-500");
   } else {
-    event.target.innerHTML = "unblocked";
+    event.target.innerText = "Unblocked";
+    event.target.classList.add("bg-green-500");
+    event.target.classList.remove("bg-red-500");
   }
   try {
     const response = await fetch(

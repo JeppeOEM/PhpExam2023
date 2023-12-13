@@ -18,7 +18,7 @@
             <p class="address_order"></p>
             <p class="city_order"></p>
             <p class="zip_order"></p>
-            <a class="view_order" target="_blank">view products</a>
+            <button class="modal_order">View order!</button>
         </template>
     </div>
     <h1>DELIVERED</h1>
@@ -33,9 +33,11 @@
             <p class="address_order"></p>
             <p class="city_order"></p>
             <p class="zip_order"></p>
-            <a class="view_order">view products</a>
+            <button class="modal_order">View order!</button>
+
         </template>
     </div>
+
 
 
 </main>

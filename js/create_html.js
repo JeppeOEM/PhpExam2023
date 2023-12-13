@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // build_restaurants();
   q("#logout").addEventListener("click", () => {
     empty_cart();
     item_count("cart");
@@ -64,7 +63,7 @@ async function build_orders(user) {
   console.log(under_delivery);
   // under_delivery_order = q("#under_delivery_order");
   console.log(json);
-  json.orders.forEach((order) => {
+  await json.orders.forEach((order) => {
     const created_time = parseInt(order.created_at);
     const scheduled_time = parseInt(order.scheduled_at);
     const clone = template.content.cloneNode(true);
@@ -77,8 +76,8 @@ async function build_orders(user) {
     const city = (q(".city_order", clone).innerText = order.city);
     const created_at = (q(".created_at_order", clone).innerText = to_date(created_time * 1000));
     const scheduled = (q(".scheduled_at_order", clone).innerText = to_date(scheduled_time * 1000));
-    const link = (q(".view_order", clone).href = `/order?order_id=${order_id}`);
-    link.target = "_blank";
+    const modal_order = q(".modal_order", clone);
+    build_modal(modal_order, order_id);
     if (is_delivered(order.scheduled_at)) {
       container.appendChild(clone);
       console.log("DELIVERED");
@@ -88,6 +87,22 @@ async function build_orders(user) {
       console.log(user_id);
       under_delivery.appendChild(clone);
     }
+  });
+}
+
+function build_modal(open_btn, order_id) {
+  const close = document.querySelector("#close_modal");
+  const modal_order_info = document.querySelector("#modal");
+
+  open_btn.addEventListener("click", () => {
+    console.log("click");
+    console.log(get_single_order(order_id));
+    modal_order_info.showModal();
+  });
+
+  close.addEventListener("click", () => {
+    console.log("click");
+    modal_order_info.close();
   });
 }
 

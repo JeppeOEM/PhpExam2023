@@ -3,6 +3,17 @@ async function last_page_tracking() {
   show_page(page);
 }
 
+async function get_single_order(order_id) {
+  try {
+    const response = await fetch(`api/order?order_id=${order_id}`);
+    const data = await response.json();
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.log("Error:", error);
+  }
+}
+
 async function search_user(event) {
   event.preventDefault();
   const frm = event.target;

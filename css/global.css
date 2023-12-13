@@ -24,3 +24,7 @@ h1 {
   padding-left: 10px;
   font-size: 1.6rem;
 }
+
+dialog {
+  z-index: 100;
+}
