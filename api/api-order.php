@@ -4,9 +4,9 @@ require_once __DIR__ . '/../_.php';
 
 try {
     session_start();
-    if (!isset($_SESSION['user'])) {
-        throw new Exception('User not logged in', 401);
-    }
+    // if (!isset($_SESSION['user'])) {
+    //     throw new Exception('User not logged in', 401);
+    // }
 
     $db = _db();
     $json = file_get_contents('php://input');
@@ -101,7 +101,7 @@ try {
     }
     $db->commit();
 
-    echo json_encode(['order_id' => $order_id, "fuckoff" => "Lol"]);
+    echo json_encode(['order_id' => $order_id]);
 } catch (Exception $e) {
 
     if ($db) {

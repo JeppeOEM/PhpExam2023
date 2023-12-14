@@ -76,7 +76,7 @@ async function build_orders(user) {
     q(".created_at_order", clone).innerText = to_date(order.created_at * 1000);
     const scheduled = (q(".scheduled_at_order", clone).innerText = to_date(order.scheduled_at * 1000));
     const modal_order = q(".modal_order", clone);
-    build_modal(modal_order, order_id);
+    build_modal(modal_order, order_id, order.restaurant_id);
     if (is_delivered(order.scheduled_at)) {
       container.appendChild(clone);
       console.log("DELIVERED");
@@ -88,7 +88,7 @@ async function build_orders(user) {
   });
 }
 
-async function build_modal(open_btn, order_id) {
+async function build_modal(open_btn, order_id, restaurant_id) {
   const close = document.querySelector("#close_modal");
   const modal_order_info = document.querySelector("#modal");
 
@@ -106,14 +106,29 @@ async function build_modal(open_btn, order_id) {
 
 async function build_single_order(order_id) {
   const response = await get_single_order(order_id);
-  const order = response.order;
-  console.log(to_date(order.created_at), to_date(order.scheduled_at));
-  q("#modal_created").innerText = to_date(order.created_at);
-  q("#modal_scheduled").innerText = to_date(order.scheduled_at);
-  q("#modal_restaurant").innerText = order.restaurant_name;
-  q("#modal_address").innerText = order.address;
-  q("#modal_city").innerText = order.city;
-  q("#modal_zip").innerText = order.zip;
+  console.log(response);
+  const order = response.products;
+  console.log(order);
+  // console.log(to_date(order.created_at), to_date(order.scheduled_at));
+  // q("#modal_created").innerText = to_date(order.created_at);
+  // q("#modal_scheduled").innerText = to_date(order.scheduled_at);
+  // q("#modal_restaurant").innerText = order.restaurant_name;
+  // q("#modal_address").innerText = order.address;
+  // q("#modal_city").innerText = order.city;
+  // q("#modal_zip").innerText = order.zip;
+}
+
+async function get_single_order(order_id) {
+  console.log(order_id);
+  try {
+    const response = await fetch(`api/api-get-order-products.php?order_id=${order_id}`);
+    // const response = await fetch(`api/api-get-single-order.php?order_id=${order_id}`);
+    const data = await response.json();
+
+    return data;
+  } catch (error) {
+    console.log("Error:", error);
+  }
 }
 
 async function build_products(products, restaurant_name, restaurant_id) {

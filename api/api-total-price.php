@@ -13,18 +13,20 @@ try {
 
     $db->beginTransaction();
     $total_price = 0; // Initialize total price outside the loop
-
+    $all_products = [];
     foreach ($products as $key) {
-        $q = $db->prepare("SELECT price FROM products WHERE product_id = :product");
+        $q = $db->prepare("SELECT * FROM products WHERE product_id = :product");
         $q->bindValue(':product', $key);
         $q->execute();
-        $selected_products = $q->fetch();
-        $total_price += $selected_products['price'];
+        $selected_product = $q->fetch();
+        $total_price += $selected_product['price'];
+        // adds to the array
+        $all_products[] = $selected_product;
     }
 
     $db->commit();
 
-    echo json_encode(['sum' => $total_price]);
+    echo json_encode(['sum' => $total_price, "products" => $all_products]);
 } catch (Exception $e) {
     $db->rollBack();
     try {
