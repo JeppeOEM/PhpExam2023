@@ -35,7 +35,7 @@ async function item_count(key) {
   } else {
     buy_btn.innerText = "Order food";
   }
-  const sum = JSON.parse(await total_price(product_ids));
+  const sum = await total_price(product_ids);
   q("#total_cost").innerText = sum["sum"];
   q("#count").innerText = product_ids.length;
 }

@@ -3,8 +3,6 @@ async function last_page_tracking() {
   show_page(page);
 }
 
-
-
 async function search_user(event) {
   event.preventDefault();
   const frm = event.target;
@@ -74,7 +72,7 @@ async function total_price(products) {
       method: "POST",
       body: JSON.stringify({ products }),
     });
-    const data = await response.text();
+    const data = await response.json();
     return data;
   } catch (error) {
     console.log(error);

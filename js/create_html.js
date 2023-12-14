@@ -106,9 +106,10 @@ async function build_modal(open_btn, order_id, restaurant_id) {
 
 async function build_single_order(order_id) {
   const response = await get_single_order(order_id);
-  console.log(response);
-  const order = response.products;
-  console.log(order);
+  console.log(response.product_ids);
+  const sum = await total_price(JSON.stringify(response.products_ids));
+  const order = response.products_ids;
+  console.log(response, sum, response.product_info, order);
   // console.log(to_date(order.created_at), to_date(order.scheduled_at));
   // q("#modal_created").innerText = to_date(order.created_at);
   // q("#modal_scheduled").innerText = to_date(order.scheduled_at);

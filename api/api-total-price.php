@@ -20,13 +20,11 @@ try {
         $q->execute();
         $selected_product = $q->fetch();
         $total_price += $selected_product['price'];
-        // adds to the array
-        $all_products[] = $selected_product;
     }
 
     $db->commit();
 
-    echo json_encode(['sum' => $total_price, "products" => $all_products]);
+    echo json_encode(['sum' => $total_price]);
 } catch (Exception $e) {
     $db->rollBack();
     try {
