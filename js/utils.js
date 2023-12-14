@@ -170,3 +170,7 @@ function to_date(unix_stamp) {
 
   return `${month}/${day}/${year} ${hours}:${minutes}`;
 }
+
+function clear_session() {
+  localSession.clear();
+}

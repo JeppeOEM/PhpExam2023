@@ -27,9 +27,7 @@ session_start();
 
     <nav class="fixed top-0 left-0 flex gap-4 p-4 px-10 w-full bg-slate-800 text-white z-20 justify-between text-xl">
         <div class="flex  [&>*]:px-4">
-            <h2>
-                <?php echo $_SESSION['user']['user_role'] ?>
-            </h2>
+
             <button onclick=" show_page('login');" <?php if (isset($_SESSION['user'])) echo 'class="hidden"'; ?>>
                 Login
             </button>
@@ -44,10 +42,9 @@ session_start();
             }
             ?>
 
-            <form onsubmit="return localSession.clear()" class="flex items-center " method="post" <?php if (!isset($_SESSION['user'])) echo 'class="hidden"'; ?>>
-                <input id="logout" type="submit" name="logout" class="button cursor-pointer" value="Logout" <?php if (!isset($_SESSION['user'])) echo 'class="hidden"'; ?> />
+            <form onsubmit="clear_session()" method="post" <?php if (!isset($_SESSION['user'])) echo 'class="hidden"'; ?> class="flex items-center">
+                <input id="logout" type="submit" name="logout" class="button cursor-pointer" value="Logout" <?php if (!isset($_SESSION['user'])) echo 'class="hidden"'; ?> class="mt-0" />
             </form>
-
             <button onclick="show_page('profile');" <?php if (!isset($_SESSION['user'])) echo 'class="hidden"'; ?>>
                 Profile
             </button>
@@ -57,11 +54,11 @@ session_start();
             </button>
 
             <button onclick="show_page('orders_partner', build_orders, 'partner');" <?php if ($_SESSION['user']['user_role'] != "partner") echo 'class="hidden"'; ?>>
-                Orders
+                Your Orders
             </button>
 
             <button onclick="show_page('orders_user', build_orders, 'user' );" <?php if ($_SESSION['user']['user_role'] != "user") echo 'class="hidden"'; ?>>
-                Orders
+                Your Orders
             </button>
 
             <button onclick="show_page('orders_admin', build_orders, 'admin'); " <?php if ($_SESSION['user']['user_role'] != "admin") echo 'class="hidden"'; ?>>
@@ -77,13 +74,17 @@ session_start();
             </button>
         </div>
 
-        <div id="order_here" class="bg-blue-500 p-4 rounded-xl flex flex-row items-center ">
 
-            <div class="  px-3 py-3  rounded-full w-10 h-10" id="count"></div>
+        <div id="order_here" class="flex flex-row items-center bg-blue-500 p-4 rounded-xl justify-center ">
+
+            <div class=" px-3 py-3 rounded-full w-10 h-10" id="count"></div>
 
             <button class="px-4 py-2 border rounded-lg hover:bg-blue-700" id="order_products">0</button>
             <p class="pl-2 text-center" id="total_cost">0</p>
             <p class="px-2">DKK</p>
             <button id="empty_cart">🗑️</button>
         </div>
+
+
+
     </nav>

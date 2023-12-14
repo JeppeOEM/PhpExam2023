@@ -1,17 +1,3 @@
-/* #pages {
-  margin-top: 100px;
-}
-
-main {
-} */
-::-webkit-scrollbar-thumb {
-  z-index: 100;
-}
-
-::-webkit-scrollbar-track {
-  z-index: 100;
-}
-
 h1 {
   font-size: 2.5rem;
 }
@@ -39,4 +25,8 @@ dialog {
 
 .modal_price::after {
   content: " DKK";
+}
+
+.restaurant_name {
+  font-size: 1.8rem;
 }
