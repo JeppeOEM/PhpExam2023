@@ -1,5 +1,5 @@
 <main id="orders_admin" class="page mt-24 mb-24 ">
-    <section class="overflow-x-auto px-12 border-1 py-8 m-8">
+    <section class="overflow-x-auto px-12 border-1 py-8 my-8">
 
         <h2 class="text-2xl font-bold ">Under delivery</h2>
         <div class="table-container max-h-96 overflow-y-auto  ">
@@ -25,7 +25,7 @@
 
     <section class="overflow-x-auto px-12 border-1 py-8">
 
-        <h2 class="text-2xl font-bold m-8">ORDER HISTORY</h2>
+        <h2 class="text-2xl font-bold mt-8">ORDER HISTORY</h2>
 
         <div class="table-container max-h-96 overflow-y-auto  ">
             <table class="min-w-full rounded-lg">

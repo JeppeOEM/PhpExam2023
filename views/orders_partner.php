@@ -1,7 +1,7 @@
 <main id="orders_partner" class="page">
-    <section class="overflow-x-auto px-12 border-1 py-8 m-8">
+    <section class="overflow-x-auto px-12 border-1 py-8 mt-8">
 
-        <h2 class="text-2xl font-bold ">Under delivery</h2>
+        <h2 class="text-2xl font-bold my-4 ">Under delivery</h2>
         <div class="table-container max-h-96 overflow-y-auto  ">
             <table class="min-w-full rounded-lg">
                 <thead class="sticky top-0">
@@ -23,9 +23,9 @@
         </div>
     </section>
 
-    <section class="overflow-x-auto px-12 border-1 py-8">
+    <section class="overflow-x-auto px-12 border-1 py-6">
 
-        <h2 class="text-2xl font-bold m-8">ORDER HISTORY</h2>
+        <h2 class="text-2xl font-bold my-4">Order history</h2>
 
         <div class="table-container max-h-96 overflow-y-auto  ">
             <table class="min-w-full rounded-lg">
@@ -43,8 +43,8 @@
 
                     </tr>
                 </thead>
-                <tbody id="admin_orders">
-                    <template id="admin_order">
+                <tbody id="partner_orders">
+                    <template id="partner_order">
                         <tr class="order_tr [&>*]:border px-8 py-2">
                             <td class="border px-8 py-2 order_id"></td>
                             <td class="border px-8 py-2 user_id_order"></td>
