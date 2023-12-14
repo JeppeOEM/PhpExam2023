@@ -1,4 +1,22 @@
 document.addEventListener("DOMContentLoaded", () => {
+  q("#search").addEventListener("submit", (event) => {
+    event.preventDefault();
+    search_admin(event);
+  });
+  async function search_admin(event) {
+    const search = event.target.search.value;
+
+    console.log(search);
+    const response = await fetch("api/api-search-test.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ search }),
+    });
+    console.log(await response.text());
+  }
+
   q("#logout").addEventListener("click", () => {
     empty_cart();
     item_count("cart");

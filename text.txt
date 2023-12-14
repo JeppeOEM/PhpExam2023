@@ -1,5 +1,5 @@
 Hand-in: No hand-in
-
+npx tailwindcss -i ./input.css -o ./app.css --watch
 
 An user can:
 

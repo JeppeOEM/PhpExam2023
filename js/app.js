@@ -1,3 +1,19 @@
+
+async function is_email_available(event) {
+  const frm = event.target.form;
+  const conn = await fetch("api/api-is-email-available.php", {
+    method: "POST",
+    body: new FormData(frm),
+  });
+  if (!conn.ok) {
+    // everything that is not a 2xx
+    console.log("email not available");
+    document.querySelector("#msg_email_not_available").classList.remove("hidden");
+    return;
+  }
+  console.log("email available");
+}
+
 async function last_page_tracking() {
   const page = sessionStorage.getItem("page");
   show_page(page);

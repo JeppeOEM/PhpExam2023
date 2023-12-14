@@ -591,8 +591,8 @@ label {
   line-height: 1.5rem;
 }
 
-input {
-  margin-top: 0.25rem;
+label span {
+  font-weight: 700;
 }
 
 .fixed {
@@ -623,10 +623,6 @@ input {
   z-index: 20;
 }
 
-.m-8 {
-  margin: 2rem;
-}
-
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -640,11 +636,6 @@ input {
 .my-8 {
   margin-top: 2rem;
   margin-bottom: 2rem;
-}
-
-.my-6 {
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
 }
 
 .mb-12 {
@@ -663,6 +654,10 @@ input {
   margin-left: 2rem;
 }
 
+.mt-0 {
+  margin-top: 0px;
+}
+
 .mt-1 {
   margin-top: 0.25rem;
 }
@@ -677,10 +672,6 @@ input {
 
 .mt-4 {
   margin-top: 1rem;
-}
-
-.mt-0 {
-  margin-top: 0px;
 }
 
 .mt-8 {
@@ -747,28 +738,12 @@ input {
   width: 100%;
 }
 
-.w-80 {
-  width: 20rem;
-}
-
 .min-w-full {
   min-width: 100%;
 }
 
 .max-w-2xl {
   max-width: 42rem;
-}
-
-.basis-48 {
-  flex-basis: 12rem;
-}
-
-.basis-96 {
-  flex-basis: 24rem;
-}
-
-.basis-9 {
-  flex-basis: 2.25rem;
 }
 
 .cursor-pointer {
@@ -950,14 +925,14 @@ input {
   padding-bottom: 1rem;
 }
 
-.py-8 {
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-}
-
 .py-6 {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
+}
+
+.py-8 {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 .pb-1 {
@@ -1037,6 +1012,11 @@ input {
 .text-gray-600 {
   --tw-text-opacity: 1;
   color: rgb(75 85 99 / var(--tw-text-opacity));
+}
+
+.text-pink-500 {
+  --tw-text-opacity: 1;
+  color: rgb(236 72 153 / var(--tw-text-opacity));
 }
 
 .text-white {

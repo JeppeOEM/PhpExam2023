@@ -72,6 +72,12 @@ session_start();
             <button onclick="show_page('admin');" <?php if ($_SESSION['user']['user_role'] != "admin") echo 'class="hidden"'; ?>>
                 Admin
             </button>
+
+            <form id="search">
+                <label for="search">Name</label>
+                <input name="search" value="ddddd" type="text" class="w-full p-2 rounded-lg mb-4 text-black">
+                <input type="submit">
+            </form>
         </div>
 
 

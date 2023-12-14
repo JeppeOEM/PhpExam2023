@@ -9,7 +9,8 @@
   label {
     @apply text-base;
   }
-  input {
-    @apply mt-1;
+
+  label span {
+    @apply font-bold;
   }
 }

@@ -4,7 +4,7 @@ require_once __DIR__ . '/../_.php';
 try {
   // TODO: validate $_POST['query']
   $db = _db();
-  $q = $db->prepare('SELECT users2.*
+  $q = $db->prepare('SELECT *
     FROM users2
     WHERE LOWER(users2.user_email) LIKE :username
     OR LOWER(users2.user_role) LIKE :user_last_name 
