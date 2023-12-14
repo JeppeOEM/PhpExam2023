@@ -38,11 +38,11 @@
                     </div>
 
                     <div id="signup_restaurant_name" class="hidden">
-                        <label for="restaurant_name" text-gray-600">Restaurant name</label>
+                        <label for="restaurant_name text-gray-600">Restaurant name</label>
                         <input name="restaurant_name" value="rest" type="text" placeholder="Restaurant name" data-validate="str" data-min="2" data-max="40" class="w-full p-2 rounded-lg mb-4">
                     </div>
 
-                    <label for="user_password" text-gray-600">Password</label>
+                    <label for="user_password text-gray-600">Password</label>
                     <input value="password" name="user_password" type="text" placeholder="Password" data-validate="str" data-min="2" data-max="100" class="w-full p-2 rounded-lg mb-4">
 
                     <label for="user_confirm_password">Confirm Password</label>

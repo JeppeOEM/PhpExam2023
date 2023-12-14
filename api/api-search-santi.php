@@ -4,12 +4,10 @@ require_once __DIR__ . '/../_.php';
 try {
   // TODO: validate $_POST['query']
   $db = _db();
-  $q = $db->prepare('SELECT orders.*, users2.*
-    FROM orders
-    JOIN users2 
-    ON users2.user_id = orders.user_fk
-    WHERE LOWER(users2.user_name) LIKE :username
-    OR LOWER(users2.user_last_name) LIKE :user_last_name 
+  $q = $db->prepare('SELECT users2.*
+    FROM users2
+    WHERE LOWER(users2.user_email) LIKE :username
+    OR LOWER(users2.user_role) LIKE :user_last_name 
   ');
   $q->bindValue(':username', "%{$_POST['query']}%");
   $q->bindValue(':user_last_name', "%{$_POST['query']}%");
