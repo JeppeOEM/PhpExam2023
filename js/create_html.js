@@ -9,14 +9,10 @@ document.addEventListener("DOMContentLoaded", () => {
   if (user === "user") {
     // Your JavaScript function or code for logged-in users
     show_page("restaurants", build_restaurants);
-    // build_orders("user");
   } else if (user === "partner") {
     show_page("orders_partner");
-    build_orders("partner");
   } else if (user === "admin") {
     show_page("admin");
-    console.log("BUILD ORDERS ADMIN");
-    build_orders("admin");
   } else {
     show_page("restaurants", build_restaurants);
   }
@@ -51,22 +47,27 @@ async function build_orders(user) {
   if (user === "admin") {
     container = q("#admin_orders");
     template = q("#admin_order");
+    console.log("admin logged in");
     console.log(json, template, container);
   } else if (user === "partner") {
     container = q("#partner_orders");
     template = q("#partner_order");
+    console.log("partner logged in");
   } else {
     container = q("#user_orders");
     template = q("#user_order");
+    console.log("user logged in");
   }
   under_delivery = q("#under-delivery");
   console.log(under_delivery);
   // under_delivery_order = q("#under_delivery_order");
   console.log(json);
+  // remove_elements("order_tr th");
+  console.log(json.orders);
   await json.orders.forEach((order) => {
+    const clone = template.content.cloneNode(true);
     const created_time = parseInt(order.created_at);
     const scheduled_time = parseInt(order.scheduled_at);
-    const clone = template.content.cloneNode(true);
     const order_id = (q(".order_id", clone).innerText = order.order_id);
     // const restaurant_id = (q(".restaurant_id_order", clone).innerText = order.restaurant_fk);
     const user_id = (q(".user_id_order", clone).innerText = order.user_fk);

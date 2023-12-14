@@ -5,7 +5,7 @@
         <div class="table-container max-h-96 overflow-y-auto  ">
             <table class="min-w-full rounded-lg">
                 <thead class="sticky top-0">
-                    <tr>
+                    <tr class="order_tr">
                         <th class="border bg-gray-200 px-4 py-1">Order ID</th>
                         <th class="border bg-gray-200 px-4 py-1">User ID</th>
                         <th class="border bg-gray-200 px-4 py-1">Created At</th>
@@ -30,7 +30,7 @@
         <div class="table-container max-h-96 overflow-y-auto  ">
             <table class="min-w-full rounded-lg">
                 <thead class="sticky top-0">
-                    <tr>
+                    <tro class="order_tr">
                         <th class="border bg-gray-200 px-4 py-1">Order ID</th>
                         <th class="border bg-gray-200 px-4 py-1">User ID</th>
                         <th class="border bg-gray-200 px-4 py-1">Created At</th>
@@ -41,7 +41,7 @@
                         <th class="border bg-gray-200 px-4 py-1">ZIP Code</th>
                         <th class="border bg-gray-200 px-4 py-1">View order</th>
 
-                    </tr>
+                        </tr>
                 </thead>
                 <tbody id="admin_orders">
                     <template id="admin_order">

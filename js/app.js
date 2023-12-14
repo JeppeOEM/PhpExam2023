@@ -231,7 +231,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   q(".change_signup_user").addEventListener("click", () => {
     const textPartner = q("#text_partner");
-    const textUser = q("#text_user");
+    const textUser = q("#text_user_btn");
     textPartner.classList.remove("hidden");
     textUser.classList.add("hidden");
     const role = (q("#user_role_input").value = "user");
@@ -240,8 +240,11 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   q(".change_signup_partner").addEventListener("click", () => {
+    console.log(q("#user_role_input"));
     const textPartner = q("#text_partner");
-    const textUser = q("#text_user");
+    console.log(textPartner, "DDDDDDDD");
+    const textUser = q("#text_user_btn");
+    console.log("tex_user", textUser);
     textUser.classList.remove("hidden");
     textPartner.classList.add("hidden");
     const role = (q("#user_role_input").value = "partner");

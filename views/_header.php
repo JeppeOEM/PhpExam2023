@@ -44,7 +44,7 @@ session_start();
             }
             ?>
 
-            <form class="flex items-center " method="post" <?php if (!isset($_SESSION['user'])) echo 'class="hidden"'; ?>>
+            <form onsubmit="return localSession.clear()" class="flex items-center " method="post" <?php if (!isset($_SESSION['user'])) echo 'class="hidden"'; ?>>
                 <input id="logout" type="submit" name="logout" class="button cursor-pointer" value="Logout" <?php if (!isset($_SESSION['user'])) echo 'class="hidden"'; ?> />
             </form>
 

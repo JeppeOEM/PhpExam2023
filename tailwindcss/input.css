@@ -6,4 +6,10 @@
   main {
     @apply absolute left-0 w-full overflow-y-scroll h-full bg-white p-2 pt-24;
   }
+  label {
+    @apply text-base;
+  }
+  input {
+    @apply mt-1;
+  }
 }

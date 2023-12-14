@@ -22,7 +22,6 @@ $products = $q->fetchAll();
 </head>
 
 <body>
-
     <?php foreach ($products as $product) : ?>
         <p><?= $product['product_name'] ?></p>
         <p><?= $product['price'] ?></p>
