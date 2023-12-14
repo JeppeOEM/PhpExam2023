@@ -26,7 +26,8 @@ try {
     }
 
     $db->commit();
-    // p($products);
+    #convert to array of strings
+    $products_ids = array_map('strval', $products_ids);
     echo json_encode(["product_ids" => $products_ids, "product_info" => $product_info]);
 } catch (Exception $e) {
     var_dump($e);

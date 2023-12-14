@@ -65,12 +65,13 @@ async function user_signup(event) {
   // location.href = "/index";
 }
 
-async function total_price(products) {
+async function total_price(id_array) {
+  console.log(id_array, "id arr total price");
   // const restaurant_id = event.currentTarget.id;
   try {
     const response = await fetch(`/api/api-total-price.php`, {
       method: "POST",
-      body: JSON.stringify({ products }),
+      body: JSON.stringify({ products: id_array }),
     });
     const data = await response.json();
     return data;

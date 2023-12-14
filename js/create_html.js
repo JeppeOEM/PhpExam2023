@@ -69,14 +69,14 @@ async function build_orders(user) {
     const order_id = (q(".order_id", clone).innerText = order.order_id);
     // const restaurant_id = (q(".restaurant_id_order", clone).innerText = order.restaurant_fk);
     const user_id = (q(".user_id_order", clone).innerText = order.user_fk);
-    q(".restaurant_name_order", clone).innerText = order.restaurant_name;
+    const restaurant_name = (q(".restaurant_name_order", clone).innerText = order.restaurant_name);
     q(".address_order", clone).innerText = order.address;
     q(".zip_order", clone).innerText = order.zip;
     q(".city_order", clone).innerText = order.city;
     q(".created_at_order", clone).innerText = to_date(order.created_at * 1000);
     const scheduled = (q(".scheduled_at_order", clone).innerText = to_date(order.scheduled_at * 1000));
     const modal_order = q(".modal_order", clone);
-    build_modal(modal_order, order_id, order.restaurant_id);
+    build_modal(modal_order, order_id, restaurant_name);
     if (is_delivered(order.scheduled_at)) {
       container.appendChild(clone);
       console.log("DELIVERED");
@@ -88,13 +88,13 @@ async function build_orders(user) {
   });
 }
 
-async function build_modal(open_btn, order_id, restaurant_id) {
+async function build_modal(open_btn, order_id, restaurant_name) {
   const close = document.querySelector("#close_modal");
   const modal_order_info = document.querySelector("#modal");
 
   await open_btn.addEventListener("click", () => {
     console.log("click");
-    build_single_order(order_id);
+    build_single_order(order_id, restaurant_name);
     modal_order_info.showModal();
   });
 
@@ -104,19 +104,24 @@ async function build_modal(open_btn, order_id, restaurant_id) {
   });
 }
 
-async function build_single_order(order_id) {
+async function build_single_order(order_id, restaurant_name) {
   const response = await get_single_order(order_id);
-  console.log(response.product_ids);
-  const sum = await total_price(JSON.stringify(response.products_ids));
+
+  const id_arr = await response.product_ids;
+  console.log(id_arr);
+  const sum = await total_price(id_arr);
   const order = response.products_ids;
   console.log(response, sum, response.product_info, order);
-  // console.log(to_date(order.created_at), to_date(order.scheduled_at));
-  // q("#modal_created").innerText = to_date(order.created_at);
-  // q("#modal_scheduled").innerText = to_date(order.scheduled_at);
-  // q("#modal_restaurant").innerText = order.restaurant_name;
-  // q("#modal_address").innerText = order.address;
-  // q("#modal_city").innerText = order.city;
-  // q("#modal_zip").innerText = order.zip;
+  const container = q("#modal_products");
+  const template = q("#modal_template");
+  response.product_info.forEach((product) => {
+    const clone = template.content.cloneNode(true);
+    q(".modal_name", clone).innerText = product.product_name;
+    q(".modal_price", clone).innerText = product.price;
+    container.appendChild(clone);
+  });
+  q(".modal_total").innerText = sum["sum"];
+  q("#modal_restaurant_name").innerText = restaurant_name;
 }
 
 async function get_single_order(order_id) {

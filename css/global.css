@@ -36,3 +36,7 @@ dialog {
 .address_order {
   white-space: nowrap;
 }
+
+.modal_price::after {
+  content: " DKK";
+}

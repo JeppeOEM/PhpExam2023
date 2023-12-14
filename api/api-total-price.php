@@ -21,7 +21,6 @@ try {
         $selected_product = $q->fetch();
         $total_price += $selected_product['price'];
     }
-
     $db->commit();
 
     echo json_encode(['sum' => $total_price]);
