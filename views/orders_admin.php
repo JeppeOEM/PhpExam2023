@@ -5,16 +5,16 @@
         <div class="table-container max-h-96 overflow-y-auto  ">
             <table class="min-w-full rounded-lg">
                 <thead class="sticky top-0">
-                    <tr class="order_tr">
-                        <th class="border bg-gray-200 px-4 py-1">Order ID</th>
-                        <th class="border bg-gray-200 px-4 py-1">User ID</th>
-                        <th class="border bg-gray-200 px-4 py-1">Created At</th>
-                        <th class="border bg-gray-200 px-4 py-1">Scheduled At</th>
-                        <th class="border bg-gray-200 px-4 py-1">Restaurant Name</th>
-                        <th class="border bg-gray-200 px-4 py-1">Address</th>
-                        <th class="border bg-gray-200 px-4 py-1">City</th>
-                        <th class="border bg-gray-200 px-4 py-1">ZIP Code</th>
-                        <th class="border bg-gray-200 px-4 py-1">View order</th>
+                    <tr class="order_tr [&>*]:border bg-gray-200 px-4 py-2">
+                        <th>Order ID</th>
+                        <th>User ID</th>
+                        <th>Created At</th>
+                        <th>Scheduled At</th>
+                        <th>Restaurant Name</th>
+                        <th>Address</th>
+                        <th>City</th>
+                        <th>ZIP Code</th>
+                        <th>View order</th>
                     </tr>
                 </thead>
                 <tbody id="under-delivery">
@@ -30,31 +30,31 @@
         <div class="table-container max-h-96 overflow-y-auto  ">
             <table class="min-w-full rounded-lg">
                 <thead class="sticky top-0">
-                    <tro class="order_tr">
-                        <th class="border bg-gray-200 px-4 py-1">Order ID</th>
-                        <th class="border bg-gray-200 px-4 py-1">User ID</th>
-                        <th class="border bg-gray-200 px-4 py-1">Created At</th>
-                        <th class="border bg-gray-200 px-4 py-1">Scheduled At</th>
-                        <th class="border bg-gray-200 px-4 py-1">Restaurant Name</th>
-                        <th class="border bg-gray-200 px-4 py-1">Address</th>
-                        <th class="border bg-gray-200 px-4 py-1">City</th>
-                        <th class="border bg-gray-200 px-4 py-1">ZIP Code</th>
-                        <th class="border bg-gray-200 px-4 py-1">View order</th>
+                    <tr class="order_tr [&>*]:border bg-gray-200 px-4 py-2">
+                        <th>Order ID</th>
+                        <th>User ID</th>
+                        <th>Created At</th>
+                        <th>Scheduled At</th>
+                        <th>Restaurant Name</th>
+                        <th>Address</th>
+                        <th>City</th>
+                        <th>ZIP Code</th>
+                        <th>View order</th>
 
-                        </tr>
+                    </tr>
                 </thead>
                 <tbody id="admin_orders">
                     <template id="admin_order">
-                        <tr>
-                            <td class="border px-8 py-1 order_id"></td>
-                            <td class="border px-8 py-1 user_id_order"></td>
-                            <td class="border px-8 py-1 created_at_order"></td>
-                            <td class="border px-8 py-1 scheduled_at_order"></td>
-                            <td class="border px-8 py-1 restaurant_name_order"></td>
-                            <td class="border px-8 py-1 address_order"></td>
-                            <td class="border px-8 py-1 city_order"></td>
-                            <td class="border px-8 py-1 zip_order"></td>
-                            <td class="border px-8 py-1">
+                        <tr class="order_tr [&>*]:border px-8 py-2">
+                            <td class="border px-8 py-2 order_id"></td>
+                            <td class="border px-8 py-2 user_id_order"></td>
+                            <td class="border px-8 py-2 created_at_order"></td>
+                            <td class="border px-8 py-2 scheduled_at_order"></td>
+                            <td class="border px-8 py-2 restaurant_name_order"></td>
+                            <td class="border px-8 py-2 address_order"></td>
+                            <td class="border px-8 py-2 city_order"></td>
+                            <td class="border px-8 py-2 zip_order"></td>
+                            <td class="border px-8 py-2">
                                 <button class="modal_order">View order!</button>
                             </td>
                         </tr>
@@ -67,13 +67,6 @@
 
 
 
-
-    <dialog id="modal">
-        <h2>
-            modal
-        </h2>
-        <button id="close_modal">close modal</button>
-    </dialog>
 
 
 </main>

@@ -33,3 +33,4 @@ if ($_SESSION['user']['user_role'] == "user") {
 
 
 <?php require_once __DIR__ . '/_footer.php'  ?>
+<?php require_once __DIR__ . '/_order_modal.php'  ?>

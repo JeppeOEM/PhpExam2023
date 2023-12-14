@@ -5,7 +5,7 @@ async function last_page_tracking() {
 
 async function get_single_order(order_id) {
   try {
-    const response = await fetch(`api/order?order_id=${order_id}`);
+    const response = await fetch(`api/api-get-single-order.php?order_id=${order_id}`);
     const data = await response.json();
     console.log(data);
     return data;

@@ -29,3 +29,10 @@ dialog {
   z-index: 100;
 }
 
+.scheduled_at_order {
+  white-space: nowrap;
+}
+
+.address_order {
+  white-space: nowrap;
+}

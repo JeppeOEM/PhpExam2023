@@ -66,17 +66,15 @@ async function build_orders(user) {
   console.log(json.orders);
   await json.orders.forEach((order) => {
     const clone = template.content.cloneNode(true);
-    const created_time = parseInt(order.created_at);
-    const scheduled_time = parseInt(order.scheduled_at);
     const order_id = (q(".order_id", clone).innerText = order.order_id);
     // const restaurant_id = (q(".restaurant_id_order", clone).innerText = order.restaurant_fk);
     const user_id = (q(".user_id_order", clone).innerText = order.user_fk);
-    const restaurant_name = (q(".restaurant_name_order", clone).innerText = order.restaurant_name);
-    const address = (q(".address_order", clone).innerText = order.address);
-    const zip = (q(".zip_order", clone).innerText = order.zip);
-    const city = (q(".city_order", clone).innerText = order.city);
-    const created_at = (q(".created_at_order", clone).innerText = to_date(created_time * 1000));
-    const scheduled = (q(".scheduled_at_order", clone).innerText = to_date(scheduled_time * 1000));
+    q(".restaurant_name_order", clone).innerText = order.restaurant_name;
+    q(".address_order", clone).innerText = order.address;
+    q(".zip_order", clone).innerText = order.zip;
+    q(".city_order", clone).innerText = order.city;
+    q(".created_at_order", clone).innerText = to_date(order.created_at * 1000);
+    const scheduled = (q(".scheduled_at_order", clone).innerText = to_date(order.scheduled_at * 1000));
     const modal_order = q(".modal_order", clone);
     build_modal(modal_order, order_id);
     if (is_delivered(order.scheduled_at)) {
@@ -84,20 +82,19 @@ async function build_orders(user) {
       console.log("DELIVERED");
     } else {
       console.log("Is Delivered:", is_delivered(order.scheduled_at));
-      console.log("NOT DELIVERED", zip);
-      console.log(user_id);
+
       under_delivery.appendChild(clone);
     }
   });
 }
 
-function build_modal(open_btn, order_id) {
+async function build_modal(open_btn, order_id) {
   const close = document.querySelector("#close_modal");
   const modal_order_info = document.querySelector("#modal");
 
-  open_btn.addEventListener("click", () => {
+  await open_btn.addEventListener("click", () => {
     console.log("click");
-    console.log(get_single_order(order_id));
+    build_single_order(order_id);
     modal_order_info.showModal();
   });
 
@@ -105,6 +102,18 @@ function build_modal(open_btn, order_id) {
     console.log("click");
     modal_order_info.close();
   });
+}
+
+async function build_single_order(order_id) {
+  const response = await get_single_order(order_id);
+  const order = response.order;
+  console.log(to_date(order.created_at), to_date(order.scheduled_at));
+  q("#modal_created").innerText = to_date(order.created_at);
+  q("#modal_scheduled").innerText = to_date(order.scheduled_at);
+  q("#modal_restaurant").innerText = order.restaurant_name;
+  q("#modal_address").innerText = order.address;
+  q("#modal_city").innerText = order.city;
+  q("#modal_zip").innerText = order.zip;
 }
 
 async function build_products(products, restaurant_name, restaurant_id) {
@@ -147,18 +156,4 @@ function is_delivered(scheduled_at) {
     return false;
   }
   return true;
-}
-function add_zero(number) {
-  return number < 10 ? `0${number}` : `${number}`;
-}
-
-function to_date(unix_stamp) {
-  const dateObj = new Date(unix_stamp);
-  const year = dateObj.getFullYear().toString().slice(2);
-  const month = add_zero(dateObj.getMonth() + 1);
-  const day = add_zero(dateObj.getDate());
-  const hours = add_zero(dateObj.getHours());
-  const minutes = add_zero(dateObj.getMinutes());
-
-  return `${month}/${day}/${year} ${hours}:${minutes}`;
 }

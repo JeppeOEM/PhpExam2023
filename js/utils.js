@@ -154,3 +154,19 @@ async function delete_this_user(user_id) {
     console.error("Fetch error:", error.message);
   }
 }
+
+function add_zero(number) {
+  return number < 10 ? `0${number}` : `${number}`;
+}
+
+function to_date(unix_stamp) {
+  let stamp = parseInt(unix_stamp);
+  const dateObj = new Date(stamp);
+  const year = dateObj.getFullYear().toString().slice(2);
+  const month = add_zero(dateObj.getMonth() + 1);
+  const day = add_zero(dateObj.getDate());
+  const hours = add_zero(dateObj.getHours());
+  const minutes = add_zero(dateObj.getMinutes());
+
+  return `${month}/${day}/${year} ${hours}:${minutes}`;
+}
