@@ -65,29 +65,30 @@ async function build_orders(user) {
   if (user === "admin") {
     container = q("#admin_orders");
     template = q("#admin_order");
+    under_delivery = q("#under_delivery_admin");
     console.log("admin logged in");
     console.log(json, template, container);
   } else if (user === "partner") {
     container = q("#partner_orders");
     template = q("#partner_order");
+    under_delivery = q("#under_delivery_partner");
     console.log("partner logged in");
   } else {
     container = q("#user_orders");
     template = q("#user_order");
     console.log("user logged in");
+    under_delivery = q("#under_delivery_user");
   }
-  under_delivery = q("#under-delivery");
-  console.log(under_delivery);
+
   // under_delivery_order = q("#under_delivery_order");
-  console.log(json);
   // remove_elements("order_tr th");
-  console.log(json.orders);
   await json.orders.forEach((order) => {
     const clone = template.content.cloneNode(true);
     const order_id = (q(".order_id", clone).innerText = order.order_id);
     // const restaurant_id = (q(".restaurant_id_order", clone).innerText = order.restaurant_fk);
     const user_id = (q(".user_id_order", clone).innerText = order.user_fk);
     const restaurant_name = (q(".restaurant_name_order", clone).innerText = order.restaurant_name);
+    console.log(restaurant_name);
     q(".address_order", clone).innerText = order.address;
     q(".zip_order", clone).innerText = order.zip;
     q(".city_order", clone).innerText = order.city;
@@ -100,7 +101,7 @@ async function build_orders(user) {
       console.log("DELIVERED");
     } else {
       console.log("Is Delivered:", is_delivered(order.scheduled_at));
-
+      console.log(under_delivery);
       under_delivery.appendChild(clone);
     }
   });

@@ -15,7 +15,7 @@
             <p class="font-bold">Total price:</p>
             <p class=" modal_total">
             </p>
-
+            <span>DKK</span>
         </div>
         <p>
             <button class="w-full p-2 rounded-lg bg-blue-500 text-white" id="close_modal">Close</button>

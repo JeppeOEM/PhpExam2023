@@ -30,7 +30,6 @@ try {
       user_city,
       user_password,
       user_role,
-      user_blocked
       created_at
     )
     VALUES (
@@ -43,8 +42,7 @@ try {
       :user_city,
       :user_password,
       :user_role,
-      :user_blocked
-      created_at
+      :created_at
     )'
     );
 
@@ -56,7 +54,6 @@ try {
     $q->bindValue(':user_address', $address);
     $q->bindValue(':user_city', $city);
     $q->bindValue(':user_zip', $zip);
-    $q->bindValue(':user_blocked', 0);
     $q->bindValue(':user_password', password_hash($_POST['user_password'], PASSWORD_DEFAULT));
     $q->bindValue(':created_at', time());
     $q->execute();
@@ -82,15 +79,16 @@ try {
         'user_email' => $email, 'user_role' => $role, 'user_address' => $address, 'user_city' => $city, 'user_zip' => $zip
     ]);
 } catch (Exception $e) {
+    var_dump($e->getMessage());
     $db->rollBack();
     try {
         if (!ctype_digit($e->getCode())) {
             throw new Exception();
         }
         http_response_code($e->getCode());
-        echo json_encode(['info' => $e->getMessage(), 'first' => "first"]);
+        echo json_encode(['info' => $e->getMessage(), 'first' => $e->getMessage()]);
     } catch (Exception $ex) {
         http_response_code(500);
-        echo json_encode(['info' => json_encode($ex), 'second' => "second"]);
+        echo json_encode(['info' => json_encode($ex), 'second' => $e->getMessage()]);
     }
 }

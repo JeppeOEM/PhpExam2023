@@ -17,7 +17,7 @@
                         <th>View order</th>
                     </tr>
                 </thead>
-                <tbody id="under-delivery">
+                <tbody id="under_delivery_partner">
                 </tbody>
             </table>
         </div>

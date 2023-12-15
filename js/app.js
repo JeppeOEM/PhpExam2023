@@ -1,4 +1,3 @@
-
 async function is_email_available(event) {
   const frm = event.target.form;
   const conn = await fetch("api/api-is-email-available.php", {
@@ -53,7 +52,7 @@ async function user_signup(event) {
   const frm = event.target;
   const formData = new FormData(frm);
   formData.forEach((value, key) => {
-    console.log(`key${key}: value${value}`);
+    console.log(`key${key}: ${value}`);
   });
 
   const response = await fetch("/api/api-signup.php", {

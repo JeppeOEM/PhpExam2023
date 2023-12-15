@@ -15,11 +15,14 @@ try {
     // p($_SESSION['user'], "useeeeeeeeeer");
     $role = $data->user;
     if ($role == "user") {
-        $q = $db->prepare('SELECT orders.*, restaurants.restaurant_name 
+        $q = $db->prepare(
+            'SELECT orders.*, restaurants.restaurant_name 
             FROM orders
             JOIN restaurants ON orders.restaurant_fk = restaurants.restaurant_id
             WHERE orders.user_fk = :fk_user_id
-        ');
+            ORDER BY orders.created_at DESC
+        '
+        );
         // $q->bindValue(':fk_user_id', $_SESSION['user']['user_id']);
         $q->bindValue(':fk_user_id', $_SESSION['user']['user_id']);
     } elseif ($role == "partner") {
@@ -31,7 +34,8 @@ try {
             'SELECT orders.*, restaurants.restaurant_name 
             FROM orders
             JOIN restaurants ON orders.restaurant_fk = restaurants.restaurant_id
-            WHERE restaurant_fk = :restaurant_id'
+            WHERE restaurant_fk = :restaurant_id
+            ORDER BY orders.created_at DESC'
         );
         $q->bindValue(':restaurant_id', 1);
         // $q->bindValue(':restaurant_id', $_POST['restaurant_id']);
@@ -39,7 +43,8 @@ try {
         $q = $db->prepare(
             'SELECT orders.*, restaurants.restaurant_name 
             FROM orders
-            JOIN restaurants ON orders.restaurant_fk = restaurants.restaurant_id'
+            JOIN restaurants ON orders.restaurant_fk = restaurants.restaurant_id
+            ORDER BY orders.created_at DESC'
         );
     }
 

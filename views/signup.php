@@ -21,11 +21,13 @@
                         </div>
                     </div>
                     <label for="user_email">
-                        <span class="text-pink-500">Email</span>
+                        Email
                     </label>
                     <input name="user_email" type="text" onblur="is_email_available(event)" onfocus='document.querySelector("#msg_email_not_available").classList.add("hidden")' data-validate="email" class="w-full p-2 rounded-lg mb-4">
-                    <div id="msg_email_not_available" class="hidden">
-                        Email is not available
+                    <div id="msg_email_not_available" class="hidden pb-4 text-red-600">
+                        <span>
+                            Email is not available or not valid
+                        </span>
                     </div>
                     <label for="user_address">Address</label>
                     <input name="user_address" value="stenholmsvej 22" type="text" placeholder="Address" data-validate="str" data-min="2" data-max="50" class="w-full p-2 rounded-lg mb-4">

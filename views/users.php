@@ -10,9 +10,14 @@ $q->execute();
 $users = $q->fetchAll();
 ?>
 
-<main id="users_admin" class="page">
-    <h2 class="text-2xl font-bold mb-4">USERS</h2>
-    <div class="overflow-x-auto px-12">
+<main id="users_admin" class="page px-12">
+    <h2 class=" text-2xl font-bold mb-4">USERS</h2>
+    <form id="search">
+        <label for="search">Search for users</label>
+        <input name="search" type="text" class="border border-blue-500 border-solid w-159 p-2 rounded-lg mb-4 text-black">
+        <input type="submit" value="Search">
+    </form>
+    <div class="overflow-x-auto ">
         <div class="table-container max-h-96 overflow-y-auto">
             <table class="min-w-full border rounded-lg">
                 <thead>
@@ -52,7 +57,7 @@ $users = $q->fetchAll();
     </div>
 
     <h2 class="text-2xl font-bold my-4">PARTNERS</h2>
-    <div class="overflow-x-auto px-12">
+    <div class="overflow-x-auto">
         <div class="table-container max-h-96 overflow-y-auto">
             <table class="min-w-full border rounded-lg">
                 <thead>

@@ -1,43 +1,67 @@
 <main id="orders_user" class="page">
+    <section class="overflow-x-auto px-12 border-1 py-8 mt-8">
 
-    <form id="search_user" onsubmit="search_user(event)">
-        <label for="search">Search for orders by restaurant name or date</label>
-        <input name="search" type="text">
-        <button>Search orders</button>
-    </form>
+        <h2 class="text-2xl font-bold my-4 ">Under delivery</h2>
+        <div class="table-container max-h-96 overflow-y-auto  ">
+            <table class="min-w-full rounded-lg">
+                <thead class="sticky top-0">
+                    <tr class="order_tr [&>*]:border bg-gray-200 px-4 py-2">
+                        <th>Order ID</th>
+                        <th>User ID</th>
+                        <th>Created At</th>
+                        <th>Scheduled At</th>
+                        <th>Restaurant Name</th>
+                        <th>Address</th>
+                        <th>City</th>
+                        <th>ZIP Code</th>
+                        <th>View order</th>
+                    </tr>
+                </thead>
+                <tbody id="under_delivery_user">
+                </tbody>
+            </table>
+        </div>
+    </section>
 
-    <h2>under DELIVER</h2>
-    <div id="under_delivery" class="scheduled_orders  pt-4">
-        <template id="under_delivery_order">
-            <p class="order_id "></p>
-            <p class="restaurant_id_order "></p>
-            <p class="created_at_order "></p>
-            <p class="scheduled_at_order"></p>
-            <p class="user_id_order"></p>
-            <p class="restaurant_name_order "></p>
-            <p class="address_order"></p>
-            <p class="city_order"></p>
-            <p class="zip_order"></p>
-            <button class="modal_order">View order!</button>
-        </template>
-    </div>
-    <h1>DELIVERED</h1>
-    <div id="user_orders" class="orders  pt-4">
-        <template id="user_order">
-            <p class="order_id "></p>
-            <p class="restaurant_id_order "></p>
-            <p class="created_at_order "></p>
-            <p class="scheduled_at_order"></p>
-            <p class="user_id_order"></p>
-            <p class="restaurant_name_order "></p>
-            <p class="address_order"></p>
-            <p class="city_order"></p>
-            <p class="zip_order"></p>
-            <button class="modal_order">View order!</button>
+    <section class="overflow-x-auto px-12 border-1 py-6">
 
-        </template>
-    </div>
+        <h2 class="text-2xl font-bold my-4">Order history</h2>
 
+        <div class="table-container max-h-96 overflow-y-auto  ">
+            <table class="min-w-full rounded-lg">
+                <thead class="sticky top-0">
+                    <tr class="order_tr [&>*]:border bg-gray-200 px-4 py-2">
+                        <th>Order ID</th>
+                        <th>User ID</th>
+                        <th>Created At</th>
+                        <th>Scheduled At</th>
+                        <th>Restaurant Name</th>
+                        <th>Address</th>
+                        <th>City</th>
+                        <th>ZIP Code</th>
+                        <th>View order</th>
 
+                    </tr>
+                </thead>
+                <tbody id="user_orders">
+                    <template id="user_order">
+                        <tr class="order_tr [&>*]:border px-8 py-2">
+                            <td class="border px-8 py-2 order_id"></td>
+                            <td class="border px-8 py-2 user_id_order"></td>
+                            <td class="border px-8 py-2 created_at_order"></td>
+                            <td class="border px-8 py-2 scheduled_at_order"></td>
+                            <td class="border px-8 py-2 restaurant_name_order"></td>
+                            <td class="border px-8 py-2 address_order"></td>
+                            <td class="border px-8 py-2 city_order"></td>
+                            <td class="border px-8 py-2 zip_order"></td>
+                            <td class="border px-8 py-2">
+                                <button class="modal_order">View order</button>
+                            </td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </div>
+    </section>
 
 </main>

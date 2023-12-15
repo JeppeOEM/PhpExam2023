@@ -3,10 +3,11 @@
 require_once __DIR__ . '/../_.php';
 
 try {
-
+    #POSTMAN SENDS FORM DATA THROUGH $_FILES 
     $json = file_get_contents('php://input');
     $data = json_decode($json);
     $search = $data->search;
+    $user_id = $_SESSION['user']['user_id'];
 
     if (empty($search)) {
         echo json_encode(['info' => 'Search string is empty']);
@@ -15,9 +16,8 @@ try {
 
     $db = _db();
 
-    $q = $db->prepare("SELECT users2.*, restaurants.*
-        FROM users2
-        JOIN restaurants
+    $q = $db->prepare("SELECT *
+        FROM orders
         WHERE users2.user_email LIKE :user_email 
         OR users2.user_name LIKE :user_name
         OR users2.user_last_name LIKE :user_last_name
