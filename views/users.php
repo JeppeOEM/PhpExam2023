@@ -14,7 +14,7 @@ $users = $q->fetchAll();
 
 <main id="users_admin" class="page px-12">
 
-    <h2 class=" text-2xl font-bold mb-4">USERS</h2>
+    <h2 class=" text-2xl font-bold mb-4">Users</h2>
     <form class="search_admin_users_form" method="post">
         <label for="search">Search for users</label>
         <input name="search" type="text" class="border border-blue-500 border-solid w-159 p-2 rounded-lg mb-4 text-black">

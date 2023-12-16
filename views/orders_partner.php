@@ -5,7 +5,7 @@
         <div class="table-container max-h-96 overflow-y-auto  ">
             <table class="min-w-full rounded-lg">
                 <thead class="sticky top-0">
-                    <tr class="order_tr [&>*]:border bg-gray-200 px-4 py-2">
+                    <tr class="[&>*]:border bg-gray-200 px-4 py-2">
                         <th>Order ID</th>
                         <th>User ID</th>
                         <th>Created At</th>
@@ -30,7 +30,7 @@
         <div class="table-container max-h-96 overflow-y-auto  ">
             <table class="min-w-full rounded-lg">
                 <thead class="sticky top-0">
-                    <tr class="order_tr [&>*]:border bg-gray-200 px-4 py-2">
+                    <tr class="[&>*]:border bg-gray-200 px-4 py-2">
                         <th>Order ID</th>
                         <th>User ID</th>
                         <th>Created At</th>

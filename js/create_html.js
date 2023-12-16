@@ -1,6 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-
-
   q("#logout").addEventListener("click", () => {
     empty_cart();
     item_count("cart");
@@ -43,30 +41,34 @@ async function build_restaurants() {
   });
 }
 
-async function build_orders(user) {
-  const json = await get_orders(user);
+async function build_orders(user, search_result = null) {
+  console.log(search_result);
+  let orders;
+  if (search_result === null) {
+    const json = await get_orders(user);
+    orders = json.orders;
+  } else {
+    orders = await search_result;
+    console.log(orders);
+  }
   let template, container, under_delivery;
   if (user === "admin") {
     container = q("#admin_orders");
     template = q("#admin_order");
     under_delivery = q("#under_delivery_admin");
-    console.log("admin logged in");
-    console.log(json, template, container);
   } else if (user === "partner") {
     container = q("#partner_orders");
     template = q("#partner_order");
     under_delivery = q("#under_delivery_partner");
-    console.log("partner logged in");
   } else {
     container = q("#user_orders");
     template = q("#user_order");
-    console.log("user logged in");
     under_delivery = q("#under_delivery_user");
   }
 
   // under_delivery_order = q("#under_delivery_order");
-  // remove_elements("order_tr th");
-  await json.orders.forEach((order) => {
+  remove_elements("order_tr");
+  orders.forEach((order) => {
     const clone = template.content.cloneNode(true);
     const order_id = (q(".order_id", clone).innerText = order.order_id);
     // const restaurant_id = (q(".restaurant_id_order", clone).innerText = order.restaurant_fk);

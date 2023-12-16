@@ -11,9 +11,18 @@ document.addEventListener("DOMContentLoaded", () => {
     form.addEventListener("submit", (event) => {
       event.preventDefault();
       show_page("search_users");
-      build_search_users(search_admin(event));
+      build_search_users(search_admin(event, "api/api-search-users-admin.php"));
       console.log("search_admin_users");
     });
+  });
+
+  q(".search_admin_orders").addEventListener("submit", (event) => {
+    event.preventDefault();
+    show_page("orders_admin");
+    const json = search_admin(event, "api/api-search-orders-admin.php");
+    console.log(json, "search orders");
+    build_orders("admin", json);
+    console.log("search_orders_admin");
   });
 });
 

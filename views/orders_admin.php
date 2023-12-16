@@ -1,6 +1,10 @@
 <main id="orders_admin" class="page mt-24 mb-24 ">
     <section class="overflow-x-auto px-12 border-1 py-8 my-8">
-
+        <form class="search_admin_orders" method="post">
+            <label for="search">Search orders</label>
+            <input name="search" type="text" class="border border-blue-500 border-solid w-159 p-2 rounded-lg mb-4 text-black">
+            <button type="submit">Search</button>
+        </form>
         <h2 class="text-2xl font-bold ">Under delivery</h2>
         <div class="table-container max-h-96 overflow-y-auto  ">
             <table class="min-w-full rounded-lg">

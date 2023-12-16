@@ -16,13 +16,16 @@ try {
     $db = _db();
 
     $q = $db->prepare('SELECT DISTINCT 
-            orders.*, restaurants.restaurant_name 
+            orders.*, restaurants.restaurant_name, users2.user_name, users2.user_last_name
             FROM orders
             JOIN restaurants ON orders.restaurant_fk = restaurants.restaurant_id
+            JOIN users2 ON orders.user_fk = users2.user_id
             WHERE restaurants.restaurant_name LIKE :search 
             OR orders.address LIKE :search
             OR orders.city LIKE :search
             OR orders.zip LIKE :search
+            OR users2.user_name LIKE :search
+            OR users2.user_last_name LIKE :search
             ORDER BY orders.created_at DESC');
 
     $q->bindValue(':search', "%{$search}%");
