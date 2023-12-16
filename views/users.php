@@ -8,14 +8,17 @@ $partners = $q->fetchAll();
 $q = $db->prepare('SELECT * FROM users2 WHERE user_role = "user"');
 $q->execute();
 $users = $q->fetchAll();
+
+
 ?>
 
 <main id="users_admin" class="page px-12">
+
     <h2 class=" text-2xl font-bold mb-4">USERS</h2>
-    <form id="search">
+    <form class="search_admin_users_form" method="post">
         <label for="search">Search for users</label>
         <input name="search" type="text" class="border border-blue-500 border-solid w-159 p-2 rounded-lg mb-4 text-black">
-        <input type="submit" value="Search">
+        <button type="submit">Search</button>
     </form>
     <div class="overflow-x-auto ">
         <div class="table-container max-h-96 overflow-y-auto">

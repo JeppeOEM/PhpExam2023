@@ -100,7 +100,12 @@ function sort_az(arr, key) {
   return sorted;
 }
 
-async function toggle_blocked(event, user_id, user_is_blocked) {
+async function toggle_blocked(event, user_id = null, user_is_blocked = null) {
+  if (!user_id) {
+    user_id = event.target.dataset.id;
+    user_is_blocked = event.target.dataset.blocked;
+  }
+
   console.log("user_id", user_id);
   console.log("user_is_blocked", user_is_blocked);
 

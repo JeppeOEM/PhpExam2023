@@ -12,6 +12,7 @@ session_start();
     <script src="/js/utils.js" defer></script>
     <script src="/js/validator.js" defer></script>
     <script src="/js/app.js" defer></script>
+    <script src="/js/search.js" defer></script>
     <script src="/js/create_html.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
     <link rel="stylesheet" href="css/global.css">
