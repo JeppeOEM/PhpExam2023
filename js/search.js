@@ -1,4 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
+  q(".search_orders_user").addEventListener("submit", (event) => {
+    event.preventDefault();
+    show_page("orders_user");
+    build_orders_user(search_api(event, "api/api-search-orders-user.php", parseInt(event.target.user_id.value)));
+  });
+
   qAll(".search_admin_users").forEach((search_form) => {
     search_form.addEventListener("submit", (event) => {
       event.preventDefault();
@@ -11,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
     form.addEventListener("submit", (event) => {
       event.preventDefault();
       show_page("search_users");
-      build_search_users(search_admin(event, "api/api-search-users-admin.php"));
+      build_search_users(search_api(event, "api/api-search-users-admin.php"));
       console.log("search_admin_users");
     });
   });
@@ -19,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
   q(".search_admin_orders").addEventListener("submit", (event) => {
     event.preventDefault();
     show_page("orders_admin");
-    const json = search_admin(event, "api/api-search-orders-admin.php");
+    const json = search_api(event, "api/api-search-orders-admin.php");
     console.log(json, "search orders");
     build_orders("admin", json);
     console.log("search_orders_admin");
@@ -31,19 +37,29 @@ function reload_page() {
   show_page("search_users");
 }
 
-async function search_admin(event) {
+async function search_api(event, path, user_id = null) {
   const search = event.target.search.value;
+  console.log(user_id, "user_id");
+  if (user_id === null) {
+    console.log("no user_id", user_id);
+  }
 
   console.log(search);
-  const response = await fetch("api/api-search-users-admin.php", {
+  const response = await fetch(path, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ search }),
+    body: JSON.stringify({ search, user_id }),
   });
   const data = await response.json();
   return data;
+}
+
+async function build_orders_user(json) {
+  const orders = await json;
+  console.log(orders, "orders");
+  build_orders("user", orders);
 }
 
 async function build_search_users(json) {

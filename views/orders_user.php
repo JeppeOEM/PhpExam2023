@@ -1,6 +1,14 @@
 <main id="orders_user" class="page">
     <section class="overflow-x-auto px-12 border-1 py-8 mt-8">
 
+        <form class="search_orders_user" method="post">
+            <label for="search">Search for orders</label>
+            <input name="search" type="text" class="border border-blue-500 border-solid w-159 p-2 rounded-lg mb-4 text-black">
+            <input type="hidden" name="user_id" value="<?= $_SESSION['user']['user_id'] ?>">
+            <button type="submit">Search</button>
+            <?= $_SESSION['user']['user_id'] ?>
+        </form>
+
         <h2 class="text-2xl font-bold my-4 ">Under delivery</h2>
         <div class="table-container max-h-96 overflow-y-auto  ">
             <table class="min-w-full rounded-lg">
