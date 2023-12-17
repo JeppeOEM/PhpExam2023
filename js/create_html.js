@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     show_page("restaurants", build_restaurants);
   } else if (user === "partner") {
     show_page("orders_partner");
-    build_orders("partner");
+    build_orders_partner("partner");
   } else if (user === "admin") {
     show_page("admin");
   } else {
@@ -42,6 +42,48 @@ async function build_restaurants() {
   });
 }
 
+async function build_orders_partner(user, search_result = null) {
+  console.log(search_result);
+  let orders;
+  if (search_result === null) {
+    const json = await get_orders(user);
+    orders = json.orders;
+  } else {
+    search = await search_result;
+    orders = search.orders;
+    console.log(orders, "order in build orders");
+  }
+
+  const container = q("#partner_orders");
+  const template = q("#partner_order");
+  const under_delivery = q("#under_delivery_partner");
+
+  // under_delivery_order = q("#under_delivery_order");
+  remove_elements("order_tr");
+  console.log("ORDERS:!!!!!!!!!!!!!!!!!!!!!!", orders);
+  orders.forEach((order) => {
+    const clone = template.content.cloneNode(true);
+    const order_id = (q(".order_id", clone).innerText = order.order_id);
+    // const restaurant_id = (q(".restaurant_id_order", clone).innerText = order.restaurant_fk);
+    // const user_id = (q(".user_id_order", clone).innerText = order.user_fk);
+    // const restaurant_name = (q(".restaurant_name_order", clone).innerText = order.restaurant_name);
+    q(".user_name_customer", clone).innerText = order.user_name;
+    q(".user_last_name_customer", clone).innerText = order.user_last_name;
+    q(".address_order", clone).innerText = order.user_address;
+    q(".zip_order", clone).innerText = order.user_zip;
+    q(".city_order", clone).innerText = order.user_city;
+    q(".created_at_order", clone).innerText = to_date(order.created_at * 1000);
+    const scheduled = (q(".scheduled_at_order", clone).innerText = to_date(order.scheduled_at * 1000));
+    const modal_order = q(".modal_order", clone);
+    // build_modal(modal_order, order_id, restaurant_name);
+    if (is_delivered(order.scheduled_at)) {
+      container.appendChild(clone);
+    } else {
+      under_delivery.appendChild(clone);
+    }
+  });
+}
+
 async function build_orders(user, search_result = null) {
   console.log(search_result);
   let orders;
@@ -58,11 +100,7 @@ async function build_orders(user, search_result = null) {
     container = q("#admin_orders");
     template = q("#admin_order");
     under_delivery = q("#under_delivery_admin");
-  } else if (user === "partner") {
-    container = q("#partner_orders");
-    template = q("#partner_order");
-    under_delivery = q("#under_delivery_partner");
-  } else {
+  } else if (user === "user") {
     container = q("#user_orders");
     template = q("#user_order");
     under_delivery = q("#under_delivery_user");

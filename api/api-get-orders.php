@@ -31,6 +31,21 @@ try {
         // $restaurant_id = $data->restaurant_id;
         // $q = $db->prepare('SELECT * FROM orders WHERE restaurant_fk = :restaurant_id');
         $q = $db->prepare(
+            'SELECT orders.*, users2.user_name, users2.user_last_name, users2.user_address, users2.user_city 
+            FROM orders
+            JOIN users2 ON orders.user_fk = users2.user_id
+            WHERE restaurant_fk = :restaurant_id
+            ORDER BY orders.created_at DESC'
+        );
+        $q->bindValue(':restaurant_id', 1);
+        // $q->bindValue(':restaurant_id', $_POST['restaurant_id']);
+
+    } elseif ($role == "partner2") {
+        // $json = file_get_contents('php://input');
+        // $data = json_decode($json);
+        // $restaurant_id = $data->restaurant_id;
+        // $q = $db->prepare('SELECT * FROM orders WHERE restaurant_fk = :restaurant_id');
+        $q = $db->prepare(
             'SELECT orders.*, restaurants.restaurant_name 
             FROM orders
             JOIN restaurants ON orders.restaurant_fk = restaurants.restaurant_id
@@ -39,6 +54,7 @@ try {
         );
         $q->bindValue(':restaurant_id', 1);
         // $q->bindValue(':restaurant_id', $_POST['restaurant_id']);
+
     } elseif ($role == "admin") {
         $q = $db->prepare(
             'SELECT orders.*, restaurants.restaurant_name 

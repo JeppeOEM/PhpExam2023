@@ -54,7 +54,7 @@ session_start();
                 Restaurants
             </button>
 
-            <button onclick="show_page('orders_partner', build_orders, 'partner');" <?php if ($_SESSION['user']['user_role'] != "partner") echo 'class="hidden"'; ?>>
+            <button onclick="show_page('orders_partner', build_orders_partner, 'partner');" <?php if ($_SESSION['user']['user_role'] != "partner") echo 'class="hidden"'; ?>>
                 Your Orders
             </button>
 
