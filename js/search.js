@@ -1,4 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
+  q(".search_orders_partner").addEventListener("submit", (event) => {
+    event.preventDefault();
+    show_page("orders_user");
+    build_orders_user(search_api(event, "api/api-search-orders-user.php", parseInt(event.target.user_id.value)));
+  });
+
   q(".search_orders_user").addEventListener("submit", (event) => {
     event.preventDefault();
     show_page("orders_user");

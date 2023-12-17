@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     show_page("restaurants", build_restaurants);
   } else if (user === "partner") {
     show_page("orders_partner");
+    build_orders("partner");
   } else if (user === "admin") {
     show_page("admin");
   } else {

@@ -1,12 +1,14 @@
 <main id="orders_user" class="page">
     <section class="overflow-x-auto px-12 border-1 py-8 mt-8">
 
-        <form class="search_orders_user" method="post">
-            <label for="search">Search for orders</label>
-            <input name="search" type="text" class="border border-blue-500 border-solid w-159 p-2 rounded-lg mb-4 text-black">
-            <input type="hidden" name="user_id" value="<?= $_SESSION['user']['user_id'] ?>">
-            <button type="submit">Search</button>
-            <?= $_SESSION['user']['user_id'] ?>
+        <form class="search_orders_user flex flex-col py-2" method="post">
+            <label for="search">Search Orders</label>
+            <div>
+                <input name="search" type="text" class="border border-blue-500 border-solid w-159 p-2 rounded-lg mb-4 text-black">
+                <input type="hidden" name="user_id" value="<?= $_SESSION['user']['user_id'] ?>">
+                <button class="bg-blue-500 text-white p-2 px-4 rounded" type="submit">Search</button>
+            </div>
+
         </form>
         <button onclick="build_orders('user')" class="bg-blue-500 text-white p-2 px-4 rounded">Reset search</button>
 
@@ -19,10 +21,10 @@
                         <th>User ID</th>
                         <th>Created At</th>
                         <th>Scheduled At</th>
-                        <th>Restaurant Name</th>
+                        <th>Name</th>
                         <th>Address</th>
                         <th>City</th>
-                        <th>ZIP Code</th>
+                        <th>Zip</th>
                         <th>View order</th>
                     </tr>
                 </thead>
@@ -30,6 +32,7 @@
                 </tbody>
             </table>
         </div>
+        <p class="py-2">Address information is for the restaurant</p>
     </section>
 
     <section class="overflow-x-auto px-12 border-1 py-6">
@@ -64,13 +67,14 @@
                             <td class="border px-8 py-2 city_order"></td>
                             <td class="border px-8 py-2 zip_order"></td>
                             <td class="border px-8 py-2">
-                                <button class="border modal_order">View order!</button>
+                                <button class="bg-blue-500 text-white p-2 px-4 rounded modal_order">View order</button>
                             </td>
                         </tr>
                     </template>
                 </tbody>
             </table>
         </div>
+        <p class="py-2">Address information is for the restaurant</p>
     </section>
 
 </main>

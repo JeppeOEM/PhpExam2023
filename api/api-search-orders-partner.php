@@ -19,12 +19,21 @@ try {
         'SELECT orders.*, restaurants.restaurant_name 
             FROM orders
             JOIN restaurants ON orders.restaurant_fk = restaurants.restaurant_id
-            WHERE orders.user_fk = :fk_user_id
+            WHERE restaurant_fk = :restaurant_id
             AND orders.city LIKE :search
             OR orders.address LIKE :search
             OR restaurants.restaurant_name LIKE :search
             ORDER BY orders.created_at DESC
         '
+    );
+
+
+    $q = $db->prepare(
+        'SELECT orders.*, restaurants.restaurant_name 
+            FROM orders
+            JOIN restaurants ON orders.restaurant_fk = restaurants.restaurant_id
+            WHERE restaurant_fk = :restaurant_id
+            ORDER BY orders.created_at DESC'
     );
     // $q->bindValue(':fk_user_id', $_SESSION['user']['user_id']);
     $q->bindValue(':fk_user_id', $user_id);

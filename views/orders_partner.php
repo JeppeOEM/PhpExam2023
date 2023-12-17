@@ -1,5 +1,15 @@
 <main id="orders_partner" class="page">
     <section class="overflow-x-auto px-12 border-1 py-8 mt-8">
+        <form class="search_orders_partner flex flex-col py-2" method="post">
+            <label for="search">Search Orders</label>
+            <div>
+                <input name="search" type="text" class="border border-blue-500 border-solid w-159 p-2 rounded-lg mb-4 text-black">
+                <input type="hidden" name="user_id" value="<?= $_SESSION['user']['user_id'] ?>">
+                <button class="bg-blue-500 text-white p-2 px-4 rounded" type="submit">Search</button>
+            </div>
+
+        </form>
+        <button onclick="build_orders('partner')" class="bg-blue-500 text-white p-2 px-4 rounded">Reset search</button>
 
         <h2 class="text-2xl font-bold my-4 ">Under delivery</h2>
         <div class="table-container max-h-96 overflow-y-auto  ">
