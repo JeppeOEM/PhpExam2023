@@ -57,25 +57,20 @@ async function build_orders_partner(user, search_result = null) {
   const container = q("#partner_orders");
   const template = q("#partner_order");
   const under_delivery = q("#under_delivery_partner");
-
-  // under_delivery_order = q("#under_delivery_order");
   remove_elements("order_tr");
   console.log("ORDERS:!!!!!!!!!!!!!!!!!!!!!!", orders);
   orders.forEach((order) => {
     const clone = template.content.cloneNode(true);
     const order_id = (q(".order_id", clone).innerText = order.order_id);
-    // const restaurant_id = (q(".restaurant_id_order", clone).innerText = order.restaurant_fk);
-    // const user_id = (q(".user_id_order", clone).innerText = order.user_fk);
-    // const restaurant_name = (q(".restaurant_name_order", clone).innerText = order.restaurant_name);
     q(".user_name_customer", clone).innerText = order.user_name;
     q(".user_last_name_customer", clone).innerText = order.user_last_name;
     q(".address_order", clone).innerText = order.user_address;
     q(".zip_order", clone).innerText = order.user_zip;
     q(".city_order", clone).innerText = order.user_city;
     q(".created_at_order", clone).innerText = to_date(order.created_at * 1000);
-    const scheduled = (q(".scheduled_at_order", clone).innerText = to_date(order.scheduled_at * 1000));
+    q(".scheduled_at_order", clone).innerText = to_date(order.scheduled_at * 1000);
     const modal_order = q(".modal_order", clone);
-    // build_modal(modal_order, order_id, restaurant_name);
+    build_modal(modal_order, order_id, "Orde id: " + order_id);
     if (is_delivered(order.scheduled_at)) {
       container.appendChild(clone);
     } else {
