@@ -2,6 +2,7 @@
 require_once __DIR__ . '/../_.php';
 try {
 
+    session_start();
     _validate_user_email();
     _validate_user_password();
 
@@ -12,7 +13,6 @@ try {
     $q->bindValue(':user_email', $_POST['user_email']);
     $q->execute();
     $user = $q->fetch();
-    p($user);
     if (!$user) {
         throw new Exception('invalid credentials', 400);
     }
@@ -22,8 +22,16 @@ try {
         throw new Exception('invalid credentials', 400);
     }
 
-    session_start();
-    p($user);
+    try {
+        $q = $db->prepare('CALL get_restaurant_id(:user_id)');
+        $q->bindValue(':user_id', $user['user_id']);
+        $q->execute();
+        #fetching the first column from the first row in the result
+        $restaurant_id = $q->fetchColumn();
+    } catch (Exception $e) {
+        $restaurant_id = null;
+    }
+
 
     $_SESSION['user'] = [
         'user_id' => $user['user_id'],
@@ -34,6 +42,7 @@ try {
         'user_city' => $user['user_city'],
         'user_zip' => $user['user_zip'],
         'user_role' => $user['user_role'],
+        'restaurant_id' => $restaurant_id,
     ];
     echo json_encode($_SESSION['user']);
 } catch (Exception $e) {

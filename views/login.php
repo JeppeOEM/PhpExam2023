@@ -10,4 +10,4 @@
             <button class="w-full p-2 rounded-lg bg-blue-500 text-white">login</button>
         </fieldset>
     </form>
-</main><?= USER_NAME_MIN ?>
+</main>

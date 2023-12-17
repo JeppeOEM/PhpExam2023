@@ -19,6 +19,9 @@ session_start();
 </head>
 
 <body class="w-full h-screen ">
+    <p>
+
+    </p>
 
     <!-- <div class="fixed flex top-0 left-0 w-full">
         <div id="toast" class="hidden mt-4 px-8 py-2 mx-auto text-white rounded-full transition-all">
@@ -28,6 +31,8 @@ session_start();
 
     <nav class="fixed top-0 left-0 flex gap-4 p-4 px-10 w-full bg-slate-800 text-white z-20 justify-between text-xl">
         <div class="flex  [&>*]:px-4">
+
+            <?php var_dump($_SESSION['user']['restaurant_id']) ?>
 
             <button onclick=" show_page('login');" <?php if (isset($_SESSION['user'])) echo 'class="hidden"'; ?>>
                 Login

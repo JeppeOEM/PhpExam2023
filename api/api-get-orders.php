@@ -23,7 +23,6 @@ try {
             ORDER BY orders.created_at DESC
         '
         );
-        // $q->bindValue(':fk_user_id', $_SESSION['user']['user_id']);
         $q->bindValue(':fk_user_id', $_SESSION['user']['user_id']);
     } elseif ($role == "partner") {
 
@@ -34,9 +33,7 @@ try {
             WHERE restaurant_fk = :restaurant_id
             ORDER BY orders.created_at DESC'
         );
-        $q->bindValue(':restaurant_id', 1);
-        // $q->bindValue(':restaurant_id', $_POST['restaurant_id']);
-
+        $q->bindValue(':restaurant_id', $_SESSION['user']['restaurant_id']);
     } elseif ($role == "admin") {
         $q = $db->prepare(
             'SELECT orders.*, restaurants.restaurant_name 
