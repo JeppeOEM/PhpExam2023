@@ -81,7 +81,6 @@ async function user_signup(event) {
 }
 
 async function total_price(id_array) {
-  console.log(id_array, "id arr total price");
   // const restaurant_id = event.currentTarget.id;
   try {
     const response = await fetch(`/api/api-total-price.php`, {

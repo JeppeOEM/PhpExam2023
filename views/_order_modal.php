@@ -4,7 +4,7 @@
         <section id="modal_products">
             <h2 class=" text-xl font-bold pb-4" id="modal_restaurant_name"></h2>
             <template id="modal_template">
-                <article class="flex justify-between">
+                <article class="modal_product flex justify-between">
                     <p class="pr-2 modal_name"></p>
                     <p class="pr-2 modal_price"></p>
                 </article>

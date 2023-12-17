@@ -8,6 +8,7 @@
             <button type="submit">Search</button>
             <?= $_SESSION['user']['user_id'] ?>
         </form>
+        <button onclick="build_orders('user')" class="bg-blue-500 text-white p-2 px-4 rounded">Reset search</button>
 
         <h2 class="text-2xl font-bold my-4 ">Under delivery</h2>
         <div class="table-container max-h-96 overflow-y-auto  ">
@@ -63,7 +64,7 @@
                             <td class="border px-8 py-2 city_order"></td>
                             <td class="border px-8 py-2 zip_order"></td>
                             <td class="border px-8 py-2">
-                                <button class="modal_order">View order!</button>
+                                <button class="border modal_order">View order!</button>
                             </td>
                         </tr>
                     </template>

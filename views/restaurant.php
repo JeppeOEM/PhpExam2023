@@ -17,7 +17,7 @@
                         <h2 class="product_name pb-1 text-xl"></h2>
                         <p class="pb-1"><span class=" price "></span>DKK</p>
                     </span>
-                    <button class=" buy px-4 bg-blue-500 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue active:bg-blue-800">
+                    <button class="buy px-4 bg-blue-500 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue active:bg-blue-800">
                         +
                     </button>
                 </div>
@@ -26,11 +26,11 @@
     </div>
     <h2 class="product_category">Menus</h2>
     <div id="menu_grid" class="flex flex-wrap">
-        <!-- Content for Menus -->
+        <!-- content for menus -->
     </div>
     <h2 class="product_category">Drinks</h2>
     <div id="drinks_grid" class="flex flex-wrap mb-24">
-        <!-- Content for Drinks -->
+        <!-- content for drinks -->
     </div>
 
 </main>

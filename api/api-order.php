@@ -14,12 +14,13 @@ try {
     $products = $data->total_products;
 
     $restaurant_fk = $data->restaurant_id;
+    var_dump($restaurant_fk);
     // Log the values before executing the query
     // $user_fk = $_POST['user_id'];
-    $user_fk = $_SESSION['user']['user_id'];
+    // $user_fk = $_SESSION['user']['user_id'];
+    $user_fk = 78;
 
     // $restaurant_fk = $_POST['restaurant_id'];
-    $restaurant_fk = 1;
     $restaurantQuery = $db->prepare('SELECT fk_user_id FROM restaurants WHERE restaurant_id = :restaurant_id');
     $restaurantQuery->bindValue(':restaurant_id', $restaurant_fk);
     $restaurantQuery->execute();
@@ -94,9 +95,10 @@ try {
 
     foreach ($products as $product_id) {
 
-        $q = $db->prepare('INSERT INTO order_products (fk_order_id, fk_product_id) VALUES (:fk_order_id, :fk_product_id)');
+        $q = $db->prepare('INSERT INTO order_products (fk_order_id, fk_product_id, created_at) VALUES (:fk_order_id, :fk_product_id, :created_at)');
         $q->bindValue(':fk_order_id', $order_id);
         $q->bindValue(':fk_product_id', $product_id);
+        $q->bindValue(':created_at', time());
         $q->execute();
     }
     $db->commit();

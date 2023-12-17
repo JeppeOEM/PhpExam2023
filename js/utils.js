@@ -84,7 +84,6 @@ function show_page(page_id, callback = null, params = null) {
 }
 
 function sort_az(arr, key) {
-  console.log(arr, "ddd");
   const sorted = arr.sort((a, b) => {
     const nameA = a[key].toUpperCase();
     const nameB = b[key].toUpperCase();

@@ -35,6 +35,7 @@ async function build_restaurants() {
     let article = q("article", clone);
     article.id = restaurant.restaurant_id;
     article.addEventListener("click", (event) => {
+      console.log(restaurant.restaurant_id, restaurant.restaurant_id, restaurant.restaurant_id);
       get_products(event, restaurant.restaurant_name, restaurant.restaurant_id);
     });
     restaurant_grid.appendChild(clone);
@@ -121,6 +122,7 @@ async function build_single_order(order_id, restaurant_name) {
   console.log(response, sum, response.product_info, order);
   const container = q("#modal_products");
   const template = q("#modal_template");
+  remove_elements("modal_product");
   response.product_info.forEach((product) => {
     const clone = template.content.cloneNode(true);
     q(".modal_name", clone).innerText = product.product_name;
