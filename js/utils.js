@@ -63,7 +63,7 @@ function remove_elements(class_name) {
       ele.parentNode.removeChild(ele);
     });
   } catch {
-    console.log("nothing to remove");
+    console.log("no elements to remove");
   }
 }
 
@@ -122,7 +122,6 @@ async function toggle_blocked(event, user_id = null, user_is_blocked = null) {
       `api/api-toggle-user-blocked.php?user_id=${user_id}&user_is_blocked=${user_is_blocked}`
     );
     const data = await response.text();
-    console.log(data);
   } catch (error) {
     console.log(error);
   }
@@ -133,7 +132,6 @@ async function delete_user(user_id) {
     const response = await fetch(`api/api-delete-user.php?user_id=${user_id}`, {
       method: "DELETE",
     });
-
     const data = await response.text();
     console.log(data);
     empty_cart();

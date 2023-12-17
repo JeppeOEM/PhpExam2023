@@ -4,13 +4,11 @@ async function is_email_available(event) {
     method: "POST",
     body: new FormData(frm),
   });
+  // everything that is not a 2xx
   if (!conn.ok) {
-    // everything that is not a 2xx
-    console.log("email not available");
     document.querySelector("#msg_email_not_available").classList.remove("hidden");
     return;
   }
-  console.log("email available");
 }
 
 async function last_page_tracking() {
@@ -18,41 +16,12 @@ async function last_page_tracking() {
   show_page(page);
 }
 
-async function search_user(event) {
-  event.preventDefault();
-  const frm = event.target;
-  const formData = new FormData(frm);
-  formData.forEach((value, key) => {
-    console.log(`key${key}: value${value}`);
-  });
-
-  const response = await fetch("/api/api-search.php", {
-    method: "POST",
-    body: formData,
-  });
-
-  const data = await response.text();
-  console.log(data);
-
-  if (!response.ok) {
-    Swal.fire({
-      icon: "error",
-      title: "Oops...",
-      text: "Something went wrong!",
-      footer: '<a href="">Why do I have this issue?</a>',
-    });
-    return;
-  } else {
-    console.log("form");
-  }
-}
-
 async function user_signup(event) {
   event.preventDefault();
   const frm = event.target;
   const formData = new FormData(frm);
   formData.forEach((value, key) => {
-    console.log(`key${key}: ${value}`);
+
   });
 
   const response = await fetch("/api/api-signup.php", {
@@ -72,7 +41,7 @@ async function user_signup(event) {
     });
     return;
   } else {
-    console.log("form");
+
     show_page("login");
   }
 
@@ -221,7 +190,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const total_items = JSON.parse(localStorage.getItem("cart"));
     const restaurant_id = q(".restaurant_title").id;
 
-    console.log(total_items, "rest");
     if (total_items.length !== 0) {
       order_products(restaurant_id, total_items);
     }
@@ -229,7 +197,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   q("#edit_profile").addEventListener("click", () => {
-    console.log("lol");
+
     edit_profile();
   });
 
@@ -244,11 +212,8 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   q(".change_signup_partner").addEventListener("click", () => {
-    console.log(q("#user_role_input"));
     const textPartner = q("#text_partner");
-    console.log(textPartner, "DDDDDDDD");
     const textUser = q("#text_user_btn");
-    console.log("tex_user", textUser);
     textUser.classList.remove("hidden");
     textPartner.classList.add("hidden");
     const role = (q("#user_role_input").value = "partner");

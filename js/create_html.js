@@ -36,7 +36,6 @@ async function build_restaurants() {
     let article = q("article", clone);
     article.id = restaurant.restaurant_id;
     article.addEventListener("click", (event) => {
-      console.log(restaurant.restaurant_id, restaurant.restaurant_id, restaurant.restaurant_id);
       get_products(event, restaurant.restaurant_name, restaurant.restaurant_id);
     });
     restaurant_grid.appendChild(clone);
@@ -78,7 +77,6 @@ async function build_orders(user, search_result = null) {
     // const restaurant_id = (q(".restaurant_id_order", clone).innerText = order.restaurant_fk);
     const user_id = (q(".user_id_order", clone).innerText = order.user_fk);
     const restaurant_name = (q(".restaurant_name_order", clone).innerText = order.restaurant_name);
-    console.log(restaurant_name);
     q(".address_order", clone).innerText = order.address;
     q(".zip_order", clone).innerText = order.zip;
     q(".city_order", clone).innerText = order.city;
@@ -88,10 +86,7 @@ async function build_orders(user, search_result = null) {
     build_modal(modal_order, order_id, restaurant_name);
     if (is_delivered(order.scheduled_at)) {
       container.appendChild(clone);
-      console.log("DELIVERED");
     } else {
-      console.log("Is Delivered:", is_delivered(order.scheduled_at));
-      console.log(under_delivery);
       under_delivery.appendChild(clone);
     }
   });
@@ -102,13 +97,11 @@ async function build_modal(open_btn, order_id, restaurant_name) {
   const modal_order_info = document.querySelector("#modal");
 
   await open_btn.addEventListener("click", () => {
-    console.log("click");
     build_single_order(order_id, restaurant_name);
     modal_order_info.showModal();
   });
 
   close.addEventListener("click", () => {
-    console.log("click");
     modal_order_info.close();
   });
 }
@@ -166,7 +159,6 @@ async function build_products(products, restaurant_name, restaurant_id) {
     buy_btn.addEventListener("click", (event) => {
       event.preventDefault();
       add_to_cart("cart", buy_btn.id);
-      console.log(localStorage.getItem("cart"));
     });
     if (product.type === "food") {
       product_grid.appendChild(clone);

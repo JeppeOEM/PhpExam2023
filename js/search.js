@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
       event.preventDefault();
       show_page("search_users");
       build_search_users(search_api(event, "api/api-search-users-admin.php"));
-      console.log("search_admin_users");
+
     });
   });
 
@@ -32,9 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
     event.preventDefault();
     show_page("orders_admin");
     const json = search_api(event, "api/api-search-orders-admin.php");
-    console.log(json, "search orders");
     build_orders("admin", json);
-    console.log("search_orders_admin");
   });
 });
 
