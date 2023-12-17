@@ -1,4 +1,4 @@
-// ##############################
+
 function validate(event, callback) {
   console.log(event, "validateor");
   const form = event.target;
@@ -73,7 +73,7 @@ function validate(event, callback) {
   return false;
 }
 
-// ##############################
+
 function clear_validate_error() {
   // event.target.classList.remove("validate_error")
   // event.target.value = ""

@@ -73,7 +73,7 @@ function p($data)
 }
 
 
-// ##############################
+
 function _db()
 {
   try {
@@ -95,7 +95,103 @@ function _db()
   }
 }
 
-// ##############################
+
+
+define('USER_ADDRESS_MIN', 2);
+define('USER_ADDRESS_MAX', 30);
+function _validate_user_address()
+{
+
+  $error = 'Address min ' . USER_ADDRESS_MIN . ' max ' . USER_ADDRESS_MAX . ' characters';
+
+  if (!isset($_POST['user_address'])) {
+    throw new Exception($error, 400);
+  }
+  $_POST['user_address'] = trim($_POST['user_address']);
+
+  if (strlen($_POST['user_address']) < USER_ADDRESS_MIN) {
+    throw new Exception($error, 400);
+  }
+
+  if (strlen($_POST['user_address']) > USER_ADDRESS_MAX) {
+    throw new Exception($error, 400);
+  }
+}
+
+
+
+
+
+define('USER_CITY_MIN', 2);
+define('USER_CITY_MAX', 30);
+function _validate_user_city()
+{
+
+  $error = 'City min ' . USER_CITY_MIN . ' max ' . USER_CITY_MAX . ' characters';
+
+  if (!isset($_POST['user_city'])) {
+    throw new Exception($error, 400);
+  }
+  $_POST['user_city'] = trim($_POST['user_city']);
+
+  if (strlen($_POST['user_city']) < USER_CITY_MIN) {
+    throw new Exception($error, 400);
+  }
+
+  if (strlen($_POST['user_city']) > USER_CITY_MAX) {
+    throw new Exception($error, 400);
+  }
+}
+
+
+define('USER_ZIP_MIN', 4);
+define('USER_ZIP_MAX', 4);
+function _validate_user_zip()
+{
+
+  $error = 'ZIP code must be  ' . USER_ZIP_MAX . ' characters';
+
+  if (!isset($_POST['user_city'])) {
+    throw new Exception($error, 400);
+  }
+  $_POST['user_city'] = trim($_POST['user_city']);
+
+  if (strlen($_POST['user_city']) < USER_NAME_MIN) {
+    throw new Exception($error, 400);
+  }
+
+  if (strlen($_POST['user_city']) > USER_NAME_MAX) {
+    throw new Exception($error, 400);
+  }
+}
+
+
+
+define('USER_RESTAURANT_MIN', 2);
+define('USER_RESTAURANT_MAX', 40);
+function _validate_user_restaurant()
+{
+
+  $error = 'Restaurant name must be min ' . USER_CITY_MIN . ' max ' . USER_CITY_MAX . ' characters';
+
+
+  if (!isset($_POST['user_zip'])) {
+    throw new Exception($error, 400);
+  }
+  $_POST['user_zip'] = trim($_POST['user_city']);
+
+  if (strlen($_POST['user_zip']) < USER_RESTAURANT_MIN) {
+    throw new Exception($error, 400);
+  }
+
+  if (strlen($_POST['user_zip']) > USER_RESTAURANT_MAX) {
+    throw new Exception($error, 400);
+  }
+}
+
+
+
+
 define('USER_NAME_MIN', 2);
 define('USER_NAME_MAX', 20);
 function _validate_user_name()
@@ -117,7 +213,7 @@ function _validate_user_name()
   }
 }
 
-// ##############################
+
 define('USER_LAST_NAME_MIN', 2);
 define('USER_LAST_NAME_MAX', 20);
 function _validate_user_last_name()
@@ -139,7 +235,7 @@ function _validate_user_last_name()
   }
 }
 
-// ##############################
+
 function _validate_user_email()
 {
   $error = 'user_email invalid';
@@ -152,7 +248,7 @@ function _validate_user_email()
   }
 }
 
-// ##############################
+
 define('USER_PASSWORD_MIN', 6);
 define('USER_PASSWORD_MAX', 50);
 function _validate_user_password()
@@ -174,7 +270,7 @@ function _validate_user_password()
   }
 }
 
-// ##############################
+
 function _validate_user_confirm_password()
 {
   $error = 'user_confirm_password must match the user_password';

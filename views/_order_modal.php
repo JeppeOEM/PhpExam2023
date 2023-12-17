@@ -13,9 +13,8 @@
         </section>
         <div class="flex justify-between py-2 ">
             <p class="font-bold">Total price:</p>
-            <p class=" modal_total">
+            <p class="modal_total pr-2">
             </p>
-            <span>DKK</span>
         </div>
         <p>
             <button class="w-full p-2 rounded-lg bg-blue-500 text-white" id="close_modal">Close</button>

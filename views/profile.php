@@ -14,7 +14,7 @@
                 <input type="text" id="user_name" name="user_name" value=<?= $_SESSION['user']['user_name'] ?> readonly class="mt-1 p-2 border rounded w-full">
             </div>
             <div class="mb-4">
-                <label for="user_last_name" class="block text-sm font-medium text-gray-600">User Last Name:</label>
+                <label for="user_last_name" class="block text-sm font-medium text-gray-600">Last Name:</label>
                 <input type="text" id="user_last_name" name="user_last_name" value=<?= $_SESSION['user']['user_last_name'] ?> readonly class="mt-1 p-2 border rounded w-full">
             </div>
 

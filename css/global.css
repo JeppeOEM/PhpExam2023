@@ -30,3 +30,7 @@ dialog {
 .restaurant_name {
   font-size: 1.8rem;
 }
+
+.modal_total::after {
+  content: " DKK";
+}

@@ -13,11 +13,11 @@
                     <div class="flex">
                         <div class="w-1/2 pr-2">
                             <label for="user_name">Name</label>
-                            <input name="user_name" value="ddddd" type="text" placeholder="Name" data-validate="str" data-min="2" data-max="30" class="w-full p-2 rounded-lg mb-4">
+                            <input name="user_name" value="ddddd" type="text" placeholder="Name" data-validate="str" data-min="<?= USER_NAME_MIN ?>" data-max="<?= USER_NAME_MAX ?>" class="w-full p-2 rounded-lg mb-4">
                         </div>
                         <div class="w-1/2 pl-2">
                             <label for="user_last_name">Last Name</label>
-                            <input name="user_last_name" value="dddd" type="text" placeholder="Last Name" data-validate="str" data-min="2" data-max="50" class="w-full p-2 rounded-lg mb-4">
+                            <input name="user_last_name" value="dddd" type="text" placeholder="Last Name" data-min="<?= USER_LAST_NAME_MIN ?>" data-max="<?= USER_LAST_NAME_MAX ?>" class="w-full p-2 rounded-lg mb-4">
                         </div>
                     </div>
                     <label for="user_email">
@@ -30,26 +30,26 @@
                         </span>
                     </div>
                     <label for="user_address">Address</label>
-                    <input name="user_address" value="stenholmsvej 22" type="text" placeholder="Address" data-validate="str" data-min="2" data-max="50" class="w-full p-2 rounded-lg mb-4">
+                    <input name="user_address" value="stenholmsvej 22" type="text" placeholder="Address" data-validate="str" data-min="<?= USER_ADDRESS_MIN ?>" data-max="<?= USER_ADDRESS_MAX ?>" class="w-full p-2 rounded-lg mb-4">
 
                     <div class="flex mb-4">
                         <div class="w-1/2 pr-2">
                             <label for="user_zip">Zip</label>
-                            <input name="user_zip" value="2222" type="text" placeholder="Zip" data-validate="str" data-min="3" data-max="5" class="w-full p-2 rounded-lg">
+                            <input name="user_zip" value="2222" type="number" step="1" placeholder="Zip" data-validate="int" data-min="<?= USER_ZIP_MIN ?>" data-max="<?= USER_ZIP_MAX ?>" class="w-full p-2 rounded-lg">
                         </div>
                         <div class="w-1/2 pl-2">
                             <label for="user_city">City</label>
-                            <input name="user_city" value="kbh" type="text" placeholder="City" data-validate="str" data-min="2" data-max="40" class="w-full p-2 rounded-lg">
+                            <input name="user_city" value="kbh" type="text" placeholder="City" data-validate="str" data-min="<?= USER_CITY_MIN ?>" data-max="<?= USER_CITY_MAX ?>" class=" w-full p-2 rounded-lg">
                         </div>
                     </div>
 
                     <div id="signup_restaurant_name" class="hidden">
                         <label for="restaurant_name text-gray-600">Restaurant name</label>
-                        <input name="restaurant_name" value="rest" type="text" placeholder="Restaurant name" data-validate="str" data-min="2" data-max="40" class="w-full p-2 rounded-lg mb-4">
+                        <input name="restaurant_name" value="rest" type="text" placeholder="Restaurant name" data-min="<?= USER_RESTAURANT_MIN ?>" data-max="<?= USER_RESTAURANT_MAX ?>" class="w-full p-2 rounded-lg mb-4">
                     </div>
 
                     <label for="user_password text-gray-600">Password</label>
-                    <input value="password" name="user_password" type="text" placeholder="Password" data-validate="str" data-min="2" data-max="100" class="w-full p-2 rounded-lg mb-4">
+                    <input value="password" name="user_password" type="text" placeholder="Password" data-validate="str" data-min="<?= USER_PASSWORD_MIN ?>" data-max="<?= USER_PASSWORD_MAX ?>" class=" w-full p-2 rounded-lg mb-4">
 
                     <label for="user_confirm_password">Confirm Password</label>
                     <input value="password" name="user_confirm_password" type="text" placeholder="Confirm Password" data-validate="match" data-match-name="user_password" class="w-full p-2 rounded-lg mb-4">

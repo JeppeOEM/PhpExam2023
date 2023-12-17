@@ -14,7 +14,7 @@ try {
     }
 
     $db = _db();
-
+    #also works if user has more than one restaurant connected to a user.
     $q = $db->prepare("SELECT DISTINCT 
             users2.*
         FROM 

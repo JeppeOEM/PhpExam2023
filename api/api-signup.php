@@ -3,8 +3,16 @@
 require_once __DIR__ . '/../_.php';
 
 try {
-    $db = _db();
+    _validate_user_zip();
+    _validate_user_city();
+    _validate_user_address();
+    _validate_user_last_name();
+    _validate_user_name();
+    _validate_user_email();
+    _validate_user_password();
+    _validate_user_confirm_password();
 
+    $db = _db();
     // Log the values before executing the query
     $name = $_POST['user_name'];
     $last = $_POST['user_last_name'];
