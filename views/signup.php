@@ -35,7 +35,7 @@
                     <div class="flex mb-4">
                         <div class="w-1/2 pr-2">
                             <label for="user_zip">Zip</label>
-                            <input name="user_zip" value="2222" type="number" step="1" placeholder="Zip" data-validate="int" data-min="<?= USER_ZIP_MIN ?>" data-max="<?= USER_ZIP_MAX ?>" class="w-full p-2 rounded-lg">
+                            <input name="user_zip" value="2222" placeholder="Zip" data-validate="str" data-min="<?= USER_ZIP_MIN ?>" data-max="<?= USER_ZIP_MAX ?>" class="w-full p-2 rounded-lg">
                         </div>
                         <div class="w-1/2 pl-2">
                             <label for="user_city">City</label>

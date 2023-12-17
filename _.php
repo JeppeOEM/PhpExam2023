@@ -145,22 +145,26 @@ function _validate_user_city()
 
 
 define('USER_ZIP_MIN', 4);
-define('USER_ZIP_MAX', 4);
+define('USER_ZIP_MAX', 5);
 function _validate_user_zip()
 {
 
   $error = 'ZIP code must be  ' . USER_ZIP_MAX . ' characters';
 
-  if (!isset($_POST['user_city'])) {
+  if (!isset($_POST['user_zip'])) {
     throw new Exception($error, 400);
   }
-  $_POST['user_city'] = trim($_POST['user_city']);
+  $_POST['user_zip'] = trim($_POST['user_zip']);
 
-  if (strlen($_POST['user_city']) < USER_NAME_MIN) {
+  if (strlen($_POST['user_zip']) < USER_ZIP_MIN || !ctype_digit($_POST['user_zip'])) {
+    return $error;
+  }
+
+  if (strlen($_POST['user_zip']) > USER_ZIP_MAX) {
     throw new Exception($error, 400);
   }
 
-  if (strlen($_POST['user_city']) > USER_NAME_MAX) {
+  if (strlen($_POST['user_zip']) > USER_ZIP_MAX) {
     throw new Exception($error, 400);
   }
 }
@@ -175,16 +179,16 @@ function _validate_user_restaurant()
   $error = 'Restaurant name must be min ' . USER_CITY_MIN . ' max ' . USER_CITY_MAX . ' characters';
 
 
-  if (!isset($_POST['user_zip'])) {
+  if (!isset($_POST['user_restaurant'])) {
     throw new Exception($error, 400);
   }
-  $_POST['user_zip'] = trim($_POST['user_city']);
+  $_POST['user_restaurant'] = trim($_POST['user_restaurant']);
 
-  if (strlen($_POST['user_zip']) < USER_RESTAURANT_MIN) {
+  if (strlen($_POST['user_restaurant']) < USER_RESTAURANT_MIN) {
     throw new Exception($error, 400);
   }
 
-  if (strlen($_POST['user_zip']) > USER_RESTAURANT_MAX) {
+  if (strlen($_POST['user_restaurant']) > USER_RESTAURANT_MAX) {
     throw new Exception($error, 400);
   }
 }
@@ -194,24 +198,25 @@ function _validate_user_restaurant()
 
 define('USER_NAME_MIN', 2);
 define('USER_NAME_MAX', 20);
+
 function _validate_user_name()
 {
-
-  $error = 'user_name min ' . USER_NAME_MIN . ' max ' . USER_NAME_MAX;
+  $error = 'user_name min ' . USER_NAME_MIN . ' max ' . USER_NAME_MAX . ' and should not contain numbers';
 
   if (!isset($_POST['user_name'])) {
-    throw new Exception($error, 400);
+    return $error;
   }
   $_POST['user_name'] = trim($_POST['user_name']);
 
   if (strlen($_POST['user_name']) < USER_NAME_MIN) {
-    throw new Exception($error, 400);
+    return $error;
   }
 
   if (strlen($_POST['user_name']) > USER_NAME_MAX) {
-    throw new Exception($error, 400);
+    return $error;
   }
 }
+
 
 
 define('USER_LAST_NAME_MIN', 2);
@@ -243,6 +248,7 @@ function _validate_user_email()
     throw new Exception($error, 400);
   }
   $_POST['user_email'] = trim($_POST['user_email']);
+  #inbuilt php validation of email
   if (!filter_var($_POST['user_email'], FILTER_VALIDATE_EMAIL)) {
     throw new Exception($error, 400);
   }

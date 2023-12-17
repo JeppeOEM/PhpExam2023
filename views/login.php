@@ -6,7 +6,7 @@
             <label for="user_email" class="text-sm text-gray-600">Email</label>
             <input name="user_email" type="text" placeholder="email" data-validate="email" class="w-full p-2 rounded-lg mb-4">
             <label for="user_password" class="text-sm text-gray-600">Password</label>
-            <input name="user_password" type="password" placeholder="password" data-validate="str" data-min="<?= USER_PASSWORD_MIN ?>" data-max="<?= USER_PASSWORD_MAX ?> class=" w-full p-2 rounded-lg mb-4">
+            <input name="user_password" type="password" placeholder="password" data-validate="str" data-min="<?= USER_PASSWORD_MIN ?>" data-max="<?= USER_PASSWORD_MAX ?>" class=" w-full p-2 rounded-lg mb-4">
             <button class="w-full p-2 rounded-lg bg-blue-500 text-white">login</button>
         </fieldset>
     </form>

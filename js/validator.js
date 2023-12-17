@@ -1,5 +1,6 @@
 
 function validate(event, callback) {
+  let errors = {};
   console.log(event, "validateor");
   const form = event.target;
   // event.preventDefault();
