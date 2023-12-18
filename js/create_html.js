@@ -57,7 +57,7 @@ async function build_orders_partner(user, search_result = null) {
   const template = q("#partner_order");
   const under_delivery = q("#under_delivery_partner");
   remove_elements("order_tr");
-  console.log("ORDERS:!!!!!!!!!!!!!!!!!!!!!!", orders);
+  console.log("ORDERS:!!!!!!!!!!!!!!!!!!!!!!", orders, search_result.vals);
   orders.forEach((order) => {
     const clone = template.content.cloneNode(true);
     const order_id = (q(".order_id", clone).innerText = order.order_id);

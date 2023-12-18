@@ -8,7 +8,10 @@ document.addEventListener("DOMContentLoaded", () => {
   q(".search_orders_partner").addEventListener("submit", (event) => {
     event.preventDefault();
     show_page("orders_partner");
-    build_html_partner(search_api(event, "api/api-search-orders-partner.php", parseInt(event.target.user_id.value)));
+    console.log(event.target.restaurant_id.value);
+    build_html_partner(
+      search_api(event, "api/api-search-orders-partner.php", parseInt(event.target.restaurant_id.value))
+    );
   });
 
   q(".search_orders_user").addEventListener("submit", (event) => {
@@ -53,7 +56,7 @@ async function search_api(event, path, user_id = null) {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ search, user_id }),
+    body: JSON.stringify({ search, user_id: parseInt(user_id) }),
   });
   const data = await response.json();
   return data;

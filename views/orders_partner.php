@@ -4,7 +4,7 @@
             <label for="search">Search Orders</label>
             <div>
                 <input name="search" type="text" class="border border-blue-500 border-solid w-159 p-2 rounded-lg mb-4 text-black">
-                <input type="hidden" name="user_id" value="<?= $_SESSION['user']['user_id'] ?>">
+                <input type="hidden" name="restaurant_id" value="<?= $_SESSION['user']['restaurant_id'] ?>">
                 <button class="bg-blue-500 text-white p-2 px-4 rounded" type="submit">Search</button>
             </div>
 
