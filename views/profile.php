@@ -39,7 +39,7 @@
                     <button id="edit_profile" type="button" class="bg-blue-500 text-white p-2 px-4 rounded">Edit</button>
                     <input id="update_profile" type="submit" value="Submit" class=" bg-green-500 text-white p-2 px-4 rounded hidden">
                 </div>
-                <button onclick="delete_user(<?= $_SESSION['user']['user_id'] ?>)" <?php if ($_SESSION['user']['user_role'] == "admin") echo 'class="hidden"'; ?>>Delete user</button>
+                <button class=" bg-red-500 text-white p-2 px-4 rounded onclick=" delete_user(<?= $_SESSION['user']['user_id'] ?>)" <?php if ($_SESSION['user']['user_role'] == "admin") echo 'class="hidden"'; ?>>Delete user</button>
             </div>
         </form>
     </div>

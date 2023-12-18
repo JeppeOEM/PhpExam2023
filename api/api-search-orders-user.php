@@ -14,15 +14,18 @@ try {
     // $role = $_SESSION['user']['user_role'];
 
     // p($_SESSION['user'], "useeeeeeeeeer");
-
+    if (empty($search)) {
+        echo json_encode(['info' => 'Search string is empty']);
+        exit;
+    }
     $q = $db->prepare(
-        'SELECT orders.*, restaurants.restaurant_name 
+        'SELECT orders.* 
             FROM orders
-            JOIN restaurants ON orders.restaurant_fk = restaurants.restaurant_id
             WHERE orders.user_fk = :fk_user_id
             AND orders.city LIKE :search
             OR orders.address LIKE :search
-            OR restaurants.restaurant_name LIKE :search
+            OR orders.zip LIKE :search
+            OR orders.order_id LIKE :search
             ORDER BY orders.created_at DESC
         '
     );

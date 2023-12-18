@@ -73,7 +73,6 @@ async function build_html_partner(json) {
 
 async function build_html_users(json) {
   const orders = await json;
-  console.log(orders, "orders");
   build_orders("user", orders);
 }
 

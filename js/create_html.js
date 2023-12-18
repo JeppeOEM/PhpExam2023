@@ -79,13 +79,16 @@ async function build_orders_partner(user, search_result = null) {
 }
 
 async function build_orders(user, search_result = null) {
-  console.log(await search_result, "search result");
   let orders;
-  if (search_result === null) {
+  if (search_result == null) {
     const json = await get_orders(user);
     orders = json.orders;
+    console.log(" NO SEARCH RESULT");
   } else {
     orders = search_result;
+    if (user === "user") {
+      orders = search_result.orders;
+    }
     console.log(orders, "order in build orders");
   }
   let template, container, under_delivery;
@@ -162,7 +165,6 @@ async function get_single_order(order_id) {
   console.log(order_id);
   try {
     const response = await fetch(`api/api-get-order-products.php?order_id=${order_id}`);
-    // const response = await fetch(`api/api-get-single-order.php?order_id=${order_id}`);
     const data = await response.json();
 
     return data;

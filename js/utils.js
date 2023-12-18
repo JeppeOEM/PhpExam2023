@@ -1,4 +1,3 @@
-
 if (!localStorage.getItem("cart")) {
   console.log("init cart hit");
   localStorage.setItem("cart", JSON.stringify([]));
@@ -120,22 +119,6 @@ async function delete_user(user_id) {
     console.log(data);
     empty_cart();
     window.location.href = "/";
-  } catch (error) {
-    console.error("Fetch error:", error.message);
-  }
-}
-
-async function delete_this_user(user_id) {
-  try {
-    const response = await fetch(`api/api-delete-user.php?user_id=${user_id}`, {
-      method: "DELETE",
-    });
-
-    if (response.ok) {
-      const response = await response.text();
-      console.log(response);
-      window.location.href = "/";
-    }
   } catch (error) {
     console.error("Fetch error:", error.message);
   }

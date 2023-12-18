@@ -65,7 +65,7 @@ $users = $q->fetchAll();
         </div>
     </div>
 
-    <h2 class="text-2xl font-bold my-4">Partners</h2>
+    <h2 class="text-2xl font-bold my-4">Restaurants</h2>
     <div class="overflow-x-auto">
         <div class="table-container max-h-96 overflow-y-auto">
             <table class="min-w-full border rounded-lg">
