@@ -17,13 +17,13 @@ document.addEventListener("DOMContentLoaded", () => {
     build_html_users(search_api(event, "api/api-search-orders-user.php", parseInt(event.target.user_id.value)));
   });
 
-  qAll(".search_admin_users").forEach((search_form) => {
-    search_form.addEventListener("submit", (event) => {
-      event.preventDefault();
-      const form = event.target;
-      show_page("search_users");
-    });
-  });
+  // qAll(".search_admin_users").forEach((search_form) => {
+  //   search_form.addEventListener("submit", (event) => {
+  //     event.preventDefault();
+  //     const form = event.target;
+  //     show_page("search_users");
+  //   });
+  // });
 
   qAll(".search_admin_users_form").forEach((form) => {
     form.addEventListener("submit", (event) => {

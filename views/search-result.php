@@ -1,14 +1,14 @@
 <?php
 require_once __DIR__ . '/_header.php';
-if (array_key_exists('search_admin', $_POST)) {
-    $users_search = search_users_admin($_POST['search_admin']);
-    $_SESSION['search_admin_users'] = $users_search;
-    // var_dump($users);
-}
+// if (array_key_exists('search_admin', $_POST)) {
+//     $users_search = search_users_admin($_POST['search_admin']);
+//     $_SESSION['search_admin_users'] = $users_search;
+//     // var_dump($users);
+// }
 
-if (isset($_SESSION['search_admin_users'])) {
-    $users_search = $_SESSION['search_admin_users'];
-}
+// if (isset($_SESSION['search_admin_users'])) {
+//     $users_search = $_SESSION['search_admin_users'];
+// }
 
 ?>
 
