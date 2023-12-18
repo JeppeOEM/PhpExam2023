@@ -32,7 +32,6 @@ session_start();
     <nav class="fixed top-0 left-0 flex gap-4 p-4 px-10 w-full bg-slate-800 text-white z-20 justify-between text-xl">
         <div class="flex  [&>*]:px-4">
 
-            <?php var_dump($_SESSION['user']['restaurant_id']) ?>
 
             <button onclick=" show_page('login');" <?php if (isset($_SESSION['user'])) echo 'class="hidden"'; ?>>
                 Login
@@ -75,9 +74,6 @@ session_start();
                 View users
             </button>
 
-            <button onclick="show_page('admin');" <?php if ($_SESSION['user']['user_role'] != "admin") echo 'class="hidden"'; ?>>
-                Admin
-            </button>
 
         </div>
 

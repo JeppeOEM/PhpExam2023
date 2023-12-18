@@ -24,7 +24,6 @@ if ($_SESSION['user']['user_role'] == "user") {
     <?php require_once __DIR__ . '/orders_partner.php' ?>
     <?php require_once __DIR__ . '/orders_user.php' ?>
     <?php require_once __DIR__ . '/orders_admin.php' ?>
-    <?php require_once __DIR__ . '/admin.php' ?>
     <?php require_once __DIR__ . '/users.php' ?>
     <?php require_once __DIR__ . '/search_users.php' ?>
 

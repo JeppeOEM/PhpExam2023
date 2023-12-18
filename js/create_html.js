@@ -10,10 +10,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // Your JavaScript function or code for logged-in users
     show_page("restaurants", build_restaurants);
   } else if (user === "partner") {
-    show_page("orders_partner");
-    build_orders_partner("partner");
+    show_page("orders_partner", build_orders_partner, "partner");
   } else if (user === "admin") {
-    show_page("admin");
+    show_page("orders_admin", build_orders, "admin");
   } else {
     show_page("restaurants", build_restaurants);
   }

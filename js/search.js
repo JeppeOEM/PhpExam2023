@@ -32,13 +32,6 @@ document.addEventListener("DOMContentLoaded", () => {
       build_search_users(search_api(event, "api/api-search-users-admin.php"));
     });
   });
-
-  q(".search_admin_orders").addEventListener("submit", (event) => {
-    event.preventDefault();
-    show_page("orders_admin");
-    const json = search_api(event, "api/api-search-orders-admin.php");
-    build_orders("admin", json);
-  });
 });
 
 function reload_page() {

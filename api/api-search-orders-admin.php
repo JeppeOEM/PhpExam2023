@@ -18,18 +18,16 @@ try {
         'SELECT orders.*, restaurants.restaurant_name 
             FROM orders
             JOIN restaurants ON orders.restaurant_fk = restaurants.restaurant_id
+            WHERE orders.address LIKE :search
+            OR orders.zip LIKE :search
+            OR restaurants.restaurant_name LIKE :search
+            OR orders.order_id LIKE :search
+            OR orders.user_fk LIKE :search
             ORDER BY orders.created_at DESC'
     );
-    // $q = $db->prepare(
-    //     'SELECT orders.*, restaurants.restaurant_name 
-    //     FROM orders
-    //     JOIN restaurants ON orders.restaurant_fk = restaurants.restaurant_id
-    //     WHERE orders.user_fk LIKE :search
-    //     AND orders.city LIKE :search
-    //     ORDER BY orders.created_at DESC'
-    // );
 
-    // $q->bindValue(':search', "%{$search}%");
+
+    $q->bindValue(':search', "%{$search}%");
 
     $q->execute();
     $result = $q->fetchAll();

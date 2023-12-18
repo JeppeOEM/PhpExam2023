@@ -1,4 +1,4 @@
-<main id="orders_admin" class="page mt-24 mb-24 ">
+<main id="orders_admin" class="page mb-24 ">
     <section class="overflow-x-auto px-12 border-1 py-8 my-8">
         <form class="search_orders_admin flex flex-col py-2" method=" post">
             <label for="search">Search Orders</label>
@@ -7,6 +7,8 @@
                 <button class="bg-blue-500 text-white p-2 px-4 rounded" type="submit">Search</button>
             </div>
         </form>
+        <button onclick="build_orders('admin')" class="bg-blue-500 text-white p-2 px-4 rounded">Reset search</button>
+
         <p class="py-2 text-lg">Location information applies to Restaurants</p>
         <h2 class="text-2xl font-bold ">Under delivery</h2>
         <div class="table-container max-h-96 overflow-y-auto  ">
