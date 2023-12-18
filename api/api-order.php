@@ -17,8 +17,7 @@ try {
     var_dump($restaurant_fk);
     // Log the values before executing the query
     // $user_fk = $_POST['user_id'];
-    // $user_fk = $_SESSION['user']['user_id'];
-    $user_fk = 78;
+    $user_fk = $_SESSION['user']['user_id'];
 
     // $restaurant_fk = $_POST['restaurant_id'];
     $restaurantQuery = $db->prepare('SELECT fk_user_id FROM restaurants WHERE restaurant_id = :restaurant_id');

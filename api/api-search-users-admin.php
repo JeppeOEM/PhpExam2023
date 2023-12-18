@@ -14,20 +14,10 @@ try {
     }
 
     $db = _db();
-    #also only returns 1 user if user has more than one restaurant connected to a user.
     $q = $db->prepare("SELECT DISTINCT 
             users2.*
         FROM 
             users2
-        LEFT JOIN (
-            SELECT 
-                fk_user_id, 
-                GROUP_CONCAT(restaurant_name SEPARATOR ', ') AS restaurant_names
-            FROM 
-                restaurants
-            GROUP BY 
-                fk_user_id
-        ) AS grouped_restaurants ON users2.user_id = grouped_restaurants.fk_user_id
         WHERE 
             users2.user_email LIKE :search 
             OR users2.user_name LIKE :search
@@ -35,7 +25,8 @@ try {
             OR users2.user_address LIKE :search
             OR users2.user_zip LIKE :search
             OR users2.user_city LIKE :search
-            OR grouped_restaurants.restaurant_names LIKE :search
+            Or users2.user_id LIKE :search
+
     ");
 
     $q->bindValue(':search', "%{$search}%");

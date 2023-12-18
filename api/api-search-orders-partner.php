@@ -4,45 +4,33 @@ require_once __DIR__ . '/../_.php';
 
 session_start();
 try {
-    //raw POST data, $_POST works for "Content-Type": "application/x-www-form-urlencoded"
     $json = file_get_contents('php://input');
     $data = json_decode($json);
 
     $db = _db();
-    $user_id = $data->user_id;
+    $restaurant_id = $data->restaurant_id;
     $search = $data->search;
-    // $role = $_SESSION['user']['user_role'];
-
-    // p($_SESSION['user'], "useeeeeeeeeer");
 
     $q = $db->prepare(
-        'SELECT orders.*, restaurants.restaurant_name 
-            FROM orders
-            JOIN restaurants ON orders.restaurant_fk = restaurants.restaurant_id
-            WHERE restaurant_fk = :restaurant_id
-            AND orders.city LIKE :search
-            OR orders.address LIKE :search
-            OR restaurants.restaurant_name LIKE :search
-            ORDER BY orders.created_at DESC
-        '
+        'SELECT DISTINCT restaurants.restaurant_id, orders.*, users2.user_name, users2.user_last_name, users2.user_address, users2.user_city, users2.user_zip
+        FROM orders
+        JOIN users2 ON orders.user_fk = users2.user_id
+        JOIN restaurants ON orders.restaurant_fk = restaurants.restaurant_id
+        WHERE orders.restaurant_fk = :restaurant_id
+        AND users2.user_name LIKE :search
+        OR users2.user_last_name LIKE :search
+        OR users2.user_address LIKE :search
+        ORDER BY orders.created_at DESC'
     );
-
-
-    $q = $db->prepare(
-        'SELECT orders.*, restaurants.restaurant_name 
-            FROM orders
-            JOIN restaurants ON orders.restaurant_fk = restaurants.restaurant_id
-            WHERE restaurant_fk = :restaurant_id
-            ORDER BY orders.created_at DESC'
-    );
-    // $q->bindValue(':fk_user_id', $_SESSION['user']['user_id']);
-    $q->bindValue(':fk_user_id', $user_id);
+    $q->bindValue(':restaurant_id', $restaurant_id);
     $q->bindValue(':search', "%{$search}%");
-
-
-
     $q->execute();
     $orders = $q->fetchAll();
+
+    // $orders1 = array_filter($orders, function ($order) use ($restaurant_id) {
+    //     return $order['restaurant_id'] == $restaurant_id;
+    // });
+
     echo json_encode(['orders' => $orders]);
 } catch (Exception $e) {
     try {

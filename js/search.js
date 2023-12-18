@@ -1,14 +1,20 @@
 document.addEventListener("DOMContentLoaded", () => {
+  q(".search_orders_admin").addEventListener("submit", (event) => {
+    event.preventDefault();
+    show_page("orders_admin");
+    build_html_admin(search_api(event, "api/api-search-orders-admin.php"));
+  });
+
   q(".search_orders_partner").addEventListener("submit", (event) => {
     event.preventDefault();
-    show_page("orders_user");
-    build_orders_user(search_api(event, "api/api-search-orders-user.php", parseInt(event.target.user_id.value)));
+    show_page("orders_partner");
+    build_html_partner(search_api(event, "api/api-search-orders-partner.php", parseInt(event.target.user_id.value)));
   });
 
   q(".search_orders_user").addEventListener("submit", (event) => {
     event.preventDefault();
     show_page("orders_user");
-    build_orders_user(search_api(event, "api/api-search-orders-user.php", parseInt(event.target.user_id.value)));
+    build_html_users(search_api(event, "api/api-search-orders-user.php", parseInt(event.target.user_id.value)));
   });
 
   qAll(".search_admin_users").forEach((search_form) => {
@@ -24,7 +30,6 @@ document.addEventListener("DOMContentLoaded", () => {
       event.preventDefault();
       show_page("search_users");
       build_search_users(search_api(event, "api/api-search-users-admin.php"));
-
     });
   });
 
@@ -43,6 +48,7 @@ function reload_page() {
 
 async function search_api(event, path, user_id = null) {
   const search = event.target.search.value;
+  console.log(search, "search");
   console.log(user_id, "user_id");
   if (user_id === null) {
     console.log("no user_id", user_id);
@@ -60,7 +66,19 @@ async function search_api(event, path, user_id = null) {
   return data;
 }
 
-async function build_orders_user(json) {
+async function build_html_admin(json) {
+  const orders = await json;
+  console.log(orders, "orders");
+  build_orders("admin", orders);
+}
+
+async function build_html_partner(json) {
+  const orders = await json;
+  console.log(orders, "orders");
+  build_orders_partner("partner", orders);
+}
+
+async function build_html_users(json) {
   const orders = await json;
   console.log(orders, "orders");
   build_orders("user", orders);

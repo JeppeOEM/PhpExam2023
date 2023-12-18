@@ -80,14 +80,13 @@ async function build_orders_partner(user, search_result = null) {
 }
 
 async function build_orders(user, search_result = null) {
-  console.log(search_result);
+  console.log(await search_result, "search result");
   let orders;
   if (search_result === null) {
     const json = await get_orders(user);
     orders = json.orders;
   } else {
-    search = await search_result;
-    orders = search.orders;
+    orders = search_result;
     console.log(orders, "order in build orders");
   }
   let template, container, under_delivery;

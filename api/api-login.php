@@ -17,7 +17,6 @@ try {
         throw new Exception('invalid credentials', 400);
     }
 
-    // Check if the found user has a valid password
     if (!password_verify($_POST['user_password'], $user['user_password'])) {
         throw new Exception('invalid credentials', 400);
     }
