@@ -11,24 +11,45 @@ try {
     $db = _db();
     $user_id = $data->user_id;
     $search = $data->search;
-    // $role = $_SESSION['user']['user_role'];
 
-    // p($_SESSION['user'], "useeeeeeeeeer");
     if (empty($search)) {
         echo json_encode(['info' => 'Search string is empty']);
         exit;
     }
+
     $q = $db->prepare(
-        'SELECT orders.* 
-            FROM orders
-            WHERE orders.user_fk = :fk_user_id
-            AND orders.city LIKE :search
-            OR orders.address LIKE :search
+        'SELECT
+        restaurants.restaurant_id,
+        restaurants.restaurant_name,
+        orders.*
+        FROM orders
+        JOIN restaurants ON orders.restaurant_fk = restaurants.restaurant_id
+        WHERE orders.user_fk = :user_id
+        AND (
+            orders.address LIKE :search
+            OR orders.city LIKE :search
             OR orders.zip LIKE :search
-            OR orders.order_id LIKE :search
-            ORDER BY orders.created_at DESC
-        '
+            OR restaurants.restaurant_name LIKE :search
+        )
+        ORDER BY orders.created_at DESC;'
     );
+    $q->bindValue(':user_id', $user_id);
+    $q->bindValue(':search', "%{$search}%");
+    $q->execute();
+    $orders = $q->fetchAll();
+
+
+    // $q = $db->prepare(
+    //     'SELECT orders.* 
+    //         FROM orders
+    //         WHERE orders.user_fk = :fk_user_id
+    //         AND orders.city LIKE :search
+    //         OR orders.address LIKE :search
+    //         OR orders.zip LIKE :search
+    //         OR orders.order_id LIKE :search
+    //         ORDER BY orders.created_at DESC
+    //     '
+    // );
     // $q->bindValue(':fk_user_id', $_SESSION['user']['user_id']);
     $q->bindValue(':fk_user_id', $user_id);
     $q->bindValue(':search', "%{$search}%");
@@ -37,7 +58,7 @@ try {
 
     $q->execute();
     $orders = $q->fetchAll();
-    echo json_encode(['orders' => $orders]);
+    echo json_encode(['orders' => $orders, "vals" => $user_id, "search" => $search]);
 } catch (Exception $e) {
     try {
         if (!$e->getCode() || !$e->getMessage()) {

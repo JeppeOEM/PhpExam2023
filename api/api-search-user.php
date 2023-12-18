@@ -27,6 +27,10 @@ try {
         OR users2.user_id = restaurants.fk_user_id AND restaurants.restaurant_name LIKE :restaurant_name
     ");
 
+
+
+
+
     $q->bindValue(':user_email', "%{$search}%");
     $q->bindValue(':user_name', "%{$search}%");
     $q->bindValue(':user_last_name', "%{$search}%");

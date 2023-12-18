@@ -21,7 +21,7 @@
                         <th>User ID</th>
                         <th>Created At</th>
                         <th>Scheduled At</th>
-                        <th>Name</th>
+                        <th>Restaurant Name</th>
                         <th>Address</th>
                         <th>City</th>
                         <th>Zip</th>
