@@ -1,11 +1,10 @@
 <?php require_once __DIR__ . '/_header.php'  ?>
-<!-- absolute top-0 left-52 w-[calc(100vw-13rem)] h-screen overflow-hidden -->
+
 
 <main id="profile" class="page ">
     <div class=" bg-white p-8 rounded shadow-md">
         <h2 class="text-2xl font-semibold mb-4">Profile</h2>
         <!-- name of callback cannot be the same as an ID of anything in the form -->
-
         <form onsubmit="return validate(event, update)" method="post">
 
             <input type="hidden" name="user_id" value=<?= $_SESSION['user']['user_id'] ?>>
@@ -24,15 +23,15 @@
             </div>
             <div class="mb-4">
                 <label for="user_address" class="block text-sm font-medium text-gray-600">Address:</label>
-                <input name="user_address" type="text" placeholder="address" value=<?= $_SESSION['user']['user_address'] ?> data-validate="str" data-min="2" data-max="50" readonly class="mt-1 p-2 border rounded w-full">
+                <input name="user_address" id="user_address" type="text" placeholder="address" value=<?= $_SESSION['user']['user_address'] ?> data-validate="str" data-min="2" data-max="50" readonly class="mt-1 p-2 border rounded w-full">
             </div>
             <div class="mb-4">
                 <label for="user_zip" class="block text-sm font-medium text-gray-600">Zip code:</label>
-                <input name="user_zip" type="text" placeholder="zip" value=<?= $_SESSION['user']['user_zip'] ?> data-validate="str" data-min="4" data-max="4" readonly class="mt-1 p-2 border rounded w-full">
+                <input name="user_zip" id="user_zip" type="text" placeholder="zip" value=<?= $_SESSION['user']['user_zip'] ?> data-validate="str" data-min="4" data-max="4" readonly class="mt-1 p-2 border rounded w-full">
             </div>
             <div class="mb-4">
                 <label for="user_city" class="block text-sm font-medium text-gray-600">City:</label>
-                <input name="user_city" type="text" placeholder="city" value=<?= $_SESSION['user']['user_city'] ?> data-validate="str" data-min="2" data-max="40" readonly class="mt-1 p-2 border rounded w-full">
+                <input name="user_city " id="user_city" type="text" placeholder="city" value=<?= $_SESSION['user']['user_city'] ?> data-validate="str" data-min="2" data-max="40" readonly class="mt-1 p-2 border rounded w-full">
             </div>
             <div class="flex justify-between">
                 <div>

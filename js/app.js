@@ -1,11 +1,11 @@
 async function is_email_available(event) {
   const frm = event.target.form;
-  const conn = await fetch("api/api-is-email-available.php", {
+  const response = await fetch("api/api-is-email-available.php", {
     method: "POST",
     body: new FormData(frm),
   });
-  // everything that is not a 2xx
-  if (!conn.ok) {
+  //!ok = everything that is not a 2xx
+  if (!response.ok) {
     document.querySelector("#msg_email_not_available").classList.remove("hidden");
     return;
   }
@@ -20,9 +20,7 @@ async function user_signup(event) {
   event.preventDefault();
   const frm = event.target;
   const formData = new FormData(frm);
-  formData.forEach((value, key) => {
-
-  });
+  formData.forEach((value, key) => {});
 
   const response = await fetch("/api/api-signup.php", {
     method: "POST",
@@ -41,7 +39,6 @@ async function user_signup(event) {
     });
     return;
   } else {
-
     show_page("login");
   }
 
@@ -197,7 +194,6 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   q("#edit_profile").addEventListener("click", () => {
-
     edit_profile();
   });
 
@@ -221,47 +217,21 @@ document.addEventListener("DOMContentLoaded", function () {
     q("#signup_restaurant_name").classList.remove("hidden");
   });
 
-  // qAll(".change_signup").forEach((btn) => {
-  //   btn.addEventListener("click", () => {
-  //     const textPartner = q("#text_partner");
-  //     const textUser = q("#text_user");
-  //     const role = q("#user_role_input");
-  //     let role_value = role.value;
-  //     role.value = role.value === "user" ? "partner" : "user";
-  //     console.log(role.value);
-  //     q("#signup_legend_var").innerText = role_value;
-  //     // Toggle the "hidden" class for both spans
-  //     textPartner.classList.toggle("hidden");
-  //     textUser.classList.toggle("hidden");
-  //     q(".restaurant_name").classList.toggle("hidden");
-  //   });
-  // });
-
   function edit_profile() {
-    const user_name = document.getElementById("user_name");
-    const user_email = document.getElementById("user_email");
-    const user_last_name = document.getElementById("user_last_name");
+    const user_name = q("#user_name");
+    const user_email = q("#user_email");
+    const user_last_name = q("#user_last_name");
+    const user_address = q("#user_address");
+    const user_zip = q("#user_zip");
+    const user_city = q("#user_city");
+
     user_name.readOnly = false;
     user_email.readOnly = false;
     user_last_name.readOnly = false;
+    user_address.readOnly = false;
+    user_zip.readOnly = false;
+    user_city.readOnly = false;
     q("#update_profile").classList.remove("hidden");
     q("#edit_profile").classList.add("hidden");
   }
-
-  // EVENT LISTENERS AND BUTTONS
-
-  // qAll(".change_signup").forEach((btn) => {
-  //   btn.addEventListener("click", () => {
-  //     const role = q("#user_role_input");
-  //     let role_value = role.value;
-  //     console.log(role);
-  //     role_value === "user" ? (role_value = "partner") : (role_value = "user");
-  //     console.log(role_value);
-  //     role.value = role_value;
-  //     // q("#text_partner").classList.toggle("hidded");
-  //     console.log(q("#text_user").classList);
-  //     let text = q("#text_user");
-  //     text.classList.remove("hidded");
-  //   });
-  // });
 });
