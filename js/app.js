@@ -28,7 +28,6 @@ async function user_signup(event) {
   });
 
   const data = await response.text();
-  console.log(data);
 
   if (!response.ok) {
     Swal.fire({
@@ -41,13 +40,9 @@ async function user_signup(event) {
   } else {
     show_page("login");
   }
-
-  // TODO: redirect to the login page
-  // location.href = "/index";
 }
 
 async function total_price(id_array) {
-  // const restaurant_id = event.currentTarget.id;
   try {
     const response = await fetch(`/api/api-total-price.php`, {
       method: "POST",
@@ -61,9 +56,7 @@ async function total_price(id_array) {
 }
 
 async function login(event) {
-  // console.log(event.form, "formmmmmm");
   const frm = event.target;
-  console.log(frm);
   event.preventDefault();
   const response = await fetch("/api/api-login.php", {
     method: "POST",
@@ -87,9 +80,8 @@ async function login(event) {
 }
 
 async function update(event) {
-  // console.log(event.form, "formmmmmm");
   const frm = event.target;
-  console.log(frm);
+  console.log(frm, "updated form");
   event.preventDefault();
   const response = await fetch("/api/api-update-user.php", {
     method: "POST",

@@ -25,6 +25,9 @@ try {
             user_email = :user_email,
             user_last_name = :user_last_name,
             user_name = :user_name
+            user_name = :user_address
+            user_name = :user_city
+            user_name = :user_zip
         WHERE user_id = :user_id;
     ");
 
@@ -32,9 +35,11 @@ try {
     $q->bindValue(':user_email', $_POST['user_email']);
     $q->bindValue(':user_last_name', $_POST['user_last_name']);
     $q->bindValue(':user_name', $_POST['user_name']);
+    $q->bindValue(':user_address', $_POST['user_address']);
+    $q->bindValue(':user_city', $_POST['user_city']);
+    $q->bindValue(':user_zip', $_POST['user_zip']);
     $q->execute();
 
-    session_start();
     $_SESSION['user'] = [
         'user_id' => $user_id,
         'user_name' => $user_name,
