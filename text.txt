@@ -40,3 +40,5 @@ Text message for new users
 Sync the rules for validation between front and back-end
 Make it look "nice"
 Make it friendly
+
+test
